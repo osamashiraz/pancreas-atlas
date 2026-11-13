@@ -82,6 +82,13 @@ body[data-mode="precursors"] .ladder-mode[data-for-mode="precursors"],body[data-
 .atlas .quiz .opts button{font:inherit;font-size:14.5px;text-align:left;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:7px;padding:9px 12px;cursor:pointer}
 .atlas .quiz .opts button.right{border-color:#2e9d57;background:color-mix(in srgb,#2e9d57 16%,var(--panel))}.atlas .quiz .opts button.wrong{border-color:#c8333a;background:color-mix(in srgb,#c8333a 14%,var(--panel))}
 .atlas .empty{color:var(--muted);font-size:14px}
+.atlas .pinwrap{position:relative}.atlas .pin{position:absolute;transform:translate(-50%,-50%);width:23px;height:23px;border-radius:50%;background:#ffd23f;border:2px solid #1d1f2a;color:#1d1f2a;font:700 12.5px/1 "Public Sans",system-ui,sans-serif;font-style:normal;display:grid;place-items:center;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.atlas.nopins .pin{display:none}.atlas ol.glance{padding-left:22px;color:var(--ink)}.atlas ol.glance li::marker{font-weight:700}
+.atlas .pstrip{display:grid;gap:26px;max-width:1180px;overflow-x:auto;padding-bottom:4px}.atlas .pstage{position:relative;overflow:visible}.atlas .pstage .thumb{border-radius:8px 8px 0 0}
+.atlas .pstage:not(:last-child)::after{content:"→";position:absolute;right:-22px;top:28%;font-size:20px;color:var(--muted)}.atlas .pstage.maybe{border-style:dashed}
+.atlas .ptracks{max-width:1180px;border-left:1px solid var(--rule);border-right:1px solid var(--rule);background:repeating-linear-gradient(90deg,transparent 0,transparent calc(20% - 1px),var(--rule) calc(20% - 1px),var(--rule) 20%)}
+.atlas .ptrack{padding:3px 0}.atlas .pbar{background:color-mix(in srgb,var(--accent) 22%,var(--canvas));border-left:3px solid var(--accent);border-radius:0 5px 5px 0;padding:4px 10px;font-size:13px}.atlas .pbar span{color:var(--muted);font-size:12px}
+@media (max-width:880px){.atlas .pbar{margin-left:0!important}}
 .lightbox{position:fixed;inset:0;z-index:50;background:rgba(10,8,14,.92);display:grid;place-items:center;cursor:zoom-out;padding:14px}.lightbox[hidden]{display:none}
 .lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox p{color:#ddd;font-size:12.5px;max-width:900px;text-align:center;margin:8px 0 0}
 body[data-mode="atlas"] .app{grid-template-columns:minmax(0,1fr)}body[data-mode="atlas"] aside,body[data-mode="atlas"] .reset,body[data-mode="atlas"] .scale,body[data-mode="atlas"] .hint{display:none}

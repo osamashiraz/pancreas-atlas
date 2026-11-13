@@ -61,7 +61,19 @@
      "caption": "Lobules of acini between thin septa, with pale islets. The stain on this slide is bluish, with weak eosin.",
      "credit": "Berkshire Community College Bioscience Image Library, via Wikimedia Commons",
      "licence": "CC0",
-     "mag": "H&E, ×40"
+     "mag": "H&E, ×40",
+     "marks": [
+      [
+       0.62,
+       0.3,
+       1
+      ],
+      [
+       0.45,
+       0.62,
+       3
+      ]
+     ]
     }
    ],
    "glance": [
@@ -106,7 +118,19 @@
      "caption": "Acini: pyramidal cells with basal nuclei round small lumina. Eosin is weak on this slide, so the granules look pale.",
      "credit": "Berkshire Community College Bioscience Image Library, via Wikimedia Commons",
      "licence": "CC0",
-     "mag": "H&E, ×200"
+     "mag": "H&E, ×200",
+     "marks": [
+      [
+       0.62,
+       0.33,
+       1
+      ],
+      [
+       0.27,
+       0.23,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -187,7 +211,19 @@
      "caption": "A small duct cut lengthwise, one layer of cuboidal cells. Photographed by phase contrast, so the colours are not those of ordinary H&E.",
      "credit": "Berkshire Community College Bioscience Image Library, via Wikimedia Commons",
      "licence": "CC0",
-     "mag": "H&E by phase contrast, ×400"
+     "mag": "H&E by phase contrast, ×400",
+     "marks": [
+      [
+       0.41,
+       0.52,
+       1
+      ],
+      [
+       0.49,
+       0.62,
+       3
+      ]
+     ]
     }
    ],
    "glance": [
@@ -243,7 +279,19 @@
      "caption": "A large duct in a septum with its thick collagen wall; the lining is partly detached.",
      "credit": "Berkshire Community College Bioscience Image Library, via Wikimedia Commons",
      "licence": "CC0",
-     "mag": "H&E, ×100"
+     "mag": "H&E, ×100",
+     "marks": [
+      [
+       0.52,
+       0.38,
+       1
+      ],
+      [
+       0.74,
+       0.3,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -291,7 +339,19 @@
      "caption": "A pale islet among darker acini (bluish stain, weak eosin).",
      "credit": "Berkshire Community College Bioscience Image Library, via Wikimedia Commons",
      "licence": "CC0",
-     "mag": "H&E, ×200"
+     "mag": "H&E, ×200",
+     "marks": [
+      [
+       0.42,
+       0.32,
+       1
+      ],
+      [
+       0.38,
+       0.45,
+       2
+      ]
+     ]
     },
     {
      "src": "atlas/normal-islet-2.jpg",
@@ -385,7 +445,19 @@
      "caption": "Obstructive pancreatitis: acini turning into small duct-like tubes with open lumina (arrows, from the source figure).",
      "credit": "Hosomi K et al. Current Issues in Molecular Biology 2026, doi:10.3390/cimb48060585, figure 1",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×400"
+     "mag": "H&E, ×400",
+     "marks": [
+      [
+       0.24,
+       0.64,
+       1
+      ],
+      [
+       0.26,
+       0.84,
+       3
+      ]
+     ]
     }
    ],
    "glance": [
@@ -509,7 +581,19 @@
      "caption": "Fat necrosis (below) with a rim of inflammation and haemorrhage; viable fat above.",
      "mag": "H&E",
      "credit": "Patho, via Wikimedia Commons",
-     "licence": "CC BY-SA 3.0"
+     "licence": "CC BY-SA 3.0",
+     "marks": [
+      [
+       0.65,
+       0.7,
+       1
+      ],
+      [
+       0.33,
+       0.16,
+       2
+      ]
+     ]
     },
     {
      "src": "histo:acute-necrosis",
@@ -580,7 +664,19 @@
      "caption": "Fibrosis round a shrunken lobule.",
      "mag": "H&E",
      "credit": "Chekmareva et al. Int J Mol Sci 2025, doi:10.3390/ijms262010169, fig. 1A",
-     "licence": "CC BY 4.0"
+     "licence": "CC BY 4.0",
+     "marks": [
+      [
+       0.62,
+       0.45,
+       1
+      ],
+      [
+       0.27,
+       0.33,
+       4
+      ]
+     ]
     },
     {
      "src": "histo:chronic-atrophy",
@@ -659,7 +755,19 @@
      "caption": "IgG4-related disease centred on the main duct, one figure in panels: slices with a thickened duct wall (A–C); dense lymphoplasmacytic infiltrate with storiform fibrosis, and IgG4-positive plasma cells in brown (D); a duct and a vein narrowed by inflammation (E, F; elastic and IgG4 stains at right). Small panels.",
      "credit": "Kanamaru K et al. Clinical Journal of Gastroenterology 2026, doi:10.1007/s12328-026-02315-2, fig. 5",
      "licence": "CC BY 4.0",
-     "mag": "Gross, H&E and special stains"
+     "mag": "Gross, H&E and special stains",
+     "marks": [
+      [
+       0.12,
+       0.55,
+       1
+      ],
+      [
+       0.58,
+       0.8,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -709,7 +817,24 @@
      "caption": "A resected pseudocyst at very low power: the cavity is bounded by fibrous tissue with no epithelial lining; pancreatic lobules beside it (small image; letter from the source figure).",
      "credit": "Miyata T et al. International Journal of Surgery Case Reports 2026, doi:10.1097/RC9.0000000000000160, fig. 5B",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×30"
+     "mag": "H&E, ×30",
+     "marks": [
+      [
+       0.88,
+       0.45,
+       1
+      ],
+      [
+       0.52,
+       0.42,
+       2
+      ],
+      [
+       0.68,
+       0.21,
+       3
+      ]
+     ]
     }
    ],
    "glance": [
@@ -767,7 +892,24 @@
      "caption": "Small cysts lined by one layer of low cuboidal cells in fibrous stroma.",
      "credit": "Nephron, via Wikimedia Commons",
      "licence": "CC BY-SA 3.0",
-     "mag": "H&E, high power"
+     "mag": "H&E, high power",
+     "marks": [
+      [
+       0.3,
+       0.62,
+       1
+      ],
+      [
+       0.57,
+       0.45,
+       2
+      ],
+      [
+       0.4,
+       0.39,
+       3
+      ]
+     ]
     },
     {
      "src": "atlas/serous-cystadenoma-2.jpg",
@@ -842,7 +984,19 @@
      "caption": "Flat lining of tall columnar cells with mucin above basal nuclei (formerly PanIN-1A).",
      "mag": "H&E, ×20",
      "credit": "Distler et al. Biomed Res Int 2014, doi:10.1155/2014/474905, fig. 3a",
-     "licence": "CC BY"
+     "licence": "CC BY",
+     "marks": [
+      [
+       0.28,
+       0.16,
+       1
+      ],
+      [
+       0.2,
+       0.27,
+       2
+      ]
+     ]
     },
     {
      "src": "histo:panin2-hp",
@@ -922,7 +1076,19 @@
      "caption": "Papillae with crowded nuclei that have lost their polarity; a cluster of cells buds into the lumen (formerly PanIN-3).",
      "mag": "H&E, ×40",
      "credit": "Distler et al. Biomed Res Int 2014, doi:10.1155/2014/474905, fig. 4b",
-     "licence": "CC BY"
+     "licence": "CC BY",
+     "marks": [
+      [
+       0.62,
+       0.52,
+       1
+      ],
+      [
+       0.12,
+       0.13,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -984,7 +1150,19 @@
      "caption": "Low grade: tall, thick papillae of mucinous columnar cells with bland nuclei.",
      "mag": "H&E, ×20",
      "credit": "Chen et al. Diagnostics 2023, doi:10.3390/diagnostics13010065, fig. 4A",
-     "licence": "CC BY 4.0"
+     "licence": "CC BY 4.0",
+     "marks": [
+      [
+       0.48,
+       0.17,
+       1
+      ],
+      [
+       0.28,
+       0.55,
+       3
+      ]
+     ]
     },
     {
      "src": "histo:ipmn-highgrade",
@@ -1092,7 +1270,19 @@
      "caption": "Branching papillae of pink (oncocytic) cells filling a dilated duct. Low power, small image.",
      "credit": "Xiang Y et al. Front Med 2025, doi:10.3389/fmed.2025.1650931, fig. 4A",
      "licence": "CC BY",
-     "mag": "H&E, ×4"
+     "mag": "H&E, ×4",
+     "marks": [
+      [
+       0.68,
+       0.45,
+       1
+      ],
+      [
+       0.86,
+       0.28,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1139,7 +1329,19 @@
      "caption": "Columnar mucinous lining over dense ovarian-type stroma of spindle cells.",
      "mag": "H&E, ×40",
      "credit": "Distler et al. Biomed Res Int 2014, doi:10.1155/2014/474905, fig. 6b",
-     "licence": "CC BY"
+     "licence": "CC BY",
+     "marks": [
+      [
+       0.55,
+       0.14,
+       1
+      ],
+      [
+       0.3,
+       0.42,
+       2
+      ]
+     ]
     },
     {
      "src": "histo:mcn-low",
@@ -1214,7 +1416,19 @@
      "caption": "Well-formed glands with open lumina in desmoplastic stroma. The uploader does not state a grade; chosen for its well-formed glands.",
      "credit": "KGH, via Wikimedia Commons",
      "licence": "CC BY-SA 3.0",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.5,
+       0.46,
+       1
+      ],
+      [
+       0.24,
+       0.37,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1277,7 +1491,24 @@
      "caption": "Irregular glands and cribriform nests of atypical cells in desmoplastic stroma. Grade not stated by the uploader.",
      "credit": "KGH, via Wikimedia Commons",
      "licence": "CC BY-SA 3.0",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.6,
+       0.25,
+       1
+      ],
+      [
+       0.2,
+       0.5,
+       2
+      ],
+      [
+       0.72,
+       0.85,
+       3
+      ]
+     ]
     },
     {
      "src": "histo:pda-glands",
@@ -1340,7 +1571,14 @@
      "caption": "Poorly differentiated malignant cells, with few glands, in desmoplastic stroma.",
      "credit": "Aloraini et al. Cureus 2023, doi:10.7759/cureus.48642, fig. 6",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×400"
+     "mag": "H&E, ×400",
+     "marks": [
+      [
+       0.75,
+       0.25,
+       1
+      ]
+     ]
     },
     {
      "src": "atlas/pda-poor-2.jpg",
@@ -1403,7 +1641,24 @@
      "caption": "Loose, moderate and dense desmoplastic stroma, side by side.",
      "mag": "H&E",
      "credit": "Wang et al. Oncotarget 2016, doi:10.18632/oncotarget.6770",
-     "licence": "CC BY 3.0"
+     "licence": "CC BY 3.0",
+     "marks": [
+      [
+       0.85,
+       0.6,
+       1
+      ],
+      [
+       0.55,
+       0.45,
+       2
+      ],
+      [
+       0.44,
+       0.6,
+       3
+      ]
+     ]
     },
     {
      "src": "histo:pda-hp",
@@ -1475,7 +1730,14 @@
      "caption": "Gland-forming and solid squamous areas in one tumour. Low contrast; the squamous part is subtle here.",
      "credit": "Paramythiotis D et al. J Med Case Rep 2022, doi:10.1186/s13256-022-03610-5, fig. 2a",
      "licence": "CC BY 4.0",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.62,
+       0.5,
+       1
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1533,7 +1795,19 @@
      "caption": "Pools of pale mucin with strips of tumour cells floating in them (letter and arrow from the source figure).",
      "credit": "Orcutt ST et al. Case Rep Pancreat Cancer 2016, doi:10.1089/crpc.2016.0006, fig. 2A",
      "licence": "CC BY 4.0",
-     "mag": "H&E, low power"
+     "mag": "H&E, low power",
+     "marks": [
+      [
+       0.62,
+       0.78,
+       1
+      ],
+      [
+       0.3,
+       0.55,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1587,7 +1861,14 @@
      "caption": "Sheets of large, bizarre tumour cells, some with several nuclei, and haemorrhage (small image; letter from the source figure).",
      "credit": "Olayinka O et al. Cureus 2021, doi:10.7759/cureus.14988, fig. 1B",
      "licence": "CC BY",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.57,
+       0.26,
+       1
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1639,7 +1920,14 @@
      "caption": "Large cells with many nuclei (arrowheads, from the source figure) among smaller tumour cells.",
      "credit": "Chan W et al. J Med Case Rep 2023, doi:10.1186/s13256-023-04213-4, fig. 4C",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×40"
+     "mag": "H&E, ×40",
+     "marks": [
+      [
+       0.62,
+       0.34,
+       1
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1680,7 +1968,19 @@
      "caption": "Single cells, each with a mucin vacuole pushing the nucleus to the edge (arrow from the source figure).",
      "credit": "Campbell DJ et al. J Pancreat Cancer 2021, doi:10.1089/pancan.2020.0013, fig. 4",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×400"
+     "mag": "H&E, ×400",
+     "marks": [
+      [
+       0.5,
+       0.44,
+       2
+      ],
+      [
+       0.23,
+       0.6,
+       3
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1729,7 +2029,24 @@
      "caption": "Sheets of poorly differentiated cells with a pushing edge and lymphocytes (small image; arrows from the source figure).",
      "credit": "Ohtsubo K et al. Front Oncol 2025, doi:10.3389/fonc.2025.1551038, fig. 2B",
      "licence": "CC BY",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.25,
+       0.65,
+       1
+      ],
+      [
+       0.55,
+       0.68,
+       2
+      ],
+      [
+       0.4,
+       0.34,
+       3
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1774,7 +2091,19 @@
      "caption": "Polygonal cells with abundant pink cytoplasm and round nuclei, like liver cells.",
      "credit": "Tomino T et al. Surg Case Rep 2019, doi:10.1186/s40792-019-0723-5, fig. 4",
      "licence": "CC BY 4.0",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.55,
+       0.32,
+       1
+      ],
+      [
+       0.27,
+       0.5,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1812,7 +2141,19 @@
      "caption": "Malignant glands round a nerve.",
      "mag": "H&E",
      "credit": "KGH, via Wikimedia Commons",
-     "licence": "CC BY-SA 3.0"
+     "licence": "CC BY-SA 3.0",
+     "marks": [
+      [
+       0.27,
+       0.45,
+       1
+      ],
+      [
+       0.55,
+       0.86,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1857,7 +2198,14 @@
      "caption": "Round plugs of tumour cells inside dilated lymphatic vessels (labels from the source figure).",
      "credit": "Satala CB et al. Surg J (N Y) 2021, doi:10.1055/s-0041-1728651, fig. 2A-B",
      "licence": "CC BY",
-     "mag": "H&E, ×5 and ×10 objectives"
+     "mag": "H&E, ×5 and ×10 objectives",
+     "marks": [
+      [
+       0.7,
+       0.55,
+       1
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1945,7 +2293,19 @@
      "caption": "A lymph node: tumour cells and glands replace the lymphoid tissue inside the capsule (label from the source figure).",
      "credit": "Satala CB et al. Surg J (N Y) 2021, doi:10.1055/s-0041-1728651, fig. 2C",
      "licence": "CC BY",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.45,
+       0.65,
+       1
+      ],
+      [
+       0.18,
+       0.22,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -1983,7 +2343,19 @@
      "caption": "Cut surface of a liver with many pale deposits from a pancreatic cancer.",
      "credit": "Haymanj, via Wikimedia Commons",
      "licence": "Public domain",
-     "mag": "Gross specimen"
+     "mag": "Gross specimen",
+     "marks": [
+      [
+       0.55,
+       0.5,
+       1
+      ],
+      [
+       0.25,
+       0.28,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -2027,7 +2399,24 @@
      "caption": "Nests and ribbons of uniform cells with round nuclei, among thin-walled vessels.",
      "credit": "Nephron, via Wikimedia Commons",
      "licence": "CC BY-SA 4.0",
-     "mag": "H&E, high power"
+     "mag": "H&E, high power",
+     "marks": [
+      [
+       0.45,
+       0.4,
+       1
+      ],
+      [
+       0.3,
+       0.55,
+       2
+      ],
+      [
+       0.14,
+       0.44,
+       3
+      ]
+     ]
     },
     {
      "src": "atlas/pannet-2.jpg",
@@ -2138,7 +2527,19 @@
      "caption": "Sheets and small acini of cells with granular cytoplasm; each nucleus with one prominent nucleolus.",
      "credit": "Nephron, via Wikimedia Commons",
      "licence": "CC BY-SA 3.0",
-     "mag": "H&E, very high power"
+     "mag": "H&E, very high power",
+     "marks": [
+      [
+       0.3,
+       0.55,
+       1
+      ],
+      [
+       0.62,
+       0.3,
+       2
+      ]
+     ]
     }
    ],
    "glance": [
@@ -2233,7 +2634,19 @@
      "caption": "Uniform cells clinging to delicate vessels; the cells between have fallen away (pseudopapillae).",
      "credit": "Nephron, via Wikimedia Commons",
      "licence": "CC BY-SA 3.0",
-     "mag": "H&E, high power"
+     "mag": "H&E, high power",
+     "marks": [
+      [
+       0.57,
+       0.22,
+       1
+      ],
+      [
+       0.4,
+       0.8,
+       2
+      ]
+     ]
     },
     {
      "src": "atlas/solid-pseudopapillary-2.jpg",

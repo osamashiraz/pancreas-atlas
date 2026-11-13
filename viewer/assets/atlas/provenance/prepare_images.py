@@ -26,6 +26,7 @@ exec(open(HERE / 'wiring.py').read())   # defines WIRING = {entry id: [H(...) or
 D = json.loads((ROOT / 'src' / 'atlas.json').read_text()); OUT.mkdir(exist_ok=True)
 for old in OUT.glob('*.jpg'): old.unlink()
 credits = []; missing = []
+KEEP = {(e['id'], im.get('caption')): im['marks'] for e in D['entries'] for im in e.get('images', []) if im.get('marks')}   # pins survive while image and caption stay the same
 for e in D['entries']:
     e['images'] = []; e.pop('thumb', None)
     for k, w in enumerate(WIRING.get(e['id'], [])):
@@ -41,6 +42,9 @@ for e in D['entries']:
         img = {'src': 'atlas/' + name, 'w': im.width, 'h': im.height, 'caption': w['caption'], 'credit': cr, 'licence': lic}
         if mag: img['mag'] = mag
         e['images'].append(img); credits.append((name, e['name'], w['caption'], cr, lic, x.get('source_page', w.get('page', ''))))
+for e in D['entries']:
+    for im in e['images']:
+        if (e['id'], im.get('caption')) in KEEP: im['marks'] = KEEP[(e['id'], im.get('caption'))]
 (ROOT / 'src' / 'atlas.json').write_text(json.dumps(D, indent=1, ensure_ascii=False) + '\n')
 md = ['# Atlas images', '', 'Micrographs and specimen photographs shown in the atlas, resized (and cropped to one panel where the source was a multi-panel figure). Each keeps the licence of its source. Entries that reuse the lesion views\' images are credited in `../histology/CREDITS.md`.', '', '| File | Entry | Shows | Credit | Licence | Source page |', '|---|---|---|---|---|---|']
 md += [f'| `{n}` | {en} | {cap} | {cr} | {lic} | {pg} |' for n, en, cap, cr, lic, pg in credits]

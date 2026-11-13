@@ -1768,10 +1768,28 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   // ---------- atlas: a gallery of the normal pancreas, pancreatitis, precursors, cancers and their look-alikes. Each entry
   // shows one openly licensed micrograph, what to look for, and folded detail; entries can be compared and quizzed.
   // Data: viewer/src/atlas.json (text in our own words, every entry with its sources; images in viewer/assets/atlas).
-  const ATLAS_DATA = JSON.parse($('atlas').textContent), AT = { group: 'all', entry: null, pair: null, view: 'grid', q: '', quiz: null, score: [0, 0] };
+  const ATLAS_DATA = JSON.parse($('atlas').textContent), AT = { group: 'all', entry: null, pair: null, view: 'grid', q: '', quiz: null, score: [0, 0], pins: true };
   const AT_BY = Object.fromEntries(ATLAS_DATA.entries.map((e) => [e.id, e]));
   const AT_FEATURES = [['architecture', 'Architecture'], ['cells', 'Cells'], ['nuclei', 'Nuclei'], ['mitoses', 'Mitoses'], ['mucin', 'Mucin'], ['stroma', 'Stroma']];
   const AT_FACTS = [['where', 'Where'], ['size', 'Size'], ['who', 'Who'], ['gross', 'To the eye'], ['molecular', 'Markers and genes'], ['outlook', 'Outlook']];
+  // The PanIN route, stage by stage, with the genetic changes beneath (Robbins 9th ed. ch. 19; Beger 2023 ch. 120, 126; Basturk 2015).
+  const AT_PROGRESS = { lead: 'The commonest route to ductal adenocarcinoma, one step at a time. Each picture opens its entry; the bars beneath show when each genetic change is thought to arrive.',
+    stages: [{ id: 'normal-intralobular-duct', label: 'Normal small duct', change: 'One low layer of cuboidal cells. No mucin.' },
+      { id: 'adm', label: 'Acinar-to-ductal metaplasia', change: 'Acini turn into small tubes. A reversible response to injury; with mutant KRAS and inflammation it goes on to PanIN in mice.', maybe: true },
+      { id: 'panin-low', label: 'Low-grade PanIN', change: 'Tall mucinous cells replace the lining. Nuclei basal at first, then crowded and stacked.' },
+      { id: 'panin-high', label: 'High-grade PanIN', change: 'Polarity lost; cells bud into the lumen. Still inside the duct (carcinoma in situ).' },
+      { id: 'pda-moderate', label: 'Invasive carcinoma', change: 'Glands break through into a dense desmoplastic stroma, nerves and vessels.' }],
+    genes: [{ name: 'Telomere shortening', from: 2, note: 'almost universal, even in the earliest PanIN' }, { name: 'KRAS', from: 1.5, note: 'over 90% of PanIN at any grade; sometimes already in ADM; 90–95% of carcinomas' },
+      { name: 'CDKN2A (p16)', from: 2.5, note: 'follows; inactivated in about 95% of carcinomas' }, { name: 'TP53', from: 3, note: 'late; 70–75% of carcinomas' },
+      { name: 'SMAD4, BRCA2', from: 3.4, note: 'late; SMAD4 perhaps only after invasion (about 55% of carcinomas)' }],
+    caveat: 'The order is a model: it is the build-up of changes that matters more than their sequence (Robbins). The step from ADM to PanIN is shown in mouse models; in people ADM is common in injured glands and its meaning is unclear, and a PanIN can carry a KRAS mutation that the ADM beside it lacks (Basturk et al. 2015). Other routes run through IPMN and MCN.',
+    sources: 'Robbins and Cotran 9th ed., ch. 19, p. 892–893; Beger et al. 2023, ch. 120, p. 922, and ch. 126, p. 969–971; Basturk et al. 2015, p. 1737; Hruban et al. 2001, p. 580' };
+  function atProgress() {
+    const P = AT_PROGRESS, n = P.stages.length;
+    const cards = P.stages.map((s, k) => { const e = AT_BY[s.id], im = e && atImg(e); return `<button type="button" class="acard pstage${s.maybe ? ' maybe' : ''}" data-entry="${s.id}"><div class="thumb"${im ? ` style="background-image:url(${e.thumb || atSrc(im)})"` : ''}>${im ? '' : 'No open image yet'}</div><b>${k + 1}. ${esc(s.label)}</b><span>${esc(s.change)}</span></button>`; }).join('');
+    const tracks = P.genes.map((g) => `<div class="ptrack"><div class="pbar" style="margin-left:${(100 * g.from / n).toFixed(1)}%"><b>${esc(g.name)}</b> <span>${esc(g.note)}</span></div></div>`).join('');
+    return `<p class="aline">${esc(P.lead)}</p><div class="pstrip" style="grid-template-columns:repeat(${n},minmax(150px,1fr))">${cards}</div><h3>Genetic changes</h3><div class="ptracks">${tracks}</div><p class="remember">${esc(P.caveat)}</p>` + atFold('Sources', `<p class="src">${esc(P.sources)}. Text in our own words.</p>`);
+  }
   const atSrc = (im) => (im.src.startsWith('histo:') ? HISTO_IMG[im.src.slice(6)] : im.src);
   const atCredit = (im) => `${im.credit} (${im.licence})`;
   const atImg = (e) => (e.images && e.images[0]) || null;
@@ -1784,14 +1802,15 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
       return `<div class="agroup"><h3>${esc(g.title)}</h3><p>${esc(g.blurb)}</p><div class="agrid">${es.map(atCard).join('')}</div></div>`; }).join('');
     return groups || '<p class="empty">Nothing matches. Clear the search or choose All.</p>';
   }
-  function atFigure(im, name) { return `<figure><img src="${atSrc(im)}" alt="${esc(name)}: ${esc(im.caption || 'micrograph')}" loading="lazy" data-zoom="${esc(atCredit(im))}"><figcaption>${im.caption ? esc(im.caption) + ' ' : ''}${im.mag ? esc(im.mag) + '. ' : ''}${esc(atCredit(im))}</figcaption></figure>`; }
+  function atFigure(im, name) { const pins = (im.marks || []).map(([x, y, k]) => `<i class="pin" style="left:${(100 * x).toFixed(1)}%;top:${(100 * y).toFixed(1)}%">${k}</i>`).join('');
+    return `<figure><div class="pinwrap"><img src="${atSrc(im)}" alt="${esc(name)}: ${esc(im.caption || 'micrograph')}" loading="lazy" data-zoom="${esc(atCredit(im))}">${pins}</div><figcaption>${im.caption ? esc(im.caption) + ' ' : ''}${im.mag ? esc(im.mag) + '. ' : ''}${esc(atCredit(im))}</figcaption></figure>`; }
   function atRows(e, rows, key) { const src = e[key] || {}; const out = rows.filter(([k]) => src[k]).map(([k, label]) => `<dt>${label}</dt><dd>${esc(src[k])}</dd>`).join(''); return out ? `<dl>${out}</dl>` : ''; }
   function atEntry(e) {
     const figs = (e.images || []).map((im) => atFigure(im, e.name)).join('') || '<p class="empty">No openly licensed micrograph was found for this entry. The description stands on its sources.</p>';
     const mim = (e.mimics || []).map((m) => `<li>${AT_BY[m.id] ? `<button type="button" class="abtn" data-pair="${m.id}">${esc(AT_BY[m.id].name)}</button>` : `<b>${esc(m.name)}</b>`} ${esc(m.tell)}</li>`).join('');
     const see = e.see ? `<button type="button" class="abtn" data-see='${JSON.stringify(e.see)}'>${esc(e.see.label)} ›</button>` : '';
     return `<div class="aentry"><div>${figs}</div><div><p class="aline">${esc(e.line)}</p>`
-      + `<ul class="glance">${e.glance.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`
+      + `<ol class="glance">${e.glance.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>`
       + (e.remember ? `<p class="remember"><b>Remember:</b> ${esc(e.remember)}</p>` : '')
       + atFold('Under the microscope', atRows(e, AT_FEATURES, 'features'), true)
       + atFold('Look-alikes, and how to tell them apart', mim ? `<ul class="mim">${mim}</ul>` : '')
@@ -1826,12 +1845,14 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   function renderAtlas() {
     const box = $('atlaspanel'); box.hidden = MODE !== 'atlas'; if (box.hidden) return;
     const e = AT.entry && AT_BY[AT.entry], pair = e && AT.pair && AT_BY[AT.pair];
-    const title = pair ? 'Side by side' : e ? e.name + (e.aka ? ` <small style="font:400 13px 'Public Sans',sans-serif;color:var(--muted)">${esc(e.aka)}</small>` : '') : AT.view === 'matrix' ? 'Features side by side' : AT.view === 'quiz' ? 'Quiz' : 'Atlas of the pancreas';
+    const title = pair ? 'Side by side' : e ? e.name + (e.aka ? ` <small style="font:400 13px 'Public Sans',sans-serif;color:var(--muted)">${esc(e.aka)}</small>` : '') : AT.view === 'matrix' ? 'Features side by side' : AT.view === 'quiz' ? 'Quiz' : AT.view === 'progress' ? 'From normal duct to cancer' : 'Atlas of the pancreas';
     const back = e || AT.view !== 'grid' ? `<button type="button" class="abtn" data-atlas-back>‹ ${pair ? esc(e.name) : 'All entries'}</button>` : '';
-    const tools = e || AT.view !== 'grid' ? '' : `<input type="search" id="atlasq" placeholder="Search the atlas" aria-label="Search the atlas" value="${esc(AT.q)}"><button type="button" class="abtn" data-atlas-view="matrix">Features table</button><button type="button" class="abtn primary" data-atlas-view="quiz">Quiz me</button>`;
+    const tools = e || AT.view !== 'grid' ? '' : `<input type="search" id="atlasq" placeholder="Search the atlas" aria-label="Search the atlas" value="${esc(AT.q)}"><button type="button" class="abtn" data-atlas-view="progress">Progression</button><button type="button" class="abtn" data-atlas-view="matrix">Features table</button><button type="button" class="abtn primary" data-atlas-view="quiz">Quiz me</button>`;
     const order = ATLAS_DATA.entries.filter((x) => AT.group === 'all' || x.group === AT.group), k = e ? order.indexOf(e) : -1;
+    const pinsBtn = e && !pair && (e.images || []).some((im) => im.marks) ? `<label class="abtn" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="atlaspins"${AT.pins ? ' checked' : ''}> Pins</label>` : '';
+    box.classList.toggle('nopins', !AT.pins);
     const nav = e && !pair && order.length > 1 && k >= 0 ? `<button type="button" class="abtn" data-entry="${order[(k + order.length - 1) % order.length].id}" aria-label="Previous entry">◀</button><button type="button" class="abtn" data-entry="${order[(k + 1) % order.length].id}" aria-label="Next entry">▶</button>` : '';
-    box.innerHTML = `<div class="abar">${back}<h2>${pair || !e ? esc(title) : title}</h2>${tools}${nav}</div>` + (pair ? atPair(e, pair) : e ? atEntry(e) : AT.view === 'matrix' ? atMatrix() : AT.view === 'quiz' ? atQuiz() : `<p class="intro">${esc(INFO.atlas)}</p><div id="atlasgrid">${atGrid()}</div>`);
+    box.innerHTML = `<div class="abar">${back}<h2>${pair || !e ? esc(title) : title}</h2>${tools}${pinsBtn}${nav}</div>` + (pair ? atPair(e, pair) : e ? atEntry(e) : AT.view === 'matrix' ? atMatrix() : AT.view === 'progress' ? atProgress() : AT.view === 'quiz' ? atQuiz() : `<p class="intro">${esc(INFO.atlas)}</p><div id="atlasgrid">${atGrid()}</div>`);
     document.querySelectorAll('#atlasnav [data-atlas-group]').forEach((b) => b.setAttribute('aria-current', String(b.dataset.atlasGroup === AT.group)));
     box.scrollTop = 0;
   }
@@ -1848,6 +1869,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     if (t.closest('[data-atlas-back]')) { if (AT.pair) atlasOpen(AT.entry); else { AT.entry = null; AT.view = 'grid'; renderAtlas(); hashNow(); } return; }
     if (see) { const s = JSON.parse(see.dataset.see); if (s.lesion) enterLesion(s.lesion); else if (s.mode) setMode(s.mode); else if (s.view) { setMode('pancreas'); readHash(`#site=${site + 1}&view=${s.view}`); } }
   });
+  $('atlaspanel').addEventListener('change', (ev) => { if (ev.target.id !== 'atlaspins') return; AT.pins = ev.target.checked; $('atlaspanel').classList.toggle('nopins', !AT.pins); });
   $('atlaspanel').addEventListener('input', (ev) => { if (ev.target.id !== 'atlasq') return; AT.q = ev.target.value; $('atlasgrid').innerHTML = atGrid(); });
   $('lightbox').addEventListener('click', () => { $('lightbox').hidden = true; });
   function atlasFrame(now) {
