@@ -1130,6 +1130,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     acinusCells: 'Acinar cells, separated', isletCells: 'Islet cells, separated', ductCells: 'Duct cells, separated', precursors: 'Precursor lesions', pancreatitis: 'Pancreatitis', pda: 'Pancreatic ductal adenocarcinoma', acinusCell: 'Acinar cell', isletCell: 'Beta cell', alphaCell: 'Alpha cell', deltaCell: 'Delta cell', ductCell: 'Duct cell' }[key] || '');
   function viewFrame(now, v) {
     if (MODE === 'atlas') { atlasFrame(now); return; }
+    if (FLAT.includes(MODE)) { flatFrame(now); return; }
     if (LES.view) { lesionFrame(now, v); return; }
     stepFlight(now);
     stageStep(camera.position.distanceTo(controls.target), now);
@@ -1721,26 +1722,26 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     box.querySelector('.hclose').addEventListener('click', () => exitLesion()); box.scrollTop = 0;
   }
   function setMode(m) {
-    if (m === MODE || !['pancreas', 'precursors', 'pancreatitis', 'pda', 'atlas'].includes(m)) return;
+    if (m === MODE || !['pancreas', 'precursors', 'pancreatitis', 'pda', 'atlas', 'overview'].includes(m)) return;
     if (LES.view) exitLesion(true);
     MODE = m; document.body.dataset.mode = m; if (splitOn) setSplit(false);
     document.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
     if (COMPARE.on) $('compare').click();
-    setDisease(MODE_PARTS[m] ? m : null); pancreasMeshes.forEach((pm) => { pm.material.color.copy(col('--organ')); });
+    setDisease(null); pancreasMeshes.forEach((pm) => { pm.material.color.copy(col('--organ')); });
     if (m === 'pancreas') setSite(site);
-    renderAtlas(); resize(); if (m !== 'atlas') flyTo(STOPS.organ, undefined, 'tissue'); lastLevel = ''; hashNow();
+    renderAtlas(); renderFlat(); resize(); if (!FLAT.includes(m) && m !== 'atlas') flyTo(STOPS.organ, undefined, 'tissue'); lastLevel = ''; hashNow();
   }
   document.querySelectorAll('[data-mode]').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode)));
   function enterLesion(key) {
     if (!LESION_VIEWS[key]) return; if (MODE !== LESION_VIEWS[key].mode) setMode(LESION_VIEWS[key].mode);
-    LES.view = key; LES.pending = null; flight = null; flash(); renderHisto(key); lastLevel = ''; renderLesionCard(); hashNow();
+    LES.view = key; LES.pending = null; flight = null; flash(); renderHisto(key); if (FLAT.includes(MODE)) $('overviewpanel').hidden = true; lastLevel = ''; renderLesionCard(); hashNow();
   }
   function exitLesion(quiet) {
-    if (!LES.view) return; LES.view = null; LES.pending = null; if (!quiet) flash(); renderHisto(null);
+    if (!LES.view) return; LES.view = null; LES.pending = null; if (!quiet) flash(); renderHisto(null); if (!quiet && FLAT.includes(MODE)) renderFlat();
     const dir = camera.position.clone().sub(controls.target); if (dir.lengthSq() < 1e-6) dir.set(0, 0.25, 1); camera.position.copy(controls.target).addScaledVector(dir.normalize(), Math.max(130000, camera.position.distanceTo(controls.target))); controls.update(); lastLevel = ''; renderLesionCard(); hashNow();
   }
   function flash() { const f = $('flash'); f.style.transition = 'none'; f.style.opacity = '1'; requestAnimationFrame(() => { f.style.transition = 'opacity .45s'; f.style.opacity = '0'; }); }
-  document.querySelectorAll('[data-lesion]').forEach((b) => b.addEventListener('click', () => { const k = b.dataset.lesion; if (k === 'overview') { if (LES.view) exitLesion(); else flyTo(STOPS.organ, undefined, 'tissue'); } else enterLesion(k); }));
+  document.querySelectorAll('[data-lesion]').forEach((b) => b.addEventListener('click', () => { const k = b.dataset.lesion; if (k === 'overview') { if (LES.view) exitLesion(); else if (!FLAT.includes(MODE)) flyTo(STOPS.organ, undefined, 'tissue'); } else enterLesion(k); }));
   function renderLesionCard() {
     const keys = (MODE === 'pancreas' ? (disease && !MODE_PARTS[disease] ? [disease] : []) : LES.view ? LESION_VIEWS[LES.view].parts : MODE_PARTS[MODE] || []).filter((k) => LESIONS[k]), card = $('lesioncard');
     card.hidden = !keys.length; if (!keys.length) return; const detailed = keys.length <= 2;
@@ -1885,6 +1886,49 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     if (lastLevel !== 'atlas') { lastLevel = 'atlas'; UI.levelname.textContent = 'Atlas'; setInfo(INFO.atlas); applyDataFor('atlas', 'atlas'); showMarkers(null); }
     drawLabels(null, 0); drawInsets(now, false); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.clear();
   }
+  // The non-3D tabs: a flat 2D schematic of the pancreas with histology insets joined to the region they come from.
+  const FLAT = ['overview', 'pancreatitis', 'precursors', 'pda'];
+  const FLAT_HEAD = { overview: ['The pancreas', 'The gland and its building blocks. Pick a structure to see its histology; for the interactive model use the 3D tab.'],
+    pancreatitis: ['Pancreatitis', 'Inflammation of the gland. Pick acute or chronic for the histology.'],
+    precursors: ['Precursors of pancreatic cancer', 'The lesions that can precede ductal adenocarcinoma, where each arises. Pick one for its histology.'],
+    pda: ['Pancreatic ductal adenocarcinoma', 'The common pancreatic cancer and how it spreads. Pick one for its histology.'] };
+  const SLOT = { TL: [18, 72], TR: [786, 72], ML: [18, 214], MR: [786, 214], BL: [18, 396], BR: [786, 396] };
+  const FLAT_INSETS = {
+    overview: [{ t: 'entry', id: 'normal-lobule', label: 'Lobule', slot: 'TL', at: [560, 250] }, { t: 'entry', id: 'normal-acini', label: 'Acini', slot: 'TR', at: [600, 232] },
+      { t: 'entry', id: 'normal-islet', label: 'Islet', slot: 'MR', at: [800, 172] }, { t: 'entry', id: 'normal-intralobular-duct', label: 'Small duct', slot: 'BR', at: [560, 272] },
+      { t: 'entry', id: 'normal-interlobular-duct', label: 'Large duct', slot: 'BL', at: [430, 300] }],
+    pancreatitis: [{ t: 'lesion', id: 'acute', label: 'Acute', slot: 'TR', at: [650, 210] }, { t: 'lesion', id: 'chronic', label: 'Chronic', slot: 'BL', at: [285, 350] }],
+    precursors: [{ t: 'lesion', id: 'panin', label: 'PanIN', slot: 'BL', at: [285, 350] }, { t: 'lesion', id: 'ipmn', label: 'IPMN', slot: 'TR', at: [520, 275] }, { t: 'lesion', id: 'mcn', label: 'MCN', slot: 'MR', at: [810, 165] }],
+    pda: [{ t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', at: [285, 350] }, { t: 'entry', id: 'perineural-invasion', label: 'Perineural invasion', slot: 'TR', at: [420, 312] }, { t: 'entry', id: 'liver-metastasis', label: 'Liver metastasis', slot: 'MR', at: [700, 205] }] };
+  function flatImg(it) { if (it.t === 'entry') { const e = AT_BY[it.id]; return e && (e.thumb || (e.images[0] && e.images[0].src)); } return HISTO_IMG[INSET_IMG[it.id]]; }
+  function organSVG() {
+    const L = (x, y, t) => `<text x="${x}" y="${y}" class="orglbl">${t}</text>`;
+    return `<path d="M250 250 q-120 10 -120 112 q0 112 120 122 q42 3 72 -9" fill="none" stroke="#d9b48a" stroke-width="26" stroke-linecap="round" opacity=".7"/>`
+      + `<circle cx="285" cy="356" r="76" fill="var(--organ)"/>`
+      + `<path d="M238 408 q-28 44 22 62 q40 14 60 -22 z" fill="var(--organ)"/>`
+      + `<path d="M330 322 C 430 302 520 292 600 256 C 710 212 800 176 880 150 C 905 142 918 166 900 182 C 820 216 720 256 620 300 C 520 346 420 366 350 379 C 326 383 318 337 330 322 Z" fill="var(--organ)"/>`
+      + `<path d="M300 352 C 420 334 520 316 600 280 C 710 236 800 199 862 169" fill="none" stroke="var(--organduct)" stroke-width="7" stroke-linecap="round"/>`
+      + `<path d="M300 352 q-40 6 -70 2" fill="none" stroke="var(--organduct)" stroke-width="5" stroke-linecap="round"/>`
+      + L(286, 360, 'Head') + L(432, 300, 'Neck') + L(560, 250, 'Body') + L(852, 150, 'Tail') + L(262, 452, 'Uncinate') + L(150, 360, 'Duodenum');
+  }
+  function renderFlat() {
+    const box = $('overviewpanel'), on = FLAT.includes(MODE); box.hidden = !on; if (!on) return;
+    const head = FLAT_HEAD[MODE], insets = FLAT_INSETS[MODE] || [];
+    const line = (it) => { const [bx, by] = SLOT[it.slot]; return `<line x1="${bx + 98}" y1="${by + 66}" x2="${it.at[0]}" y2="${it.at[1]}"/><circle cx="${it.at[0]}" cy="${it.at[1]}" r="5"/>`; };
+    const inset = (it) => { const [bx, by] = SLOT[it.slot], img = flatImg(it), tgt = it.t === 'entry' ? `data-flat-entry="${it.id}"` : `data-flat-lesion="${it.id}"`;
+      return `<g class="finset" ${tgt} role="button" tabindex="0" aria-label="${esc(it.label)}: histology">${img ? `<image x="${bx}" y="${by}" width="196" height="132" preserveAspectRatio="xMidYMid slice" href="${img}"/>` : `<rect x="${bx}" y="${by}" width="196" height="132" fill="var(--panel)"/><text x="${bx + 98}" y="${by + 66}" class="orglbl" text-anchor="middle">drawing</text>`}<rect x="${bx}" y="${by}" width="196" height="132" rx="8" fill="none" stroke="var(--accent)" stroke-width="2.5"/><rect x="${bx}" y="${by + 108}" width="196" height="24" fill="rgba(247,240,244,.9)"/><text x="${bx + 10}" y="${by + 125}" class="flabel">${esc(it.label)} ›</text></g>`; };
+    box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2></div><p class="intro">${esc(head[1])}</p>`
+      + `<div class="flatwrap"><svg viewBox="0 0 1000 560" class="flatsvg" role="img" aria-label="Schematic of the pancreas with histology insets">`
+      + organSVG() + `<g class="leaders" stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${insets.map(line).join('')}</g>` + insets.map(inset).join('') + '</svg></div>';
+    box.scrollTop = 0;
+  }
+  $('overviewpanel').addEventListener('click', (ev) => { const le = ev.target.closest('[data-flat-lesion]'), en = ev.target.closest('[data-flat-entry]');
+    if (le) enterLesion(le.dataset.flatLesion); else if (en) { setMode('atlas'); atlasOpen(en.dataset.flatEntry); } });
+  function flatFrame(now) {
+    const key = 'flat:' + MODE + ':' + (LES.view || '');
+    if (lastLevel !== key) { lastLevel = key; UI.levelname.textContent = LES.view ? LESION_VIEWS[LES.view].title + ': histology' : (FLAT_HEAD[MODE] ? FLAT_HEAD[MODE][0] : ''); showMarkers(null); }
+    drawLabels(null, 0); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.clear();
+  }
   function lesionFrame(now, v) {   // the histology panel covers the view; nothing 3D is drawn behind it
     const V0 = LESION_VIEWS[LES.view], key = 'lesion' + V0.title.replace(/\W/g, '');
     if (key !== lastLevel) { lastLevel = key; UI.levelname.textContent = V0.title + ': histology'; setInfo(INFO[key] || ''); applyDataFor(key, key); showMarkers(null); }
@@ -1897,11 +1941,12 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   const viewName = (lv) => Object.keys(VIEW_KEYS).find((k) => { const [l, br, kind] = VIEW_KEYS[k]; return l === lv && (!br || br === branch) && (!kind || kind === isletKind); }) || 'organ';
   const hashNow = () => writeHash(LES.view ? 'lesion' : levelAt(camera.position.distanceTo(controls.target)));
   let hashReady = false; const START_HASH = location.hash;   // the link the page was opened with is read once the organ is built
-  function writeHash(lv) { if (!hashReady || splitOn || tour || site < 0) return; const h = MODE === 'atlas' ? `#atlas${AT.entry ? '=' + AT.entry : AT.group !== 'all' ? '&group=' + AT.group : ''}` : MODE !== 'pancreas' ? `#mode=${MODE}${LES.view ? '&lesion=' + LES.view : ''}` : `#site=${site + 1}&view=${viewName(lv)}${stain === 'if' ? '&stain=if' : ''}${disease ? '&disease=' + disease : ''}`;
+  function writeHash(lv) { if (!hashReady || splitOn || tour || site < 0) return; const h = MODE === 'overview' ? '#pancreas' : MODE === 'atlas' ? `#atlas${AT.entry ? '=' + AT.entry : AT.group !== 'all' ? '&group=' + AT.group : ''}` : MODE !== 'pancreas' ? `#mode=${MODE}${LES.view ? '&lesion=' + LES.view : ''}` : `#site=${site + 1}&view=${viewName(lv)}${stain === 'if' ? '&stain=if' : ''}${disease ? '&disease=' + disease : ''}`;
     if (location.hash !== h) try { history.replaceState(null, '', h); } catch (e) { /* a sandboxed page may refuse */ } }
   function readHash(h) { const q = new URLSearchParams((typeof h === 'string' ? h : location.hash).slice(1)), n = +q.get('site'), v = VIEW_KEYS[q.get('view')];
     if (n >= 1 && n <= SITE_LIST.length && n - 1 !== site) setSite(n - 1);
     if (q.get('stain') === 'if') document.querySelector('[data-stain=if]').click();
+    if (q.has('pancreas')) { setMode('overview'); return; }
     if (q.has('atlas')) { setMode('atlas'); if (ATLAS_DATA.groups.some((g) => g.key === q.get('group'))) AT.group = q.get('group'); atlasOpen(q.get('atlas')); return; }
     if (MODE_PARTS[q.get('mode')]) { setMode(q.get('mode')); if (LESION_VIEWS[q.get('lesion')]) enterLesion(q.get('lesion')); return; } else if (MODE !== 'pancreas') setMode('pancreas');
     if (q.get('disease')) setDisease(q.get('disease'));

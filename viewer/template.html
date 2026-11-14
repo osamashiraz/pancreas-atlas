@@ -32,7 +32,7 @@ body[data-stain="if"] .stage{background:radial-gradient(ellipse at 50% 38%,#2a25
 .ladder button span{display:block;font-size:11px;color:var(--muted)}
 .ladder .branch{display:flex;gap:5px;margin-left:12px}
 .ladder .branch button{min-width:0}
-.modes{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--rule);border-radius:7px;overflow:hidden;margin-bottom:4px;background:var(--panel);max-width:346px}
+.modes{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--rule);border-radius:7px;overflow:hidden;margin-bottom:4px;background:var(--panel);max-width:520px}
 .modes button{min-width:0!important;border:0!important;border-radius:0!important;border-right:1px solid var(--rule)!important;padding:5px 8px!important;font-size:12.5px!important;background:transparent!important}
 .modes button[aria-pressed="true"]{background:var(--accent)!important;color:#fff}.modes button:disabled{color:var(--muted);cursor:not-allowed;opacity:.6}
 .ladder .group{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:4px 0 0 12px}
@@ -91,7 +91,8 @@ body[data-mode="precursors"] .ladder-mode[data-for-mode="precursors"],body[data-
 @media (max-width:880px){.atlas .pbar{margin-left:0!important}}
 .lightbox{position:fixed;inset:0;z-index:50;background:rgba(10,8,14,.92);display:grid;place-items:center;cursor:zoom-out;padding:14px}.lightbox[hidden]{display:none}
 .lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox p{color:#ddd;font-size:12.5px;max-width:900px;text-align:center;margin:8px 0 0}
-body[data-mode="atlas"] .app{grid-template-columns:minmax(0,1fr)}body[data-mode="atlas"] aside,body[data-mode="atlas"] .reset,body[data-mode="atlas"] .scale,body[data-mode="atlas"] .hint{display:none}
+body[data-mode="atlas"] .app,body[data-mode="overview"] .app{grid-template-columns:minmax(0,1fr)}body[data-mode="atlas"] aside,body[data-mode="atlas"] .reset,body[data-mode="atlas"] .scale,body[data-mode="atlas"] .hint,body[data-mode="overview"] aside,body[data-mode="overview"] .reset,body[data-mode="overview"] .scale,body[data-mode="overview"] .hint{display:none}
+#overviewpanel{position:absolute;inset:0;overflow:auto;padding:72px 22px 30px;z-index:3;background:var(--canvas);color:var(--ink)}#overviewpanel[hidden]{display:none}.flatwrap{max-width:1040px;margin:4px auto 0}.flatsvg{width:100%;height:auto;display:block}.flatsvg .orglbl{font:600 14px "Public Sans",system-ui,sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--canvas);stroke-width:4px;text-anchor:middle}.flatsvg .flabel{font:600 13.5px "Public Sans",system-ui,sans-serif;fill:var(--ink)}.flatsvg .finset{cursor:pointer}.flatsvg .finset:hover rect[stroke],.flatsvg .finset:focus-visible rect[stroke]{stroke:var(--ink)}.flatsvg .finset:focus-visible{outline:none}body[data-mode="pancreatitis"] .app,body[data-mode="precursors"] .app,body[data-mode="pda"] .app{grid-template-columns:minmax(0,1fr)}body[data-mode="pancreatitis"] aside,body[data-mode="precursors"] aside,body[data-mode="pda"] aside,body[data-mode="pancreatitis"] .reset,body[data-mode="precursors"] .reset,body[data-mode="pda"] .reset,body[data-mode="pancreatitis"] .scale,body[data-mode="precursors"] .scale,body[data-mode="pda"] .scale,body[data-mode="pancreatitis"] .hint,body[data-mode="precursors"] .hint,body[data-mode="pda"] .hint{display:none}body[data-mode="pancreatitis"] .histo,body[data-mode="precursors"] .histo,body[data-mode="pda"] .histo{left:0}body[data-mode="pancreatitis"] .ladder-mode[data-for-mode="pancreatitis"],body[data-mode="precursors"] .ladder-mode[data-for-mode="precursors"],body[data-mode="pda"] .ladder-mode[data-for-mode="pda"]{display:none}
 .atlas .intro{font-size:14px;color:var(--muted);max-width:860px;margin:-4px 0 14px}
 @media (max-width:880px){.atlas .aentry,.atlas .pair,.atlas .quiz .opts{grid-template-columns:1fr}}
 .inset b{position:absolute;left:0;right:0;bottom:0;font:600 12.5px "Public Sans",system-ui,sans-serif;background:color-mix(in srgb,var(--panel) 90%,transparent);color:var(--ink);padding:3px 8px;border-radius:0 0 6px 6px}
@@ -164,7 +165,7 @@ details.src{font-size:11.5px;color:var(--muted);margin:4px 0 0}details.src>summa
   <div class="status" id="status">Loading the organ…</div>
   <div class="hint" id="hint">Scroll or pinch to zoom in · drag to turn · rest the pointer on anything to name it</div>
   <nav class="ladder" aria-label="Zoom level">
-   <div class="modes" role="group" aria-label="What to show"><button type="button" data-mode="atlas" aria-pressed="false">Atlas</button><button type="button" data-mode="pancreas" aria-pressed="true">Pancreas</button><button type="button" data-mode="pancreatitis" aria-pressed="false">Pancreatitis</button><button type="button" data-mode="precursors" aria-pressed="false">Precursors</button><button type="button" data-mode="pda" aria-pressed="false">PDA</button></div>
+   <div class="modes" role="group" aria-label="What to show"><button type="button" data-mode="atlas" aria-pressed="true">Atlas</button><button type="button" data-mode="overview" aria-pressed="false">Pancreas</button><button type="button" data-mode="pancreas" aria-pressed="false">3D</button><button type="button" data-mode="pancreatitis" aria-pressed="false">Pancreatitis</button><button type="button" data-mode="precursors" aria-pressed="false">PDA precursors</button><button type="button" data-mode="pda" aria-pressed="false">PDA</button></div>
    <div class="ladder-pancreas">
    <button type="button" data-go="organ">Organ<span>15 cm</span></button>
    <button type="button" data-go="tissue">Tissue<span>exocrine and endocrine together</span></button>
@@ -196,6 +197,7 @@ details.src{font-size:11.5px;color:var(--muted);margin:4px 0 0}details.src>summa
   <div class="flash" id="flash"></div>
   <section class="histo" id="histopanel" hidden aria-live="polite"></section>
   <section class="histo atlas" id="atlaspanel" hidden></section>
+  <section class="atlas" id="overviewpanel" hidden></section>
   <div class="lightbox" id="lightbox" hidden role="dialog" aria-label="Enlarged image"><img alt=""><p></p></div>
   <div class="caption" id="caption" aria-live="polite"></div>
   <button class="reset" id="reset" type="button">Reset view</button>
