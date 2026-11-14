@@ -1,0 +1,7 @@
+# Second pass for human entries (viewer/assets/atlas/provenance/manifest-gaps.json).
+GROUPS = []; ENTRIES = []
+ADD = {
+ 'undifferentiated': [dict(file='undifferentiated/final_undifferentiated.jpg', first=True, caption='Large, bizarre tumour cells, some with several nuclei, and bundles of spindle cells, with haemorrhage. From a tumour that also held osteoclast-like giant cells and an ordinary gland-forming part.', mag='H&E, high power', credit='Marginean et al. Cancers 2026, doi:10.3390/cancers18182967, fig. 1B', licence='CC BY', page='https://pmc.ncbi.nlm.nih.gov/articles/PMC13604581/')],
+ 'normal-acini': [dict(file='normal-acini/final_normal-acini.jpg', first=True, caption='Acini in ordinary H&E colours round a pale islet: blue cell bases, pink granular tips (asterisks from the source figure). The article does not state the species.', mag='H&E, ×400', credit='Mihoc et al. Biomedicines 2024, doi:10.3390/biomedicines12112627, fig. 6', licence='CC BY 4.0', page='https://pmc.ncbi.nlm.nih.gov/articles/PMC11591934/')],
+ 'pancreatoblastoma': [dict(file='pancreatoblastoma/final_pancreatoblastoma.jpg', caption='Small gland-like (acinar) structures (arrowhead) and a pale squamoid nest (arrow); marks from the source figure. From an adult.', mag='H&E', credit='Sugita et al. Surg Case Rep 2025, doi:10.70352/scrj.cr.25-0037, fig. 5', licence='CC BY', page='https://pmc.ncbi.nlm.nih.gov/articles/PMC12022996/')],
+}

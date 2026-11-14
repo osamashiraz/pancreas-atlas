@@ -117,6 +117,27 @@
    "species": "human",
    "images": [
     {
+     "src": "atlas/normal-acini-2.jpg",
+     "w": 720,
+     "h": 379,
+     "caption": "Acini in ordinary H&E colours round a pale islet: blue cell bases, pink granular tips (asterisks from the source figure). The article does not state the species.",
+     "credit": "Mihoc et al. Biomedicines 2024, doi:10.3390/biomedicines12112627, fig. 6",
+     "licence": "CC BY 4.0",
+     "mag": "H&E, ×400",
+     "marks": [
+      [
+       0.56,
+       0.12,
+       1
+      ],
+      [
+       0.69,
+       0.195,
+       2
+      ]
+     ]
+    },
+    {
      "src": "atlas/normal-acini-1.jpg",
      "w": 960,
      "h": 670,
@@ -174,7 +195,7 @@
     "Beger et al. 2023, ch. 120, p. 921",
     "Hruban et al. 2001, p. 580"
    ],
-   "thumb": "atlas/t-normal-acini-1.jpg"
+   "thumb": "atlas/t-normal-acini-2.jpg"
   },
   {
    "id": "normal-centroacinar",
@@ -1860,6 +1881,27 @@
    "species": "human",
    "images": [
     {
+     "src": "atlas/undifferentiated-2.jpg",
+     "w": 960,
+     "h": 527,
+     "caption": "Large, bizarre tumour cells, some with several nuclei, and bundles of spindle cells, with haemorrhage. From a tumour that also held osteoclast-like giant cells and an ordinary gland-forming part.",
+     "credit": "Marginean et al. Cancers 2026, doi:10.3390/cancers18182967, fig. 1B",
+     "licence": "CC BY",
+     "mag": "H&E, high power",
+     "marks": [
+      [
+       0.13,
+       0.88,
+       1
+      ],
+      [
+       0.7,
+       0.2,
+       2
+      ]
+     ]
+    },
+    {
      "src": "atlas/undifferentiated-1.jpg",
      "w": 375,
      "h": 283,
@@ -1909,7 +1951,7 @@
     "Kardon et al. 2001, p. 446, 450",
     "Robbins and Cotran 9th ed., ch. 19, p. 894"
    ],
-   "thumb": "atlas/t-undifferentiated-1.jpg"
+   "thumb": "atlas/t-undifferentiated-2.jpg"
   },
   {
    "id": "osteoclast-giant",
@@ -2597,7 +2639,29 @@
    "name": "Pancreatoblastoma",
    "line": "A childhood tumour: cells with acinar differentiation, with squamoid nests among them.",
    "species": "human",
-   "images": [],
+   "images": [
+    {
+     "src": "atlas/pancreatoblastoma-1.jpg",
+     "w": 504,
+     "h": 406,
+     "caption": "Small gland-like (acinar) structures (arrowhead) and a pale squamoid nest (arrow); marks from the source figure. From an adult.",
+     "credit": "Sugita et al. Surg Case Rep 2025, doi:10.70352/scrj.cr.25-0037, fig. 5",
+     "licence": "CC BY",
+     "mag": "H&E",
+     "marks": [
+      [
+       0.3,
+       0.35,
+       1
+      ],
+      [
+       0.55,
+       0.78,
+       2
+      ]
+     ]
+    }
+   ],
    "glance": [
     "Cells with acinar differentiation",
     "Squamoid nests scattered among them"
@@ -2622,7 +2686,8 @@
     "Beger et al. 2023, ch. 125, p. 964–965",
     "Robbins and Cotran 9th ed., ch. 19, p. 895",
     "Kleeff et al. 2016, p. 3"
-   ]
+   ],
+   "thumb": "atlas/t-pancreatoblastoma-1.jpg"
   },
   {
    "id": "solid-pseudopapillary",
@@ -2714,7 +2779,24 @@
      "caption": "Pancreas at 3 weeks: acini (A), an islet (I) and a duct (D), labelled in the source figure. Genotype: Pdx1-CreLate; Dicer flox/+ (a control).",
      "credit": "Morris et al. PLoS One 2014, doi:10.1371/journal.pone.0095486, fig. 1A",
      "licence": "CC BY 4.0",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.4,
+       0.65,
+       1
+      ],
+      [
+       0.6,
+       0.32,
+       2
+      ],
+      [
+       0.87,
+       0.31,
+       3
+      ]
+     ]
     },
     {
      "src": "atlas/mouse-normal-2.jpg",
@@ -2771,7 +2853,24 @@
      "caption": "One day after caerulein: widened, oedematous stroma with inflammatory cells beside a congested vessel. Mist1-CreERT/+ mouse. Soft image.",
      "credit": "Karki et al. PLoS One 2015, doi:10.1371/journal.pone.0145724, fig. 1B",
      "licence": "CC BY 4.0",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.4,
+       0.35,
+       1
+      ],
+      [
+       0.5,
+       0.2,
+       2
+      ],
+      [
+       0.47,
+       0.78,
+       3
+      ]
+     ]
     },
     {
      "src": "atlas/mouse-caerulein-2.jpg",
@@ -2830,7 +2929,29 @@
      "caption": "Pdx1-Cre; LSL-KrasG12D: small tubes replacing acini, inflammatory cells, and ducts lined by pale mucinous cells, beside normal acini.",
      "credit": "Urrutia et al. Front Cell Dev Biol 2021, doi:10.3389/fcell.2021.681153, fig. 2B",
      "licence": "CC BY",
-     "mag": "H&E"
+     "mag": "H&E",
+     "marks": [
+      [
+       0.73,
+       0.2,
+       1
+      ],
+      [
+       0.4,
+       0.2,
+       2
+      ],
+      [
+       0.15,
+       0.25,
+       3
+      ],
+      [
+       0.82,
+       0.62,
+       4
+      ]
+     ]
     },
     {
      "src": "atlas/mouse-adm-2.jpg",
@@ -2892,7 +3013,24 @@
      "caption": "Ptf1a-CreERT; LSL-KrasG12D: a duct lined by tall columnar cells with pale mucin and basal nuclei (letter from the source figure). The paper does not give a grade.",
      "credit": "Krah et al. eLife 2015, doi:10.7554/eLife.07125, fig. 1B",
      "licence": "CC BY 4.0",
-     "mag": "H&E, high power"
+     "mag": "H&E, high power",
+     "marks": [
+      [
+       0.62,
+       0.22,
+       1
+      ],
+      [
+       0.35,
+       0.45,
+       2
+      ],
+      [
+       0.26,
+       0.57,
+       3
+      ]
+     ]
     },
     {
      "src": "atlas/mouse-panin-2.jpg",
@@ -2963,7 +3101,24 @@
      "caption": "KPT mouse: back-to-back glands of columnar cells in dense fibrous stroma.",
      "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 2C",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×20"
+     "mag": "H&E, ×20",
+     "marks": [
+      [
+       0.57,
+       0.4,
+       1
+      ],
+      [
+       0.2,
+       0.18,
+       2
+      ],
+      [
+       0.4,
+       0.55,
+       3
+      ]
+     ]
     },
     {
      "src": "atlas/mouse-pda-2.jpg",
@@ -3034,7 +3189,19 @@
      "caption": "KPT mouse: tumour glands with their stroma inside the liver; pink liver cells at the edges.",
      "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 2D",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×20"
+     "mag": "H&E, ×20",
+     "marks": [
+      [
+       0.62,
+       0.65,
+       1
+      ],
+      [
+       0.88,
+       0.2,
+       2
+      ]
+     ]
     }
    ],
    "id": "mouse-met",
