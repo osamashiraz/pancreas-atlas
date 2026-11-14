@@ -38,7 +38,7 @@ STEPS = [   # name, script, expected [stage, branch or None], expected level sho
     ('pda-view', "document.querySelector('.ladder-mode[data-for-mode=pda] [data-lesion=pda]').click()", ['tissue', None], 'PDA'),
     ('atlas', "document.querySelector('[data-mode=atlas]').click()", ['tissue', None], 'Atlas'),
     ('atlas-entry', "document.querySelector('#atlaspanel [data-entry]').click()", ['tissue', None], 'Atlas'),
-    ('pancreas-mode', "document.querySelector('[data-mode=pancreas]').click()", ['tissue', None], 'Organ'),
+    ('pancreas-mode', "window.__zoom.setMode('pancreas')", ['tissue', None], 'Organ'),
     ('compare', "document.getElementById('compare').click()", ['tissue', None], 'Head, body and tail compared'),
     ('compare-off', "document.getElementById('compare').click()", ['tissue', None], 'Lobules'),
 ]
@@ -58,7 +58,7 @@ async def main(page_path, chrome):
         level = lambda: pg.evaluate("document.querySelector('.levelname').textContent")
         site = lambda: pg.evaluate("document.getElementById('sitelabel').textContent")
         # The page opens on the Atlas; switch to the Pancreas 3D view before walking the zoom levels.
-        await pg.evaluate("document.querySelector('[data-mode=pancreas]').click()"); await pg.wait_for_timeout(WAIT)
+        await pg.evaluate("window.__zoom.setMode('pancreas')"); await pg.wait_for_timeout(WAIT)
         # Zooming in over the organ picks a site near the pointer.
         before = await site(); await pg.mouse.move(420, 420)
         for _ in range(12): await pg.mouse.wheel(0, -120); await pg.wait_for_timeout(100)
