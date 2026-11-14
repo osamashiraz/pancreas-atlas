@@ -1820,6 +1820,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     return `<div class="aentry"><div>${figs}</div><div><p class="aline">${esc(e.line)}</p>`
       + `<ol class="glance">${e.glance.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>`
       + (e.remember ? `<p class="remember"><b>Remember:</b> ${esc(e.remember)}</p>` : '')
+      + (e.vsHuman ? `<div class="hcols"><div><h3>Like the human disease</h3><ul>${e.vsHuman.like.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div><div class="apart"><h3>Different in the mouse</h3><ul>${e.vsHuman.unlike.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div></div>` : '')
       + atFold('Under the microscope', atRows(e, AT_FEATURES, 'features'), true)
       + atFold('Look-alikes, and how to tell them apart', mim ? `<ul class="mim">${mim}</ul>` : '')
       + atFold('Where, size, who and outlook', atRows(e, AT_FACTS, 'facts'))

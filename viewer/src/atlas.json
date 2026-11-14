@@ -2853,6 +2853,41 @@
    "thumb": "atlas/t-solid-pseudopapillary-1.jpg"
   },
   {
+   "id": "mouse-vs-human",
+   "group": "mouse",
+   "species": "mouse",
+   "name": "Mouse models vs human disease",
+   "aka": "what they get right, and where they differ",
+   "line": "Engineered mice reproduce much of human pancreatic cancer — which is why they are used — but each is a model, not the disease itself.",
+   "images": [],
+   "glance": [
+    "Mutant Kras in the pancreas drives the same metaplasia → PanIN → cancer sequence seen in people",
+    "The second hit (Trp53, Ink4a or Smad4) sets the route, the speed and the look of the cancer",
+    "They are useful precisely because the mouse and human lesions are so alike"
+   ],
+   "remember": "The closer the genetics, the closer the disease: endogenous, physiological mutant Kras reproduces it, while older overexpression models did not.",
+   "vsHuman": {
+    "like": [
+     "KC mice show the full human PanIN grade range, and PanINs behave as true precursors that progress on their own to invasive cancer (Hingorani 2003).",
+     "KPC tumours reproduce the clinical picture, histology and genetics of human PDA, and metastasise to the same sites — liver, lung, diaphragm and adrenal (Hingorani 2005).",
+     "KPC cancers carry chromosomal instability — non-reciprocal translocations and aneuploidy — a hallmark of human epithelial cancer (Hingorani 2005).",
+     "Kras with Smad4 (Dpc4) loss gives cystic, mucinous tumours of the body and tail that resemble human mucinous cystic neoplasms — a separate route to cancer (Izeradjene 2007).",
+     "The tumours are stroma-rich (desmoplastic), as in people."
+    ],
+    "unlike": [
+     "Mouse chromosomes have very long telomeres; the telomere attrition that drives instability in human cancer does not occur, so KPC reaches instability with telomeres preserved — a different mechanism (Hingorani 2005).",
+     "Laboratory mice are otherwise resistant to the complex epithelial tumours common in people, tending to blood and connective-tissue tumours instead (Hingorani 2005).",
+     "Months in the mouse stand in for years or decades in people.",
+     "Each genotype captures one facet (one route, one pair of mutations), not the whole heterogeneity of human disease (Hingorani 2005; Izeradjene 2007)."
+    ]
+   },
+   "sources": [
+    "Hingorani et al. 2003, Discussion (Cancer Cell 4:437-50)",
+    "Hingorani et al. 2005, Discussion (Cancer Cell 7:469-83)",
+    "Izeradjene et al. 2007, Discussion (Cancer Cell 11:229-43)"
+   ]
+  },
+  {
    "species": "mouse",
    "group": "mouse",
    "images": [
