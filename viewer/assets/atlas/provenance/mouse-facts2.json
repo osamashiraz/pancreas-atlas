@@ -1,0 +1,333 @@
+{
+ "_sources": {
+  "Hingorani 2003": {
+   "authors": "Hingorani SR, Petricoin EF, Maitra A, Rajapakse V, King C, Jacobetz MA, Ross S, Conrads TP, Veenstra TD, Hitt BA, Kawaguchi Y, Johann D, Liotta LA, Crawford HC, Putt ME, Jacks T, Wright CV, Hruban RH, Lowy AM, Tuveson DA",
+   "title": "Preinvasive and invasive ductal pancreatic cancer and its early detection in the mouse",
+   "journal": "Cancer Cell",
+   "year": "2003",
+   "volume": "4",
+   "issue": "6",
+   "pages": "437-450",
+   "doi": "10.1016/s1535-6108(03)00309-x",
+   "pmid": "14706336",
+   "access": "abstract only (cell.com and sciencedirect returned HTTP 403; not in PMC)"
+  },
+  "Hingorani 2005": {
+   "authors": "Hingorani SR, Wang L, Multani AS, Combs C, Deramaudt TB, Hruban RH, Rustgi AK, Chang S, Tuveson DA",
+   "title": "Trp53R172H and KrasG12D cooperate to promote chromosomal instability and widely metastatic pancreatic ductal adenocarcinoma in mice",
+   "journal": "Cancer Cell",
+   "year": "2005",
+   "volume": "7",
+   "issue": "5",
+   "pages": "469-483",
+   "doi": "10.1016/j.ccr.2005.04.023",
+   "pmid": "15894267",
+   "access": "abstract only (cell.com and sciencedirect returned HTTP 403; not in PMC)"
+  },
+  "Izeradjene 2007": {
+   "authors": "Izeradjene K, Combs C, Best M, Gopinathan A, Wagner A, Grady WM, Deng CX, Hruban RH, Adsay NV, Tuveson DA, Hingorani SR",
+   "title": "Kras(G12D) and Smad4/Dpc4 haploinsufficiency cooperate to induce mucinous cystic neoplasms and invasive adenocarcinoma of the pancreas",
+   "journal": "Cancer Cell",
+   "year": "2007",
+   "volume": "11",
+   "issue": "3",
+   "pages": "229-243",
+   "doi": "10.1016/j.ccr.2007.01.017",
+   "pmid": "17349581",
+   "access": "abstract only (cell.com and sciencedirect returned HTTP 403; not in PMC)"
+  },
+  "Hurwitz 2023": {
+   "authors": "Hurwitz E, Parajuli P, Ozkan S, Prunier C, Nguyen TL, Campbell D, Friend C, Bryan AA, Lu TX, Smith SC, Razzaque MS, Xu K, Atfi A",
+   "title": "Antagonism between Prdm16 and Smad4 specifies the trajectory and progression of pancreatic cancer",
+   "journal": "The Journal of Cell Biology",
+   "year": "2023",
+   "volume": "222",
+   "issue": "4",
+   "pages": "e202203036",
+   "doi": "10.1083/jcb.202203036",
+   "pmcid": "PMC9999015",
+   "licence": "CC BY 4.0",
+   "access": "full text"
+  },
+  "Nikolaou 2024": {
+   "authors": "Nikolaou S, Juin A, Whitelaw JA, Paul NR, Fort L, Nixon C, Spence HJ, Bryson S, Machesky LM",
+   "title": "CYRI-B-mediated macropinocytosis drives metastasis via lysophosphatidic acid receptor uptake",
+   "journal": "eLife",
+   "year": "2024",
+   "volume": "13",
+   "pages": "e83712",
+   "doi": "10.7554/elife.83712",
+   "pmcid": "PMC11219039",
+   "licence": "CC BY",
+   "access": "full text"
+  },
+  "Cheng 2025": {
+   "authors": "Cheng C, Hu J, Mannan R, He T, Bhattacharyya R, Magnuson B, Wisniewski JP, Peters S, Karim SA, MacLean DJ, Karabürk H, Zhang L, Rossiter NJ, Zheng Y, Xiao L, Li C, Awad D, Mahapatra S, Bao Y, Zhang Y, Cao X, Wang Z, Mehra R, Morlacchi P, Sahai V, Pasca di Magliano M, Shah YM, Weisman LS, Morton JP, Ding K, Qiao Y, Lyssiotis CA, Chinnaiyan AM",
+   "title": "Targeting PIKfyve-driven lipid metabolism in pancreatic cancer",
+   "journal": "Nature",
+   "year": "2025",
+   "volume": "642",
+   "issue": "8068",
+   "pages": "776-784",
+   "doi": "10.1038/s41586-025-08917-z",
+   "pmcid": "PMC12176661",
+   "licence": "CC BY 4.0",
+   "access": "full text"
+  },
+  "Park 2019": {
+   "authors": "Park D, Shakya R, Koivisto C, Pitarresi JR, Szabolcs M, Kladney R, Hadjis A, Mace TA, Ludwig T",
+   "title": "Murine models for familial pancreatic cancer: Histopathology, latency and drug sensitivity among cancers of Palb2, Brca1 and Brca2 mutant mouse strains",
+   "journal": "PLoS ONE",
+   "year": "2019",
+   "volume": "14",
+   "issue": "12",
+   "pages": "e0226714",
+   "doi": "10.1371/journal.pone.0226714",
+   "pmcid": "PMC6932818",
+   "licence": "CC BY 4.0",
+   "access": "full text"
+  }
+ },
+ "facts": [
+  {
+   "model": "KC",
+   "fact": "Alleles and Cre driver of the original KC model",
+   "value": "Endogenous KrasG12D switched on in progenitor cells of the mouse pancreas (the abstract does not name the Cre driver; Pdx1-Cre and p48/Ptf1a-Cre are the drivers named elsewhere)",
+   "source": "Hingorani 2003",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KC",
+   "fact": "Lesions produced",
+   "value": "Ductal lesions covering the whole human PanIN spectrum, highly proliferative, showing histological progression; a few progress on their own to invasive and metastatic adenocarcinoma",
+   "source": "Hingorani 2003",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KC",
+   "fact": "Serum proteomic signature",
+   "value": "Mice with PanINs had a recognisable serum proteomic pattern, suggested as a way to detect the preinvasive state",
+   "source": "Hingorani 2003",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KC",
+   "fact": "Low rate of cancer in KC",
+   "value": "KC mice show mostly PanIN at about 4 months and visible terminal PDAC only at about 10 months",
+   "source": "Hurwitz 2023",
+   "where": "Results, first section; Fig. 1D legend; Fig. 3A",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KC",
+   "fact": "KC cancer frequency",
+   "value": "Within a 6-month observation period more than 76% of KC mice stayed free of PDAC",
+   "source": "Hurwitz 2023",
+   "where": "Results (Prdm16 deletion section)",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KPC",
+   "fact": "Alleles and Cre driver of classic KPC",
+   "value": "LSL-KrasG12D/+ with LSL-Trp53R172H/+ and Pdx1-Cre (Nature 2025 also uses Ptf1a-Cre;lsl-KrasG12D;Trp53R172H/+ and calls it KPC)",
+   "source": "Cheng 2025",
+   "where": "Methods, Mouse strains",
+   "pmcid": "PMC12176661"
+  },
+  {
+   "model": "KPC",
+   "fact": "Original description (as given in the abstract)",
+   "value": "Hingorani 2005 reports that Trp53R172H and KrasG12D together give invasive, widely metastatic PDAC that reproduces the human disease",
+   "source": "Hingorani 2005",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KPC",
+   "fact": "Genomic instability",
+   "value": "Primary tumours and metastases show many non-reciprocal chromosomal translocations without obvious telomere erosion; the abstract says this resembles human carcinomas and is unusual in mice",
+   "source": "Hingorani 2005",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KPC",
+   "fact": "Other tumour suppressor pathways",
+   "value": "No mutations were found in other main tumour suppressor pathways, which the authors take to mean there are separate genetic routes to PDA with different behaviour",
+   "source": "Hingorani 2005",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KPC",
+   "fact": "Described by later authors",
+   "value": "Later authors call KPC the standard mouse model of metastatic PDAC that matches many features of the human disease",
+   "source": "Nikolaou 2024",
+   "where": "Introduction",
+   "pmcid": "PMC11219039"
+  },
+  {
+   "model": "KPC",
+   "fact": "PanIN timeline",
+   "value": "In KPC mice examined at 6, 10 and 15 weeks, PanIN appeared after 6 weeks; PanIN2-3 became more common by 15 weeks in mice that also lacked Cyrib",
+   "source": "Nikolaou 2024",
+   "where": "Results, Fig. 1 and Fig. 3",
+   "pmcid": "PMC11219039"
+  },
+  {
+   "model": "KPC",
+   "fact": "Lesion grades shown",
+   "value": "H&E of normal duct, PanIN1, PanIN2, PanIN3 and PDAC from KPC mice (Fig. 3A, scale bar 100 um)",
+   "source": "Nikolaou 2024",
+   "where": "Fig. 3A legend",
+   "pmcid": "PMC11219039"
+  },
+  {
+   "model": "KPC",
+   "fact": "Median survival to end-point",
+   "value": "187 days in KPC (118 days with Cyrib deleted)",
+   "source": "Nikolaou 2024",
+   "where": "Results, Fig. 2E",
+   "pmcid": "PMC11219039"
+  },
+  {
+   "model": "KPC",
+   "fact": "Metastasis",
+   "value": "KPC mice develop metastases in liver, diaphragm and bowel; Fig. 4A gives the fraction for each site in n=21 KPC and CKPC mice (exact fractions are in the figure, not read here)",
+   "source": "Nikolaou 2024",
+   "where": "Fig. 4A legend",
+   "pmcid": "PMC11219039"
+  },
+  {
+   "model": "KPC",
+   "fact": "Time frame in the PIKfyve study",
+   "value": "KPC mice analysed at 25 weeks had pancreata with a mix of normal, PanIN and PDAC tissue; a typical figure shows healthy, PanIN and PDAC regions in one pancreas",
+   "source": "Cheng 2025",
+   "where": "Fig. 1g,h legend; Fig. 1a",
+   "pmcid": "PMC12176661"
+  },
+  {
+   "model": "KPC",
+   "fact": "Histology of KPC PDAC in a stated section",
+   "value": "Invasive glands with atypical nuclei in desmoplastic stroma (own description of Fig. 1a PDAC panel)",
+   "source": "Cheng 2025",
+   "where": "Fig. 1a",
+   "pmcid": "PMC12176661"
+  },
+  {
+   "model": "KPC",
+   "fact": "Related model with R270H, not classic KPC",
+   "value": "Park 2019 uses KrasG12D; Trp53R270H/+; Pdx1-Cre; KPC median tumour-free survival 24.6 weeks (n=28), shorter with Palb2, Brca1 or Brca2 loss (10.1, 11.9, 13.7 weeks)",
+   "source": "Park 2019",
+   "where": "Results, Fig. 2A",
+   "pmcid": "PMC6932818"
+  },
+  {
+   "model": "KPC",
+   "fact": "Cystic lesions with Palb2/Brca1 loss in KPC (R270H)",
+   "value": "Grossly visible cysts up to about 3 cm, often in body and tail, resembling mucinous cystic neoplasm and surrounded by ovarian-like stroma that stained for oestrogen and progesterone receptors; present in 6 of 23 Palb2-KPC animals and in most Brca1-KPC animals",
+   "source": "Park 2019",
+   "where": "Results, Fig. 3A-B",
+   "pmcid": "PMC6932818"
+  },
+  {
+   "model": "KDC",
+   "fact": "Original description (as given in the abstract)",
+   "value": "Izeradjene 2007: KrasG12D together with loss of one copy of Smad4/Dpc4 yields a different class of tumour, mucinous cystic neoplasm (MCN), which goes on to invasive ductal adenocarcinoma",
+   "source": "Izeradjene 2007",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KDC",
+   "fact": "Progression",
+   "value": "MCN pathway is called analogous to but distinct from PanIN-to-PDAC, with a markedly different prognosis; progression is accompanied by LOH of Dpc4 and mutation of p53 or p16",
+   "source": "Izeradjene 2007",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KDC",
+   "fact": "Interpretation in the original",
+   "value": "The order and setting in which the same mutations arrive shape the resulting pathology",
+   "source": "Izeradjene 2007",
+   "where": "abstract",
+   "pmcid": ""
+  },
+  {
+   "model": "KDC",
+   "fact": "How a later open paper summarises Kras;Smad4 (called KSC)",
+   "value": "KrasG12D plus Smad4 deletion gives mostly IPMN-type lesions that can progress to invasive PDAC but with much slower onset and less metastasis than KPC or KIC",
+   "source": "Hurwitz 2023",
+   "where": "Introduction",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KDC",
+   "fact": "Cre and alleles in the JCB paper",
+   "value": "Pdx1-Cre with LSL-KrasG12D and Smad4fl/fl (called KSC); KPC, KIC and KC mice were made as comparators; Smad4fl/fl, Trp53fl/fl and other floxed lines came from Jackson Laboratories",
+   "source": "Hurwitz 2023",
+   "where": "Methods, Mice",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KDC",
+   "fact": "Gross and microscopic lesions in KSC",
+   "value": "Mostly macroscopic cystic lesions that the authors call IPMN-like by overall architecture, strong Muc5AC and CK19 staining, and Alcian blue positivity; at 4 months",
+   "source": "Hurwitz 2023",
+   "where": "Results, Fig. 4B",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KDC",
+   "fact": "Survival and incidence in KSC",
+   "value": "KSC tumour-free survival was longer than KPC and KIC; 90% of KSC mice had no PDAC or death within the observation period (to about 4 months), n=45",
+   "source": "Hurwitz 2023",
+   "where": "Fig. 4A and Fig. S1A; Results",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KDC",
+   "fact": "KSC tumour histology and metastasis",
+   "value": "KSC cancers stay well differentiated with little change in E-cadherin or vimentin and no metastasis was seen even in terminal PDAC; cited as agreeing with earlier work",
+   "source": "Hurwitz 2023",
+   "where": "Results; Fig. 4C, Fig. S4B",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KDC",
+   "fact": "Terminology note",
+   "value": "The JCB paper treats these as IPMN-like (cystic, Muc5AC-rich) whereas Izeradjene 2007 calls them MCN; both refer to Kras with Smad4 loss",
+   "source": "Hurwitz 2023 / Izeradjene 2007",
+   "where": "Results / abstract",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KDC",
+   "fact": "Related: Kras with Tgfbr2 loss (KTbC)",
+   "value": "Fig. 7 compares KC, KSC, KSPrC and Kras;TbetaRII-deleted mice at 1 to 4 months with H&E, Alcian blue, CK19, Muc5AC; the paper states that removing Prdm16 and Smad4 together reproduces TGF-beta receptor loss",
+   "source": "Hurwitz 2023",
+   "where": "Fig. 7 legend",
+   "pmcid": "PMC9999015"
+  },
+  {
+   "model": "KDC",
+   "fact": "Related: KRAS with Tgfbr2 loss in a CRISPR model",
+   "value": "Tgfbr2 inactivation in Ptf1aCre/+;KrasLSL-G12D/+;Rosa26-Cas9 mice sped up acinar dedifferentiation by 8 weeks (H&E)",
+   "source": "not Smad4: PMC13149333",
+   "where": "Extended Data Fig. 9",
+   "pmcid": "PMC13149333"
+  },
+  {
+   "model": "KPDC",
+   "fact": "Combined Kras, Trp53 and Dpc4 model from the Hingorani lab",
+   "value": "None found. Europe PMC searches for Hingorani SR with Dpc4/Smad4 and Trp53 returned only unrelated papers (a 2020 Cancer Cell commentary, RUNX3 papers, reviews); no KPDC paper with an exact genotype was identified",
+   "source": "not found",
+   "where": "search only",
+   "pmcid": ""
+  }
+ ]
+}

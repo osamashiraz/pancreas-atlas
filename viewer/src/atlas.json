@@ -47,8 +47,8 @@
   },
   {
    "key": "mouse",
-   "title": "Mouse models",
-   "blurb": "The same sequence in genetically engineered mice, where mutant Kras is switched on in the pancreas: normal tissue, injury, metaplasia, PanIN, carcinoma and spread. Genotypes are given as each paper states them."
+   "title": "Mouse models, by genotype",
+   "blurb": "Engineered mice in which mutant Kras is switched on in the pancreas, alone (KC) or with a second hit (KPC, KPIC, KIC, KDC). One entry per model, its pictures in order of progression. Genotypes are given as each paper states them."
   }
  ],
  "entries": [
@@ -2857,56 +2857,57 @@
    "group": "mouse",
    "images": [
     {
-     "src": "atlas/mouse-normal-1.jpg",
+     "src": "atlas/mouse-control-1.jpg",
      "w": 511,
      "h": 511,
-     "caption": "Pancreas at 3 weeks: acini (A), an islet (I) and a duct (D), labelled in the source figure. Genotype: Pdx1-CreLate; Dicer flox/+ (a control).",
+     "caption": "Pancreas at 3 weeks: acini (A), an islet (I) and a duct (D), labelled in the source figure. A Dicer-heterozygous control.",
      "credit": "Morris et al. PLoS One 2014, doi:10.1371/journal.pone.0095486, fig. 1A",
      "licence": "CC BY 4.0",
      "mag": "H&E",
      "marks": [
       [
-       0.4,
-       0.65,
+       0.3,
+       0.62,
        1
       ],
       [
-       0.6,
-       0.32,
+       0.74,
+       0.43,
        2
       ],
       [
-       0.87,
+       0.9,
        0.31,
        3
       ]
      ]
     },
     {
-     "src": "atlas/mouse-normal-2.jpg",
+     "src": "atlas/mouse-control-2.jpg",
      "w": 960,
      "h": 724,
-     "caption": "Normal acinar tissue at high power: basal nuclei, pink granules at the cell tips (letter from the source figure).",
+     "caption": "Normal acinar tissue at high power: basal nuclei, pink granules at the tips (letter from the source figure).",
      "credit": "Krah et al. eLife 2015, doi:10.7554/eLife.07125, fig. 1A",
      "licence": "CC BY 4.0",
      "mag": "H&E, high power"
     }
    ],
-   "id": "mouse-normal",
-   "name": "Normal mouse pancreas",
-   "line": "Tightly packed acini with pink granular tips, an islet and a duct: the control for every model.",
+   "id": "mouse-control",
+   "name": "Controls",
+   "aka": "wild-type, Cre only, or a lox-stop allele without Cre",
+   "line": "Tightly packed acini with pink tips, an islet and a duct: what every model is read against.",
    "glance": [
-    "Acini packed tightly: blue cell bases, pink granular tips",
+    "Acini packed tight: blue bases, pink granular tips",
     "A pale islet among them",
-    "A duct with a thin wall"
+    "A thin-walled duct"
    ],
-   "remember": "Controls matter: mice with the Kras allele but no Cre, or Cre alone, keep a normal pancreas.",
+   "remember": "A lox-stop allele does nothing without Cre, and Cre alone does nothing: both controls keep a normal pancreas.",
    "features": {
-    "architecture": "Closely packed acini with islets and ducts; Cre-only and Cre-negative controls show normal structure.",
-    "cells": "Pyramidal acinar cells with basal nuclei and apical zymogen granules."
+    "architecture": "Closely packed acini with islets and ducts.",
+    "cells": "Pyramidal acinar cells, basal nuclei, apical granules."
    },
    "facts": {
-    "who": "Cre-negative littermates carrying lox-stop Kras and Trp53 alleles developed no tumours over up to a year (9 mice); Pdx1-Cre alone gave normal histology at 10 days and 4–6 weeks."
+    "who": "Cre-negative littermates with lox-stop Kras/Trp53 alleles made no tumours over up to a year; Pdx1-Cre alone gave normal histology at 10 days and 4-6 weeks."
    },
    "mimics": [
     {
@@ -2915,16 +2916,16 @@
     },
     {
      "id": "mouse-caerulein",
-     "tell": "After caerulein the acini swell and vacuolate, the spaces between them widen and inflammatory cells arrive."
+     "tell": "After caerulein the acini swell, the gaps between them widen and inflammatory cells arrive."
     }
    ],
    "sources": [
-    "Johnson et al. 2019, Results and fig. 2B, 3A",
-    "Urrutia et al. 2021, Results and fig. 1A",
+    "Johnson et al. 2019, fig. 3A",
+    "Urrutia et al. 2021, fig. 1A",
     "Morris et al. 2014, fig. 1A",
     "Krah et al. 2015, fig. 1"
    ],
-   "thumb": "atlas/t-mouse-normal-1.jpg"
+   "thumb": "atlas/t-mouse-control-1.jpg"
   },
   {
    "species": "mouse",
@@ -2934,24 +2935,24 @@
      "src": "atlas/mouse-caerulein-1.jpg",
      "w": 500,
      "h": 368,
-     "caption": "One day after caerulein: widened, oedematous stroma with inflammatory cells beside a congested vessel. Mist1-CreERT/+ mouse. Soft image.",
+     "caption": "One day after caerulein: oedematous stroma with inflammatory cells beside a congested vessel. Soft image.",
      "credit": "Karki et al. PLoS One 2015, doi:10.1371/journal.pone.0145724, fig. 1B",
      "licence": "CC BY 4.0",
      "mag": "H&E",
      "marks": [
       [
-       0.4,
-       0.35,
+       0.5,
+       0.45,
        1
       ],
       [
-       0.5,
-       0.2,
+       0.58,
+       0.22,
        2
       ],
       [
-       0.47,
-       0.78,
+       0.1,
+       0.38,
        3
       ]
      ]
@@ -2968,27 +2969,26 @@
    ],
    "id": "mouse-caerulein",
    "name": "Caerulein pancreatitis",
-   "aka": "experimental acute pancreatitis",
-   "line": "Repeated caerulein injections injure the acini: swelling, vacuoles, oedema and inflammatory cells, then recovery.",
+   "aka": "injury model, no oncogene",
+   "line": "Repeated caerulein injections injure the acini: swelling, oedema and inflammatory cells, then recovery.",
    "glance": [
-    "Spaces between acini widened by oedema",
+    "Gaps between acini widened by oedema",
     "Inflammatory cells in the widened stroma",
-    "Acinar cells swollen and vacuolated, lumina opened up"
+    "Swollen, vacuolated acinar cells"
    ],
-   "remember": "Acute and reversible: by about ten days most tissue is normal acini again, unless mutant Kras is present.",
+   "remember": "Acute and reversible: by about ten days the tissue is normal acini again, unless mutant Kras is present.",
    "features": {
-    "architecture": "Acini pushed apart by oedema; some turn into duct-like structures (ADM) for a few days.",
-    "cells": "Swollen, vacuolated acinar cells; in the first two days some co-express acinar and duct markers.",
+    "architecture": "Acini pushed apart by oedema; some form duct-like tubes (ADM) for a few days.",
     "stroma": "Oedema and an inflammatory infiltrate."
    },
    "facts": {
-    "who": "A common protocol: eight hourly intraperitoneal injections (50 µg/kg) on each of two consecutive days in mice aged 6–8 weeks. Chronic protocols give one injection a day, five days a week, for four weeks.",
-    "outlook": "Most tissue has recovered normal acini by 10 days. The acinar factor Mist1 falls sharply during metaplasia and returns on recovery."
+    "who": "A common protocol: eight hourly injections (50 ug/kg) on each of two days, in mice aged 6-8 weeks.",
+    "outlook": "Most tissue recovers by 10 days; the acinar factor Mist1 falls during metaplasia and returns on recovery."
    },
    "mimics": [
     {
-     "id": "mouse-adm",
-     "tell": "Injury-induced metaplasia reverses; with mutant Kras it persists and goes on to PanIN."
+     "id": "mouse-kc",
+     "tell": "Injury metaplasia reverses; with mutant Kras it persists and goes on to PanIN."
     },
     {
      "id": "acute-interstitial",
@@ -2996,9 +2996,8 @@
     }
    ],
    "sources": [
-    "Karki et al. 2015, Methods, Results and fig. 1B",
-    "Krah et al. 2015, Methods",
-    "Urrutia et al. 2021, Methods"
+    "Karki et al. 2015, Methods and fig. 1B",
+    "Krah et al. 2015, Methods"
    ],
    "thumb": "atlas/t-mouse-caerulein-1.jpg"
   },
@@ -3007,313 +3006,477 @@
    "group": "mouse",
    "images": [
     {
-     "src": "atlas/mouse-adm-1.jpg",
+     "src": "atlas/mouse-kc-1.jpg",
      "w": 660,
      "h": 620,
-     "caption": "Pdx1-Cre; LSL-KrasG12D: small tubes replacing acini, inflammatory cells, and ducts lined by pale mucinous cells, beside normal acini.",
+     "caption": "Pdx1-Cre; LSL-KrasG12D: small tubes replacing acini (ADM) and ducts lined by pale mucinous cells, beside normal acini.",
      "credit": "Urrutia et al. Front Cell Dev Biol 2021, doi:10.3389/fcell.2021.681153, fig. 2B",
      "licence": "CC BY",
      "mag": "H&E",
      "marks": [
       [
-       0.73,
-       0.2,
+       0.71,
+       0.19,
        1
       ],
       [
        0.4,
-       0.2,
+       0.3,
        2
       ],
       [
-       0.15,
-       0.25,
+       0.88,
+       0.58,
        3
       ],
       [
-       0.82,
-       0.62,
+       0.1,
+       0.2,
        4
       ]
      ]
     },
     {
-     "src": "atlas/mouse-adm-2.jpg",
-     "w": 810,
-     "h": 650,
-     "caption": "Three months after Kras and Trp53 activation in acinar cells (KPT mice): ADM (black arrows) and a PanIN (red arrow) in inflamed stroma; arrows from the source figure.",
-     "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 3B",
-     "licence": "CC BY 4.0",
-     "mag": "H&E, ×20"
-    }
-   ],
-   "id": "mouse-adm",
-   "name": "ADM in Kras-mutant mice",
-   "aka": "acinar-to-ductal metaplasia",
-   "line": "Acini lose their granules and become small tubes, in an inflamed, fibrous stroma: the first visible step.",
-   "glance": [
-    "Small duct-like tubes where acini should be",
-    "Inflammatory cells and new stroma round them",
-    "Normal acini still beside the lesion",
-    "Some tubes already lined by pale mucinous cells"
-   ],
-   "remember": "In the mouse, acinar cells are the usual starting point: ADM first, then PanIN.",
-   "features": {
-    "architecture": "Acinar tubular complexes and duct-like structures replacing acini; atypical flat lesions and early PanIN alongside.",
-    "cells": "Acinar cells that have lost their zymogen granules; the lining of the tubes is often graded with the PanIN scheme.",
-    "mucin": "Appears as the tubes turn into PanIN; Alcian-blue-positive area rose over 1, 2 and 3 months after Kras activation in one model.",
-    "stroma": "Inflamed and desmoplastic from the start: hyaluronan and activated stellate cells sit beside ADM."
-   },
-   "facts": {
-    "who": "Seen within weeks: cohorts of Pdx1-Cre; LSL-KrasG12D mice are examined at 4, 6 and 8 weeks. At 8 weeks every such mouse had neutrophils or histiocytes in the pancreas.",
-    "molecular": "Not every PanIN need come from ADM; the older view of an origin in duct epithelium stands beside it."
-   },
-   "mimics": [
-    {
-     "id": "adm",
-     "tell": "The human change looks the same, but in people its meaning is unclear and it is common in any injured gland."
-    },
-    {
-     "id": "mouse-panin",
-     "tell": "PanIN is a larger duct-like structure lined by tall cells with a mucin cap; ADM tubes are small with low cells."
-    }
-   ],
-   "sources": [
-    "Urrutia et al. 2021, Results and fig. 2B, 7A",
-    "Johnson et al. 2019, Abstract and fig. 3, 5",
-    "Veite-Schmahl et al. 2017, Introduction",
-    "Morris et al. 2014, fig. 1"
-   ],
-   "thumb": "atlas/t-mouse-adm-1.jpg"
-  },
-  {
-   "species": "mouse",
-   "group": "mouse",
-   "images": [
-    {
-     "src": "atlas/mouse-panin-1.jpg",
+     "src": "atlas/mouse-kc-2.jpg",
      "w": 960,
      "h": 724,
-     "caption": "Ptf1a-CreERT; LSL-KrasG12D: a duct lined by tall columnar cells with pale mucin and basal nuclei (letter from the source figure). The paper does not give a grade.",
+     "caption": "A duct lined by tall columnar cells with pale mucin and basal nuclei (PanIN). The paper gives no grade. Letter from the source figure.",
      "credit": "Krah et al. eLife 2015, doi:10.7554/eLife.07125, fig. 1B",
      "licence": "CC BY 4.0",
-     "mag": "H&E, high power",
-     "marks": [
-      [
-       0.62,
-       0.22,
-       1
-      ],
-      [
-       0.35,
-       0.45,
-       2
-      ],
-      [
-       0.26,
-       0.57,
-       3
-      ]
-     ]
+     "mag": "H&E, high power"
     },
     {
-     "src": "atlas/mouse-panin-2.jpg",
-     "w": 940,
-     "h": 935,
-     "caption": "In context at 3 months: a small focus of PanIN among normal acini. Pdx1-Cre; LSL-KrasG12D/+; Trp53 flox/wt.",
-     "credit": "Germino et al. PLoS One 2018, doi:10.1371/journal.pone.0194998, fig. 2",
-     "licence": "CC BY 4.0",
-     "mag": "H&E"
-    },
-    {
-     "src": "atlas/mouse-panin-3.jpg",
+     "src": "atlas/mouse-kc-3.jpg",
      "w": 598,
      "h": 396,
-     "caption": "At 11 months in a Ptf1a-Cre; LSL-KrasG12D mouse: dilated, branching ducts lined by tall mucinous cells (number tag from the source atlas).",
+     "caption": "At 11 months in a Ptf1a-Cre KC mouse: dilated, branching ducts lined by tall mucinous cells. Number tag from the source atlas.",
      "credit": "Veite-Schmahl et al. PLoS One 2017, doi:10.1371/journal.pone.0187552, fig. 4B",
      "licence": "CC BY 4.0",
      "mag": "H&E"
     }
    ],
-   "id": "mouse-panin",
-   "name": "Mouse PanIN",
-   "aka": "mPanIN, in KC mice",
-   "line": "A duct lined by tall columnar cells with pale mucin and basal nuclei, as in human low-grade PanIN.",
+   "id": "mouse-kc",
+   "name": "KC",
+   "aka": "LSL-KrasG12D with Pdx1-Cre or Ptf1a (p48)-Cre",
+   "line": "Mutant Kras alone: acinar-to-ductal metaplasia, then PanIN of rising grade; cancer is late and uncommon.",
    "glance": [
-    "One layer of tall columnar cells",
-    "Pale mucin filling the upper half of each cell",
-    "Nuclei in a row at the base",
-    "Normal acini round the lesion"
+    "Small duct-like tubes replacing acini (ADM)",
+    "New stroma and inflammatory cells round them",
+    "Tall, pale mucinous cells lining a duct (PanIN)",
+    "Normal acini still beside the lesion"
    ],
-   "remember": "Mutant Kras alone is enough for PanIN; the same grading words are used as in people, and pathologists disagree in the same places.",
+   "remember": "Kras alone starts PanIN, but most KC mice stay cancer-free for months: the model of the preinvasive stages.",
    "features": {
-    "architecture": "Flat or papillary linings of small ducts, surrounded by normal tissue early on; many lesions do not fit neatly into one grade.",
-    "cells": "Tall columnar, mucin-filled.",
-    "nuclei": "Basal in PanIN-1; abnormal in PanIN-2; polarity lost, with a cribriform lumen, in PanIN-3.",
-    "mucin": "Abundant; Alcian blue is used to measure PanIN burden."
+    "architecture": "ADM, atypical flat lesions and PanIN among normal tissue; many lesions do not fit one PanIN grade.",
+    "cells": "ADM: acinar cells that have lost their granules. PanIN: tall columnar cells, basal nuclei; polarity lost in PanIN-3.",
+    "mucin": "Abundant in PanIN; Alcian blue measures PanIN burden.",
+    "stroma": "Inflamed early: at 8 weeks every Pdx1-Cre KC mouse had neutrophils or histiocytes."
    },
    "facts": {
-    "who": "KC mice: LSL-KrasG12D with Pdx1-Cre or Ptf1a (p48)-Cre. PanIN are usually minimal at 1 month in Pdx1-Cre KC mice and increase with age; an atlas of Ptf1a-Cre KC mice covers 5 to 16 months.",
-    "molecular": "The acinar factor PTF1A, abundant in acinar nuclei, is lost in mouse PanIN and, with rare exceptions, in human PanIN. Ptf1a-Cre keeps tumours to the pancreas; Pdx1-Cre also gives tumours elsewhere."
+    "who": "Endogenous KrasG12D switched on in pancreatic progenitors (Hingorani et al. 2003). Ptf1a-Cre keeps tumours to the pancreas; Pdx1-Cre also gives tumours elsewhere.",
+    "size": "PanIN minimal at 1 month, the main finding at about 4 months, covering the human PanIN range.",
+    "outlook": "A few progress on their own to invasive cancer; visible terminal cancer at about 10 months. Over 76% were cancer-free at 6 months in one series.",
+    "molecular": "PTF1A is lost in mouse PanIN and, with rare exceptions, in human PanIN."
    },
    "mimics": [
     {
      "id": "panin-low",
-     "tell": "The human lesion; the grading scheme was carried over to the mouse."
+     "tell": "The human lesion; its grading was carried over to the mouse."
     },
     {
-     "id": "mouse-adm",
-     "tell": "ADM tubes are smaller, with low cells and little mucin, and sit inside a lobule that is breaking down."
+     "id": "adm",
+     "tell": "In people ADM looks the same, but its meaning is unclear and it is common in injured glands."
+    },
+    {
+     "id": "mouse-kpc",
+     "tell": "Adding mutant Trp53 turns the same start into invasive, metastatic cancer within months."
     }
    ],
    "sources": [
-    "Krah et al. 2015, Abstract, fig. 1 and 7",
-    "Veite-Schmahl et al. 2017, Introduction and Methods",
-    "Germino et al. 2018, fig. 2",
-    "Urrutia et al. 2021, fig. 2B"
+    "Hingorani et al. 2003, abstract (Cancer Cell 4:437-50)",
+    "Hurwitz et al. 2023, fig. 1, 3",
+    "Krah et al. 2015, fig. 1, 7",
+    "Veite-Schmahl et al. 2017, Introduction",
+    "Urrutia et al. 2021, fig. 2B, 7A"
    ],
-   "thumb": "atlas/t-mouse-panin-1.jpg"
+   "thumb": "atlas/t-mouse-kc-1.jpg"
   },
   {
    "species": "mouse",
    "group": "mouse",
    "images": [
     {
-     "src": "atlas/mouse-pda-1.jpg",
-     "w": 472,
-     "h": 379,
-     "caption": "KPT mouse: back-to-back glands of columnar cells in dense fibrous stroma.",
-     "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 2C",
+     "src": "atlas/mouse-kpc-1.jpg",
+     "w": 366,
+     "h": 305,
+     "caption": "KPC PanIN: a duct lined by one layer of columnar cells in fibrous stroma. Small image (366 px); scale bar from the source figure.",
+     "credit": "Cheng et al. Nature 2025, doi:10.1038/s41586-025-08917-z, fig. 1a",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×20",
+     "mag": "H&E",
      "marks": [
       [
-       0.57,
-       0.4,
+       0.52,
+       0.42,
        1
       ],
       [
-       0.2,
-       0.18,
+       0.1,
+       0.75,
        2
       ],
       [
-       0.4,
-       0.55,
+       0.35,
+       0.65,
        3
       ]
      ]
     },
     {
-     "src": "atlas/mouse-pda-2.jpg",
-     "w": 452,
-     "h": 343,
-     "caption": "Pdx1-Cre; LSL-KrasG12D/+; Trp53 flox/wt: irregular open glands with secretions; the paper calls these tumours moderately differentiated.",
-     "credit": "Germino et al. PLoS One 2018, doi:10.1371/journal.pone.0194998, fig. 3",
-     "licence": "CC BY 4.0",
-     "mag": "H&E"
-    },
-    {
-     "src": "atlas/mouse-pda-3.jpg",
-     "w": 600,
-     "h": 452,
-     "caption": "KPIC mouse: small, poorly formed glands and single cells in desmoplastic stroma.",
-     "credit": "Ma and Saiyin. PLoS One 2017, doi:10.1371/journal.pone.0176844, fig. 1C",
+     "src": "atlas/mouse-kpc-2.jpg",
+     "w": 366,
+     "h": 306,
+     "caption": "KPC carcinoma: irregular small glands and single cells in desmoplastic stroma. Small image (366 px).",
+     "credit": "Cheng et al. Nature 2025, doi:10.1038/s41586-025-08917-z, fig. 1a",
      "licence": "CC BY 4.0",
      "mag": "H&E"
     }
    ],
-   "id": "mouse-pda",
-   "name": "Mouse ductal adenocarcinoma",
-   "aka": "KPC-type models",
-   "line": "Adding a second hit to mutant Kras gives invasive, gland-forming carcinoma in dense stroma, like the human tumour.",
+   "id": "mouse-kpc",
+   "name": "KPC",
+   "aka": "LSL-KrasG12D; LSL-Trp53R172H; Pdx1-Cre",
+   "line": "Mutant Kras with mutant Trp53: PanIN within weeks, then invasive, widely metastatic ductal carcinoma.",
    "glance": [
     "Irregular glands with open lumina",
-    "Dense fibrous (desmoplastic) stroma between them",
-    "Crowded, atypical nuclei lining the glands"
+    "Dense pink (desmoplastic) stroma between them",
+    "Crowded, dark nuclei lining the glands"
    ],
-   "remember": "Kras starts it; loss of Trp53 or Ink4a speeds it up. Which alleles and which Cre decide latency, so always read the genotype.",
+   "remember": "The standard model of metastatic pancreatic cancer: gland-forming tumours in dense stroma, with unstable chromosomes.",
    "features": {
-    "architecture": "Infiltrating glands, from well to poorly formed, invading pancreas, fat and duodenal wall.",
-    "nuclei": "Marked atypia.",
-    "mitoses": "Many, in the model where they are described.",
-    "stroma": "Strongly desmoplastic, with few vessels, as in human tumours."
+    "architecture": "Normal tissue, PanIN and carcinoma side by side in one pancreas; invasive glands in desmoplastic stroma.",
+    "nuclei": "Atypical; tumours carry many chromosomal translocations without obvious telomere erosion."
    },
    "facts": {
-    "who": "KPC: LSL-KrasG12D; LSL-Trp53R172H; Pdx1-Cre. Variants shown here: KPT (tamoxifen-induced Ptf1a-CreER, Trp53 R270H), KPIC (adds Ink4a flox/+; p48-Cre), and Pdx1-Cre; LSL-KrasG12D; Trp53 flox/wt.",
-    "outlook": "Median survival 219 days after induction in KPT mice; mean 89 days in KPIC and 62 days in KIC mice; median age at death 159 days in the Trp53 flox/wt model.",
-    "size": "Palpable hard masses from about 7 weeks in KPIC mice."
+    "who": "Described by Hingorani et al. 2005; some groups use Ptf1a-Cre and keep the name.",
+    "size": "PanIN appear after 6 weeks.",
+    "outlook": "Median survival about 187 days in one series; metastases to liver, diaphragm and bowel.",
+    "molecular": "The other main tumour-suppressor pathways were unmutated, taken to mean separate genetic routes to carcinoma."
    },
    "mimics": [
     {
-     "id": "pda-well",
-     "tell": "The human tumour; mouse tumours in these models are mostly well to moderately differentiated and stroma-rich."
+     "id": "pda-moderate",
+     "tell": "The human tumour it was built to reproduce."
     },
     {
-     "id": "mouse-panin",
-     "tell": "PanIN stays inside a duct with normal tissue round it; carcinoma is haphazard glands in desmoplastic stroma."
+     "id": "mouse-kpt",
+     "tell": "KPT uses a different Trp53 mutation (R270H) and switches on in adult acinar cells, so it is slower."
+    },
+    {
+     "id": "mouse-kpflox",
+     "tell": "There one Trp53 copy is deleted rather than point-mutated."
     }
    ],
    "sources": [
-    "Johnson et al. 2019, Results and fig. 2",
-    "Ma and Saiyin 2017, Methods, Results and fig. 1",
-    "Germino et al. 2018, Results and fig. 1, 3",
-    "Kleeff et al. 2016, p. 8"
+    "Hingorani et al. 2005, abstract (Cancer Cell 7:469-83)",
+    "Nikolaou et al. 2024, fig. 1-4",
+    "Cheng et al. 2025, fig. 1"
    ],
-   "thumb": "atlas/t-mouse-pda-1.jpg"
+   "thumb": "atlas/t-mouse-kpc-1.jpg"
   },
   {
    "species": "mouse",
    "group": "mouse",
    "images": [
     {
-     "src": "atlas/mouse-met-1.jpg",
-     "w": 471,
-     "h": 379,
-     "caption": "KPT mouse: tumour glands with their stroma inside the liver; pink liver cells at the edges.",
-     "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 2D",
+     "src": "atlas/mouse-kpt-1.jpg",
+     "w": 810,
+     "h": 650,
+     "caption": "Three months after induction (KPT): ADM (black arrows) and a PanIN (red arrow) in inflamed stroma; arrows from the source figure.",
+     "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 3B",
      "licence": "CC BY 4.0",
-     "mag": "H&E, ×20",
+     "mag": "H&E, x20",
      "marks": [
       [
-       0.62,
-       0.65,
+       0.56,
+       0.33,
        1
       ],
       [
-       0.88,
+       0.62,
        0.2,
+       2
+      ],
+      [
+       0.4,
+       0.6,
+       3
+      ]
+     ]
+    },
+    {
+     "src": "atlas/mouse-kpt-2.jpg",
+     "w": 472,
+     "h": 379,
+     "caption": "KPT carcinoma: back-to-back glands of columnar cells in dense fibrous stroma.",
+     "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 2C",
+     "licence": "CC BY 4.0",
+     "mag": "H&E, x20"
+    },
+    {
+     "src": "atlas/mouse-kpt-3.jpg",
+     "w": 471,
+     "h": 379,
+     "caption": "KPT liver metastasis: tumour glands with their stroma inside the liver; pink liver cells at the edges.",
+     "credit": "Johnson et al. PLoS One 2019, doi:10.1371/journal.pone.0221810, fig. 2D",
+     "licence": "CC BY 4.0",
+     "mag": "H&E, x20"
+    }
+   ],
+   "id": "mouse-kpt",
+   "name": "KPT",
+   "aka": "Ptf1a-CreER; LSL-KrasG12D; LSL-Trp53R270H, tamoxifen-induced",
+   "line": "Kras and Trp53 switched on in adult acinar cells: ADM and PanIN by 3 months, then fibrotic carcinoma.",
+   "glance": [
+    "Irregular glands with open lumina",
+    "Dense pink (desmoplastic) stroma between them",
+    "Crowded, dark nuclei lining the glands"
+   ],
+   "remember": "An adult-onset KPC: same sequence, slower, and shown to start in acinar cells.",
+   "features": {
+    "architecture": "Infiltrating glands, well to poorly formed, invading pancreas, fat and duodenum.",
+    "mitoses": "Many.",
+    "stroma": "Strongly desmoplastic; hyaluronan and activated stellate cells sit beside ADM."
+   },
+   "facts": {
+    "who": "Tamoxifen at 4-5 weeks; the paper writes the Trp53 allele as R270H.",
+    "size": "ADM and PanIN by 3 months; mucin-positive area rises month by month.",
+    "outlook": "Median survival 219 days after tamoxifen; liver metastases in 3 of 8, lung in 1 of 8."
+   },
+   "mimics": [
+    {
+     "id": "mouse-kpc",
+     "tell": "Classic KPC carries Trp53 R172H and switches on in the embryo."
+    },
+    {
+     "id": "liver-metastasis",
+     "tell": "The human counterpart of the last picture."
+    }
+   ],
+   "sources": [
+    "Johnson et al. 2019, fig. 2, 3, 5"
+   ],
+   "thumb": "atlas/t-mouse-kpt-1.jpg"
+  },
+  {
+   "species": "mouse",
+   "group": "mouse",
+   "images": [
+    {
+     "src": "atlas/mouse-kpflox-1.jpg",
+     "w": 940,
+     "h": 935,
+     "caption": "At 3 months: a small focus of PanIN among normal acini. Pdx1-Cre; LSL-KrasG12D; Trp53 flox/wt.",
+     "credit": "Germino et al. PLoS One 2018, doi:10.1371/journal.pone.0194998, fig. 2",
+     "licence": "CC BY 4.0",
+     "mag": "H&E",
+     "marks": [
+      [
+       0.51,
+       0.46,
+       1
+      ],
+      [
+       0.44,
+       0.55,
+       2
+      ]
+     ]
+    },
+    {
+     "src": "atlas/mouse-kpflox-2.jpg",
+     "w": 452,
+     "h": 343,
+     "caption": "Carcinoma: irregular open glands with secretions, called moderately differentiated by the paper.",
+     "credit": "Germino et al. PLoS One 2018, doi:10.1371/journal.pone.0194998, fig. 3",
+     "licence": "CC BY 4.0",
+     "mag": "H&E"
+    }
+   ],
+   "id": "mouse-kpflox",
+   "name": "Kras with one Trp53 copy deleted",
+   "aka": "Pdx1-Cre; LSL-KrasG12D; Trp53 flox/wt",
+   "line": "Mutant Kras with loss of one Trp53 copy: PanIN among normal tissue at 3 months, then carcinoma.",
+   "glance": [
+    "Irregular glands with open lumina",
+    "Dense pink (desmoplastic) stroma between them",
+    "Crowded, dark nuclei lining the glands"
+   ],
+   "remember": "Deleting Trp53 is not the same as mutating it: check whether a paper’s \"KPC\" carries R172H, R270H or a floxed allele.",
+   "features": {
+    "architecture": "Open, irregular glands with secretions; the paper calls the tumours moderately differentiated.",
+    "stroma": "Desmoplastic."
+   },
+   "facts": {
+    "size": "PanIN among normal tissue at 3 months.",
+    "outlook": "Median age at death or sacrifice 159 days."
+   },
+   "mimics": [
+    {
+     "id": "mouse-kpc",
+     "tell": "KPC carries a point-mutant Trp53 (R172H), not a deleted copy."
+    }
+   ],
+   "sources": [
+    "Germino et al. 2018, fig. 1-3"
+   ],
+   "thumb": "atlas/t-mouse-kpflox-1.jpg"
+  },
+  {
+   "species": "mouse",
+   "group": "mouse",
+   "images": [
+    {
+     "src": "atlas/mouse-kpic-1.jpg",
+     "w": 600,
+     "h": 452,
+     "caption": "KPIC carcinoma: small, poorly formed glands and single cells in desmoplastic stroma.",
+     "credit": "Ma and Saiyin. PLoS One 2017, doi:10.1371/journal.pone.0176844, fig. 1C",
+     "licence": "CC BY 4.0",
+     "mag": "H&E",
+     "marks": [
+      [
+       0.45,
+       0.75,
+       1
+      ],
+      [
+       0.15,
+       0.22,
        2
       ]
      ]
     }
    ],
-   "id": "mouse-met",
-   "name": "Mouse liver metastasis",
-   "line": "Tumour glands growing in the liver: the model reproduces spread as well as the primary tumour.",
+   "id": "mouse-kpic",
+   "name": "KPIC",
+   "aka": "LSL-KrasG12D; LSL-Trp53R172H/+; Ink4a flox/+; Ptf1a (p48)-Cre",
+   "line": "KPC with one Ink4a copy also removed: hard tumours by 7 weeks, stroma-rich and locally invasive.",
    "glance": [
-    "Glands with open lumina that do not belong in liver",
-    "Plates of pink liver cells round them",
-    "Fibrous stroma carried with the tumour"
+    "Irregular glands with open lumina",
+    "Dense pink (desmoplastic) stroma between them"
    ],
-   "remember": "Spread depends on the model: liver in 3 of 8 and lung in 1 of 8 KPT mice, but none in the liver in KPIC mice.",
+   "remember": "Faster than KPC and locally invasive, but without liver metastases in the series described.",
    "features": {
-    "architecture": "Neoplastic glands with a desmoplastic reaction inside liver tissue."
+    "architecture": "Ductal carcinoma: tumour cells as ducts in dense stroma; of 5 mice, 3 had carcinoma and 2 high-grade PanIN.",
+    "stroma": "Rich, with few small vessels, like human tumours."
    },
    "facts": {
-    "who": "KPT mice at the humane endpoint: liver metastases in 3 of 8, lung in 1 of 8. KPIC mice invaded neighbouring organs (intestine, kidney) without liver metastases."
+    "size": "Palpable hard masses from about 7 weeks.",
+    "outlook": "Mean survival 89 days; invasion of intestine and kidney; no liver metastases seen."
    },
    "mimics": [
     {
-     "id": "liver-metastasis",
-     "tell": "The human counterpart, usually found as many pale nodules."
+     "id": "mouse-kic",
+     "tell": "KIC has no Trp53 mutation but loses both Ink4a copies, and is faster."
+    },
+    {
+     "id": "mouse-kpc",
+     "tell": "KPC keeps both Ink4a copies and metastasises to the liver."
     }
    ],
    "sources": [
-    "Johnson et al. 2019, Results and fig. 2D",
-    "Ma and Saiyin 2017, Results"
+    "Ma and Saiyin 2017, fig. 1"
    ],
-   "thumb": "atlas/t-mouse-met-1.jpg"
+   "thumb": "atlas/t-mouse-kpic-1.jpg"
+  },
+  {
+   "species": "mouse",
+   "group": "mouse",
+   "images": [
+    {
+     "src": "atlas/mouse-kic-1.jpg",
+     "w": 601,
+     "h": 452,
+     "caption": "KIC carcinoma: well-formed glands in dense desmoplastic stroma.",
+     "credit": "Ma and Saiyin. PLoS One 2017, doi:10.1371/journal.pone.0176844, fig. 1C",
+     "licence": "CC BY 4.0",
+     "mag": "H&E",
+     "marks": [
+      [
+       0.37,
+       0.31,
+       1
+      ],
+      [
+       0.9,
+       0.55,
+       2
+      ]
+     ]
+    }
+   ],
+   "id": "mouse-kic",
+   "name": "KIC",
+   "aka": "Ptf1a (p48)-Cre; LSL-KrasG12D; Ink4a flox/flox",
+   "line": "Mutant Kras with both Ink4a copies removed: the fastest of these models, tumours well differentiated and stroma-rich.",
+   "glance": [
+    "Irregular glands with open lumina",
+    "Dense pink (desmoplastic) stroma between them"
+   ],
+   "remember": "No Trp53 change at all: losing Ink4a is enough to turn Kras-driven lesions into carcinoma within two months.",
+   "features": {
+    "architecture": "Well-differentiated carcinoma: tumour cells as ducts in dense stroma."
+   },
+   "facts": {
+    "outlook": "Mean survival 62 days."
+   },
+   "mimics": [
+    {
+     "id": "mouse-kpic",
+     "tell": "KPIC adds mutant Trp53 and keeps one Ink4a copy; it lives about a month longer."
+    }
+   ],
+   "sources": [
+    "Ma and Saiyin 2017, fig. 1"
+   ],
+   "thumb": "atlas/t-mouse-kic-1.jpg"
+  },
+  {
+   "species": "mouse",
+   "group": "mouse",
+   "images": [],
+   "id": "mouse-kdc",
+   "name": "KDC",
+   "aka": "KrasG12D with Smad4 (Dpc4) loss; also written KSC",
+   "line": "Mutant Kras with Smad4 loss gives cystic mucinous tumours instead of PanIN, and slower, less metastatic cancer.",
+   "glance": [
+    "Large cystic spaces, not small ducts",
+    "A mucinous lining, mucin-rich (Muc5AC)",
+    "Slow growth; little spread"
+   ],
+   "remember": "A different route: Kras with Smad4 loss makes cystic (MCN/IPMN-like) lesions, not the PanIN sequence of KC.",
+   "features": {
+    "architecture": "Mostly macroscopic cystic lesions; Izeradjene 2007 calls them mucinous cystic neoplasm (MCN), Hurwitz 2023 calls the cystic, Muc5AC-rich lesions IPMN-like.",
+    "mucin": "Abundant; Alcian blue and Muc5AC positive."
+   },
+   "facts": {
+    "who": "Pdx1-Cre; LSL-KrasG12D with Smad4 flox (Hurwitz \"KSC\"); Izeradjene 2007 used Smad4/Dpc4 haploinsufficiency.",
+    "outlook": "Slower than KC and KPC; 90% of Hurwitz KSC mice had no cancer or death to about 4 months, and no metastases were seen even in terminal cancer.",
+    "molecular": "In Izeradjene 2007, progression came with loss of the second Dpc4 copy and mutation of p53 or p16."
+   },
+   "mimics": [
+    {
+     "id": "mcn",
+     "tell": "The human cystic tumour; whether these mice model MCN or IPMN is itself debated (Izeradjene vs Hurwitz)."
+    },
+    {
+     "id": "mouse-kc",
+     "tell": "KC takes the PanIN route; swapping Trp53 loss for Smad4 loss changes the lesion to a cyst."
+    }
+   ],
+   "sources": [
+    "Izeradjene et al. 2007, abstract (Cancer Cell 11:229-43)",
+    "Hurwitz et al. 2023, Introduction and fig. 4"
+   ]
   }
  ]
 }
