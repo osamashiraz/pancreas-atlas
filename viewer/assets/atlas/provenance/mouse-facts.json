@@ -1,0 +1,358 @@
+{
+ "_sources": {
+  "Johnson 2019": {
+   "authors": "Johnson BL, d’Alincourt Salazar M, Mackenzie-Dyck S, D’Apuzzo M, Shih HP, Manuel ER, Diamond DJ",
+   "title": "Desmoplasia and oncogene driven acinar-to-ductal metaplasia are concurrent events during acinar cell-derived pancreatic cancer initiation in young adult mice",
+   "journal": "PLoS ONE",
+   "year": "2019",
+   "volume": "14",
+   "issue": "9",
+   "article_number_or_pages": "e0221810",
+   "doi": "10.1371/journal.pone.0221810",
+   "pmcid": "PMC6731019"
+  },
+  "Karki 2015": {
+   "authors": "Karki A, Humphrey SE, Steele RE, Hess DA, Taparowsky EJ, Konieczny SF",
+   "title": "Silencing Mist1 Gene Expression Is Essential for Recovery from Acute Pancreatitis",
+   "journal": "PLoS ONE",
+   "year": "2015",
+   "volume": "10",
+   "issue": "12",
+   "article_number_or_pages": "e0145724",
+   "doi": "10.1371/journal.pone.0145724",
+   "pmcid": "PMC4696804"
+  },
+  "Veite-Schmahl 2017": {
+   "authors": "Veite-Schmahl MJ, Rivers AC, Regan DP, Kennedy MA",
+   "title": "The Mouse Model of Pancreatic Cancer Atlas (MMPCA) for classification of pancreatic cancer lesions: A large histological investigation of the Ptf1aCre/+;LSL-KrasG12D/+ transgenic mouse model of pancreatic cancer",
+   "journal": "PLoS ONE",
+   "year": "2017",
+   "volume": "12",
+   "issue": "11",
+   "article_number_or_pages": "e0187552",
+   "doi": "10.1371/journal.pone.0187552",
+   "pmcid": "PMC5679567"
+  },
+  "Ma 2017": {
+   "authors": "Ma L, Saiyin H",
+   "title": "LSL-KrasG12D; LSL-Trp53R172H/+; Ink4flox/+; Ptf1/p48-Cre mice are an applicable model for locally invasive and metastatic pancreatic cancer",
+   "journal": "PLoS ONE",
+   "year": "2017",
+   "volume": "12",
+   "issue": "5",
+   "article_number_or_pages": "e0176844",
+   "doi": "10.1371/journal.pone.0176844",
+   "pmcid": "PMC5419507"
+  },
+  "Krah 2015": {
+   "authors": "Krah NM, De La O JP, Swift GH, Hoang CQ, Willet SG, Chen Pan F, Cash GM, Bronner MP, Wright CV, MacDonald RJ, Murtaugh LC",
+   "title": "The acinar differentiation determinant PTF1A inhibits initiation of pancreatic ductal adenocarcinoma",
+   "journal": "eLife",
+   "year": "2015",
+   "volume": "4",
+   "issue": null,
+   "article_number_or_pages": "e07125",
+   "doi": "10.7554/eLife.07125",
+   "pmcid": "PMC4536747"
+  },
+  "Urrutia 2021": {
+   "authors": "Urrutia G, de Assuncao TM, Mathison AJ, Salmonson A, Kerketta R, Zeighami A, Stodola TJ, Adsay V, Pehlivanoglu B, Dwinell MB, Zimmermann MT, Iovanna JL, Urrutia R, Lomberk G",
+   "title": "Inactivation of the Euchromatic Histone-Lysine N-Methyltransferase 2 Pathway in Pancreatic Epithelial Cells Antagonizes Cancer Initiation and Pancreatitis-Associated Promotion by Altering Growth and Immune Gene Expression Networks",
+   "journal": "Frontiers in Cell and Developmental Biology",
+   "year": "2021",
+   "volume": "9",
+   "issue": null,
+   "article_number_or_pages": "681153",
+   "doi": "10.3389/fcell.2021.681153",
+   "pmcid": "PMC8261250"
+  },
+  "Germino 2018": {
+   "authors": "Germino EA, Miller JP, Diehl L, Swanson CJ, Durinck S, Modrusan Z, Miner JH, Shaw AS",
+   "title": "Homozygous KSR1 deletion attenuates morbidity but does not prevent tumor development in a mouse model of RAS-driven pancreatic cancer",
+   "journal": "PLoS ONE",
+   "year": "2018",
+   "volume": "13",
+   "issue": "3",
+   "article_number_or_pages": "e0194998",
+   "doi": "10.1371/journal.pone.0194998",
+   "pmcid": "PMC5875795"
+  },
+  "Morris 2014": {
+   "authors": "Morris JP, Greer R, Russ HA, von Figura G, Kim GE, Busch A, Lee J, Hertel KJ, Kim S, Mcmanus M, Hebrok M",
+   "title": "Dicer Regulates Differentiation and Viability during Mouse Pancreatic Cancer Initiation",
+   "journal": "PLoS ONE",
+   "year": "2014",
+   "volume": "9",
+   "issue": "5",
+   "article_number_or_pages": "e95486",
+   "doi": "10.1371/journal.pone.0095486",
+   "pmcid": "PMC4006805"
+  }
+ },
+ "facts": [
+  {
+   "slug": "mouse-pda",
+   "fact": "KPT model alleles and Cre driver",
+   "value": "Ptf1aCreERTM/+; KrasLSL-G12D/+; Trp53LSL-R270H/+; Rosa26LSL-mCL/LSL-mCL on C57BL/6j; Cre is tamoxifen-inducible and active in adult acinar cells; mice injected with tamoxifen at 4-5 weeks of age. The paper writes the p53 allele as R270H.",
+   "source": "Johnson 2019",
+   "where": "Results, 'Oncogene-expressing... PDAC' first paragraph (Fig 2A)",
+   "pmcid": "PMC6731019"
+  },
+  {
+   "slug": "mouse-pda",
+   "fact": "Latency / median survival of KPT mice",
+   "value": "Median survival 219 days after tamoxifen (n = 8 KPT; 3 male, 5 female); tumours reached humane endpoint at roughly 6 months",
+   "source": "Johnson 2019",
+   "where": "Results (Fig 2B); Methods",
+   "pmcid": "PMC6731019"
+  },
+  {
+   "slug": "mouse-normal",
+   "fact": "Cre-negative KP littermate control",
+   "value": "Littermates with Ptf1a+/+ (no Cre) and the same Kras/Trp53 lox-stop alleles, injected with tamoxifen, developed no pancreatic tumours (n = 9) over up to one year, and 3-month sections look like normal acinar tissue",
+   "source": "Johnson 2019",
+   "where": "Results (Fig 2B legend; Fig 3A)",
+   "pmcid": "PMC6731019"
+  },
+  {
+   "slug": "mouse-pda",
+   "fact": "How KPT tumours look on H&E",
+   "value": "Infiltrating glands that range from well to poorly formed, with marked nuclear atypia and many mitoses; a strong desmoplastic reaction in the invaded pancreas, peripancreatic fat and duodenal wall. The abstract calls the tumours highly differentiated and fibrotic.",
+   "source": "Johnson 2019",
+   "where": "Results, text preceding Fig 2C; Abstract",
+   "pmcid": "PMC6731019"
+  },
+  {
+   "slug": "mouse-met",
+   "fact": "Metastasis sites in KPT mice",
+   "value": "Macroscopic metastases at necropsy: liver in 3 of 8 mice, lungs in 1 of 8",
+   "source": "Johnson 2019",
+   "where": "Results (Fig 2D)",
+   "pmcid": "PMC6731019"
+  },
+  {
+   "slug": "mouse-adm",
+   "fact": "ADM and PanIN appear before tumours in KPT mice",
+   "value": "Three months after tamoxifen, KPT pancreas showed acinar-to-ductal metaplasia (black arrows) and a PanIN lesion (red arrow) in an inflamed stroma; the Cre-negative KP controls did not (n = 6 KPT, n = 7 KP). Alcian blue-positive (mucin) area rose over 1, 2 and 3 months after tamoxifen.",
+   "source": "Johnson 2019",
+   "where": "Fig 3A-B and 3D-E legends",
+   "pmcid": "PMC6731019"
+  },
+  {
+   "slug": "mouse-adm",
+   "fact": "Hyaluronan with ADM",
+   "value": "The paper reports that regions of ADM carry deposits of the matrix component hyaluronan and sit next to activated stellate cells (alpha-SMA positive)",
+   "source": "Johnson 2019",
+   "where": "Abstract; Results (Fig 5)",
+   "pmcid": "PMC6731019"
+  },
+  {
+   "slug": "mouse-caerulein",
+   "fact": "Caerulein protocol used",
+   "value": "Mice aged 6-8 weeks received eight hourly intraperitoneal injections of caerulein (50 ug/kg) on each of two consecutive days; controls got PBS; pancreas collected from 6 h to 8 weeks after the last injection",
+   "source": "Karki 2015",
+   "where": "Methods, 'Caerulein-induced acute pancreatitis'",
+   "pmcid": "PMC4696804"
+  },
+  {
+   "slug": "mouse-caerulein",
+   "fact": "Time course after acute pancreatitis",
+   "value": "Early (6 h to 2 d) acinar cells express high clusterin and some become amylase-positive/K19-positive ADM lesions; by 10 days most tissue has recovered normal acini (arrows in the 2 d and 4 d H&E panels mark recovered acini).",
+   "source": "Karki 2015",
+   "where": "Fig 1B legend; Results",
+   "pmcid": "PMC4696804"
+  },
+  {
+   "slug": "mouse-caerulein",
+   "fact": "General description of acute pancreatitis",
+   "value": "Acute pancreatitis targets acinar cells and leads to acinar-ductal metaplasia, inflammation and fibrosis, events that can lead into the earliest stages of pancreatic ductal adenocarcinoma",
+   "source": "Karki 2015",
+   "where": "Abstract",
+   "pmcid": "PMC4696804"
+  },
+  {
+   "slug": "mouse-caerulein",
+   "fact": "Mist1 behaviour in injury",
+   "value": "Mist1 transcription and protein fall sharply while acinar cells undergo ADM and are restored on recovery; the H&E panels shown come from Mist1CreERT/+ heterozygotes",
+   "source": "Karki 2015",
+   "where": "Abstract; Results (Fig 1)",
+   "pmcid": "PMC4696804"
+  },
+  {
+   "slug": "mouse-panin-low",
+   "fact": "KC model and why Ptf1a-Cre",
+   "value": "Ptf1aCre/+;LSL-KrasG12D/+ mice. The authors chose Ptf1a-Cre because Pdx1-Cre (active from embryonic day 8.5) gave non-pancreatic tumours in published work and in their hands, while Ptf1a (from day 9.5) restricts tumours to the pancreas",
+   "source": "Veite-Schmahl 2017",
+   "where": "Introduction",
+   "pmcid": "PMC5679567"
+  },
+  {
+   "slug": "mouse-panin-low",
+   "fact": "PanIN grades as the paper describes them",
+   "value": "PanIN-1A: flat, basally placed nuclei in columnar cells with mucin. PanIN-1B: like 1A but papillary or pseudostratified. PanIN-2: flat or papillary with abnormal nuclei but no cribriforming or luminal necrosis. PanIN-3: papillary with cribriform lumen and loss of nuclear polarity.",
+   "source": "Veite-Schmahl 2017",
+   "where": "Introduction (cites Pancreatic Cancer Think Tank classification, Table 1)",
+   "pmcid": "PMC5679567"
+  },
+  {
+   "slug": "mouse-panin-high",
+   "fact": "Grading is not always clean",
+   "value": "The authors note that many lesions do not fit neatly into one PanIN class and that pathologists disagree, which is the reason for the atlas",
+   "source": "Veite-Schmahl 2017",
+   "where": "Introduction; Abstract",
+   "pmcid": "PMC5679567"
+  },
+  {
+   "slug": "mouse-adm",
+   "fact": "ADM as described",
+   "value": "Acinar cells lose their zymogen granules and the acinar tissue transforms into duct-like structures; the authors say the ADM route to PanIN is gaining acceptance next to the older ductal-epithelium origin, and that not all PanIN may come from ADM; the lining cells of the duct-like structures are often graded with the PanIN schemes",
+   "source": "Veite-Schmahl 2017",
+   "where": "Introduction",
+   "pmcid": "PMC5679567"
+  },
+  {
+   "slug": "mouse-normal",
+   "fact": "Atlas design and controls",
+   "value": "Over 1000 mice, ages 5-16 months; 24 per sex per age for both study and control groups; control mouse means both Kras and Cre are absent; atlas decks at 5, 11 and 15 months with nine study mice and one control each, images at 4x, 10x, 20x, 40x and 60x",
+   "source": "Veite-Schmahl 2017",
+   "where": "Methods ('Animals'); Results; Fig 2-5 legends",
+   "pmcid": "PMC5679567"
+  },
+  {
+   "slug": "mouse-pda",
+   "fact": "KPIC and KIC models",
+   "value": "KPIC = LSL-KrasG12D; LSL-Trp53R172H/+; Ink4flox/+; Ptf1/p48-Cre. KIC = Ptf1/p48-Cre; LSL-KrasG12D; Ink4flox/flox. The paper says KPC mice carry KrasG12D, Trp53R172H and Pdx1-Cre.",
+   "source": "Ma 2017",
+   "where": "Methods; Introduction",
+   "pmcid": "PMC5419507"
+  },
+  {
+   "slug": "mouse-pda",
+   "fact": "Latency and survival",
+   "value": "Palpable hard masses at about 7 weeks in KPIC mice; mean survival 89 days for KPIC versus 62 days for KIC (about 3 months for KPIC)",
+   "source": "Ma 2017",
+   "where": "Results (Fig 1B); Abstract",
+   "pmcid": "PMC5419507"
+  },
+  {
+   "slug": "mouse-pda",
+   "fact": "Histology of KPIC and KIC tumours",
+   "value": "Both show typical ductal adenocarcinoma in which tumour cells grow as ducts inside dense desmoplastic stroma; in 5 KPIC mice, 3 had typical ductal adenocarcinoma and 2 had high-grade PanIN, all rich in desmoplastic stroma, similar to the well-differentiated adenocarcinoma seen in KIC. KPIC tumours resemble human pancreatic cancer in rich stroma and low microvascularity.",
+   "source": "Ma 2017",
+   "where": "Results (Fig 1C-D legend); Abstract",
+   "pmcid": "PMC5419507"
+  },
+  {
+   "slug": "mouse-met",
+   "fact": "Metastasis in KPIC",
+   "value": "No liver metastases were seen in KPIC mice; local invasion of neighbouring organs (intestine, kidney) occurred and one mouse had a spinal-cord tumour; the authors cite that KPC tumours often metastasise",
+   "source": "Ma 2017",
+   "where": "Results (Fig 1A legend; text before Fig 1C)",
+   "pmcid": "PMC5419507"
+  },
+  {
+   "slug": "mouse-panin-low",
+   "fact": "Mouse PanIN lose Ptf1a",
+   "value": "In Ptf1aCreERT; KrasLSL-G12D pancreas, normal acinar tissue and PanIN were compared by H&E; PTF1A protein, abundant in acinar nuclei, is lost in mouse PanIN epithelium and, with rare exceptions, in human PanIN",
+   "source": "Krah 2015",
+   "where": "Fig 1 legend; Abstract; Fig 1-figure supplement 1 legend",
+   "pmcid": "PMC4536747"
+  },
+  {
+   "slug": "mouse-normal",
+   "fact": "Wild-type control for tamoxifen and pancreatitis",
+   "value": "High-dose tamoxifen in wild-type mice (fixed 24 h later) did not cause pancreatitis: H&E acini, islet and ducts looked like corn-oil or untreated controls, scale bars 200 um (low) and 100 um (high power)",
+   "source": "Krah 2015",
+   "where": "Fig 4-figure supplement 3 legend; Results",
+   "pmcid": "PMC4536747"
+  },
+  {
+   "slug": "mouse-caerulein",
+   "fact": "Caerulein protocol",
+   "value": "Caerulein 0.1 ug/g i.p. eight times daily for two consecutive days, vehicle saline; pancreas harvested 1 week after the last injection",
+   "source": "Krah 2015",
+   "where": "Methods, 'Caerulein treatment'",
+   "pmcid": "PMC4536747"
+  },
+  {
+   "slug": "mouse-panin-low",
+   "fact": "Ptf1a dosage and early PanIN",
+   "value": "In Pdx1-Cre; KrasLSL-G12D (KC) mice PanIN are usually minimal at 1 month of age; Ptf1a heterozygosity increased PanIN burden (Alcian blue) at that age",
+   "source": "Krah 2015",
+   "where": "Results (Fig 7A-C)",
+   "pmcid": "PMC4536747"
+  },
+  {
+   "slug": "mouse-met",
+   "fact": "Liver metastases in KPC with Ptf1a heterozygosity",
+   "value": "The paper documents liver metastases (CLDN18 immunostaining) in KPC mice heterozygous for Ptf1a",
+   "source": "Krah 2015",
+   "where": "Fig 7-figure supplement 1 legend",
+   "pmcid": "PMC4536747"
+  },
+  {
+   "slug": "mouse-normal",
+   "fact": "Cre-only control",
+   "value": "Pdx1-Cre mice with wild-type EHMT2 had normal pancreatic structure and histology at 10 days and at 4-6 weeks",
+   "source": "Urrutia 2021",
+   "where": "Results (Fig 1A)",
+   "pmcid": "PMC8261250"
+  },
+  {
+   "slug": "mouse-adm",
+   "fact": "KC early lesions",
+   "value": "Pdx1-Cre; LSL-KrasG12D (and P48Cre/+; LSL-KrasG12D) pancreas shows acinar tubular complexes, atypical flat lesions, ADM and PanIN, which were scored by two pathologists blinded to genotype; cohorts were sacrificed at 4, 6 or 8 weeks",
+   "source": "Urrutia 2021",
+   "where": "Results (Fig 2B-D); Methods",
+   "pmcid": "PMC8261250"
+  },
+  {
+   "slug": "mouse-adm",
+   "fact": "Inflammation with early Kras lesions",
+   "value": "At 8 weeks, 100% of Pdx1-Cre; KrasG12D animals had polymorphonuclear leukocytes or histiocytes in the pancreas (33.3% when EHMT2 was deleted)",
+   "source": "Urrutia 2021",
+   "where": "Results (Fig 7A)",
+   "pmcid": "PMC8261250"
+  },
+  {
+   "slug": "mouse-caerulein",
+   "fact": "Chronic caerulein protocol",
+   "value": "Caerulein 50 ug/kg i.p. once a day, five days a week, for 4 weeks from 4 weeks of age, then 7 days recovery before sacrifice",
+   "source": "Urrutia 2021",
+   "where": "Methods",
+   "pmcid": "PMC8261250"
+  },
+  {
+   "slug": "mouse-panin-low",
+   "fact": "PanIN at 3 months in a KC-type model",
+   "value": "Pdx1-Cre; LSL-KrasG12D/+; Trp53flox/wt mice sacrificed at 3 months of age show PanIN lesions surrounded by normal tissue in all three Ksr1 genotypes (the legend gives no grade)",
+   "source": "Germino 2018",
+   "where": "Results (Fig 2 legend)",
+   "pmcid": "PMC5875795"
+  },
+  {
+   "slug": "mouse-pda",
+   "fact": "Survival and tumour histology",
+   "value": "Median age at sacrifice or death 159 days in Ksr1 wild-type/heterozygous controls (191 days in Ksr1-/-); tumours have moderately differentiated ductal morphology with stromal desmoplasia",
+   "source": "Germino 2018",
+   "where": "Results (Fig 1B text; Fig 3 legend)",
+   "pmcid": "PMC5875795"
+  },
+  {
+   "slug": "mouse-normal",
+   "fact": "Control pancreas at 3 weeks",
+   "value": "Pdx1-CreLate; Dicerflox/+ (DicerHet) pancreas at 3 weeks has recognisable acini, ducts and islets (labelled A, D, I in Fig 1A)",
+   "source": "Morris 2014",
+   "where": "Results; Fig 1A legend",
+   "pmcid": "PMC4006805"
+  },
+  {
+   "slug": "mouse-adm",
+   "fact": "Early ADM in Kras-driven pancreas",
+   "value": "At 3 weeks Kras; DicerHet pancreas shows only a rare focus of metaplasia and PanIN, whereas Dicer loss accelerated Kras-driven ADM",
+   "source": "Morris 2014",
+   "where": "Fig 1E legend; Abstract",
+   "pmcid": "PMC4006805"
+  }
+ ]
+}
