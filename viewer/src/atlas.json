@@ -60,6 +60,27 @@
    "species": "human",
    "images": [
     {
+     "src": "atlas/normal-lobule-2.jpg",
+     "w": 960,
+     "h": 720,
+     "caption": "Lobules of purple acinar tissue separated by pale septa that carry fat, vessels and the larger ducts.",
+     "credit": "Human Protein Atlas, histology dictionary: normal pancreas (proteinatlas.org); Uhlén et al. Science 2015",
+     "licence": "CC BY 4.0",
+     "mag": "H&E, low power",
+     "marks": [
+      [
+       0.45,
+       0.3,
+       1
+      ],
+      [
+       0.57,
+       0.115,
+       3
+      ]
+     ]
+    },
+    {
      "src": "atlas/normal-lobule-1.jpg",
      "w": 960,
      "h": 541,
@@ -107,7 +128,7 @@
     "Beger et al. 2023, ch. 9, p. 86",
     "Beger et al. 2023, ch. 125, p. 957"
    ],
-   "thumb": "atlas/t-normal-lobule-1.jpg"
+   "thumb": "atlas/t-normal-lobule-2.jpg"
   },
   {
    "id": "normal-acini",
@@ -116,6 +137,27 @@
    "line": "Enzyme-making cells round a tiny lumen: blue at the base, pink at the apex.",
    "species": "human",
    "images": [
+    {
+     "src": "atlas/normal-acini-3.jpg",
+     "w": 960,
+     "h": 698,
+     "caption": "Acini at high power: each cell blue-purple at its base, with red-pink granules at the tip facing the lumen; round basal nuclei.",
+     "credit": "Human Protein Atlas, histology dictionary: normal pancreas (proteinatlas.org); Uhlén et al. Science 2015",
+     "licence": "CC BY 4.0",
+     "mag": "H&E, high power",
+     "marks": [
+      [
+       0.41,
+       0.55,
+       1
+      ],
+      [
+       0.33,
+       0.5,
+       2
+      ]
+     ]
+    },
     {
      "src": "atlas/normal-acini-2.jpg",
      "w": 720,
@@ -195,7 +237,7 @@
     "Beger et al. 2023, ch. 120, p. 921",
     "Hruban et al. 2001, p. 580"
    ],
-   "thumb": "atlas/t-normal-acini-2.jpg"
+   "thumb": "atlas/t-normal-acini-3.jpg"
   },
   {
    "id": "normal-centroacinar",
@@ -230,6 +272,27 @@
    "line": "A single layer of low cuboidal cells inside a lobule, with little or no wall: where PanIN begins.",
    "species": "human",
    "images": [
+    {
+     "src": "atlas/normal-intralobular-duct-2.jpg",
+     "w": 960,
+     "h": 698,
+     "caption": "A small duct among acini: one even ring of cuboidal cells round a clear lumen, inside a thin collar of pink collagen.",
+     "credit": "Human Protein Atlas, histology dictionary: normal pancreas (proteinatlas.org); Uhlén et al. Science 2015",
+     "licence": "CC BY 4.0",
+     "mag": "H&E, high power",
+     "marks": [
+      [
+       0.455,
+       0.53,
+       1
+      ],
+      [
+       0.53,
+       0.62,
+       3
+      ]
+     ]
+    },
     {
      "src": "atlas/normal-intralobular-duct-1.jpg",
      "w": 960,
@@ -289,7 +352,7 @@
     "Beger et al. 2023, ch. 2, p. 15",
     "Robbins and Cotran 9th ed., ch. 19, p. 892"
    ],
-   "thumb": "atlas/t-normal-intralobular-duct-1.jpg"
+   "thumb": "atlas/t-normal-intralobular-duct-2.jpg"
   },
   {
    "id": "normal-interlobular-duct",
@@ -298,6 +361,27 @@
    "line": "A larger duct in the septum between lobules: one layer of duct cells inside a thick collagen wall.",
    "species": "human",
    "images": [
+    {
+     "src": "atlas/normal-interlobular-duct-2.jpg",
+     "w": 960,
+     "h": 872,
+     "caption": "A large duct in a septum: a single layer of duct cells round a wide lumen, inside a thick wall of collagen, with lobules on every side.",
+     "credit": "Human Protein Atlas, histology dictionary: normal pancreas (proteinatlas.org); Uhlén et al. Science 2015",
+     "licence": "CC BY 4.0",
+     "mag": "H&E",
+     "marks": [
+      [
+       0.36,
+       0.215,
+       1
+      ],
+      [
+       0.17,
+       0.45,
+       2
+      ]
+     ]
+    },
     {
      "src": "atlas/normal-interlobular-duct-1.jpg",
      "w": 960,
@@ -349,7 +433,7 @@
     "Beger et al. 2023, p. 361",
     "Hruban et al. 2001, p. 581"
    ],
-   "thumb": "atlas/t-normal-interlobular-duct-1.jpg"
+   "thumb": "atlas/t-normal-interlobular-duct-2.jpg"
   },
   {
    "id": "normal-islet",

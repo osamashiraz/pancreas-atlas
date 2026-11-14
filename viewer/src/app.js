@@ -1060,7 +1060,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
       + (a.related.length ? `<p>On related rows of the table</p>${geneLinks(a.related)}` : '')
       + (c.hpa.length ? `<p>Human Protein Atlas (RNA)</p>${geneLinks(c.hpa)}` : '')
       + (c.note ? `<p class="src">${esc(c.note)}</p>` : '')
-      + srcFold('HRA ASCT+B Pancreas v1.3 (CC BY 4.0); Human Protein Atlas v26.0 (CC BY-SA 4.0). Genes link to their HPA pages.');
+      + srcFold('HRA ASCT+B Pancreas v1.3 (CC BY 4.0); Human Protein Atlas v26.0 (CC BY 4.0). Genes link to their HPA pages.');
   }
   // ---------- click to identify, isolate or fade a kind of cell
   const KINDS = {

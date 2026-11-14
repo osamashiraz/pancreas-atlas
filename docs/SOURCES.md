@@ -48,7 +48,7 @@
 - Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 9th ed. Elsevier Saunders 2015, ch. 19 The Pancreas (PanIN genetic progression; IPMN and MCN).
 - Gorelick FS, Williams JA, eds. The Pancreas: Biology and Physiology. American Pancreatic Association / Michigan Publishing 2021, CC BY-NC-ND 4.0; ch. 1 Longnecker DS, Anatomy and histology (islet size 50–250 µm, 0.5–1 million islets, endocrine 1–2%, zymogen granules about 1 µm).
 - HRA ASCT+B table, Pancreas v1.3 (Campbell-Thompson, Eskaros, Saunders; 15 Dec 2023), doi:10.48539/HBM336.TBNP.923; file v2.0/asct-b/asct-b-vh-pancreas.csv, ccf-releases commit b036a91, sha256 15312b9b…62717 (marker genes)
-- Human Protein Atlas v26.0 (Ensembl 109), proteinatlas.org, CC BY-SA 4.0 (single-cell type RNA specificity and pancreas staining; marker genes)
+- Human Protein Atlas v26.0 (Ensembl 109), proteinatlas.org, CC BY 4.0 as stated on its licence page (single-cell type RNA specificity and pancreas staining; marker genes; the histology dictionary slide of normal pancreas used for four atlas images)
 - diIorio P, et al. Birth Defects Res C 2014. doi:10.1002/bdrc.21064 (primary cilia)
 - StatPearls (NCBI Bookshelf, CC BY 4.0): Anatomy, Abdomen and Pelvis, Pancreas (NBK532912); endocrine pancreas (NBK459261); gastrointestinal physiology (NBK542322)
 - Columbia University histology laboratory notes, exocrine and endocrine pancreas; University of Basel histology collection, exocrine pancreas; Human Protein Atlas, normal pancreas

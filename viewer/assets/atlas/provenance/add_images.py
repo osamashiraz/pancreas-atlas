@@ -2,7 +2,7 @@
   python3 viewer/assets/atlas/provenance/add_images.py <folder of downloaded originals> <additions.py>   (needs Pillow)
 additions.py defines GROUPS (new groups, may be empty), ENTRIES (new entries, text only) and ADD = {entry id: [image, ...]},
 each image a dict: file (relative to the folder), caption, mag, credit, licence, page (source page), crop (fractions or None),
-first (True to put it before the existing images, which then drops the entry's pins). Appends to CREDITS.md."""
+first (True to put it before the existing images), marks (pins for it: [[x, y, glance number], ...]). Appends to CREDITS.md."""
 import json, sys
 from pathlib import Path
 from PIL import Image
@@ -20,6 +20,7 @@ for e in D['entries']:
         k = 1 + max([int(p.stem.rsplit('-', 1)[1]) for p in OUT.glob(e['id'] + '-*.jpg') if not p.name.startswith('t-')] or [0]); name = f"{e['id']}-{k}.jpg"; im.save(OUT / name, quality=80, optimize=True)
         rec = {'src': 'atlas/' + name, 'w': im.width, 'h': im.height, 'caption': w['caption'], 'credit': w['credit'], 'licence': w['licence']}
         if w.get('mag'): rec['mag'] = w['mag']
+        if w.get('marks'): rec['marks'] = w['marks']
         first = w.get('first') or not e['images']
         if first:
             th = im.copy(); s = max(360 / th.width, 270 / th.height); th = th.resize((round(th.width * s), round(th.height * s)), Image.LANCZOS); x0 = (th.width - 360) // 2; y0 = (th.height - 270) // 2
