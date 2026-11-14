@@ -57,6 +57,8 @@ async def main(page_path, chrome):
         await pg.goto(tmp.as_uri(), wait_until='commit', timeout=240000); await pg.wait_for_function('window.__zoom', timeout=240000); await pg.wait_for_timeout(WAIT)
         level = lambda: pg.evaluate("document.querySelector('.levelname').textContent")
         site = lambda: pg.evaluate("document.getElementById('sitelabel').textContent")
+        # The page opens on the Atlas; switch to the Pancreas 3D view before walking the zoom levels.
+        await pg.evaluate("document.querySelector('[data-mode=pancreas]').click()"); await pg.wait_for_timeout(WAIT)
         # Zooming in over the organ picks a site near the pointer.
         before = await site(); await pg.mouse.move(420, 420)
         for _ in range(12): await pg.mouse.wheel(0, -120); await pg.wait_for_timeout(100)

@@ -117,7 +117,7 @@ A table compares normal pancreas, acute and chronic pancreatitis (lobules, infla
 
 ### Atlas: the pancreas under the microscope
 
-The **Atlas** mode is a gallery for learning and teaching: 50 entries in ten groups (normal pancreas; injury and repair; pancreatitis; cysts; precursor lesions; ductal adenocarcinoma by grade; its variants; how it spreads; the other tumours it is mistaken for; and mouse models by genotype). Each entry is simple at first glance and opens up on request:
+The page opens on the **Atlas**, and the **Pancreas** 3D view carries four clickable H&E insets (acini, small and large duct, islet) that jump to the matching atlas entry. The **Atlas** mode is a gallery for learning and teaching: 50 entries in ten groups (normal pancreas; injury and repair; pancreatitis; cysts; precursor lesions; ductal adenocarcinoma by grade; its variants; how it spreads; the other tumours it is mistaken for; and mouse models by genotype). Each entry is simple at first glance and opens up on request:
 
 - one openly licensed micrograph (click to enlarge), a one-line description, two to four numbered things to look for, each pinned on the picture where it can be seen (pins can be switched off), and one line to remember;
 - folds for the features under the microscope (architecture, cells, nuclei, mitoses, mucin, stroma), look-alikes and how to tell them apart, where/size/who/outlook, and sources with page numbers;

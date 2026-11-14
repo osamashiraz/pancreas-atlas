@@ -220,7 +220,7 @@ details.src{font-size:11.5px;color:var(--muted);margin:4px 0 0}details.src>summa
    </details>
   </div>
   <label class="toggle" data-for="organ pancreatitis pda precursors"><input type="checkbox" id="neighbours"> Show nearby organs <small>(liver, gallbladder, kidneys, colon, great vessels)</small></label>
-  <label class="toggle" data-for="pancreatitis pda precursors"><input type="checkbox" id="showinsets" checked> Show insets <small>(histology beside the organ)</small></label>
+  <label class="toggle" data-for="organ gross tissue pancreatitis pda precursors"><input type="checkbox" id="showinsets" checked> Show insets <small>(histology beside the organ)</small></label>
   <div class="selection" id="selection" hidden>
    <h3 id="selname"></h3><p id="seltext"></p>
    <div class="row"><button type="button" id="isolate">Isolate</button><label style="display:flex;gap:6px;align-items:center;font-size:13px">Opacity <input type="range" id="selop" min="0" max="1" step="0.01" value="1" style="width:110px"></label><button type="button" id="selclose" aria-label="Clear selection">Clear</button></div>
@@ -2230,7 +2230,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     // Scale bar
     drawScale(d);
     controls.update(); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.render(scene, camera);
-    if (v.i === focus) drawInsets(now, MODE !== 'pancreas' && lv === 'organ' && UI.w > 640);
+    if (v.i === focus) drawInsets(now, (MODE === 'pancreas' ? (lv === 'organ' || lv === 'gross' || lv === 'tissue') : lv === 'organ') && UI.w > 640);
     // Zooming into a lesion opens its view.
     if (MODE !== 'pancreas' && LES.pending && d < 70000 && !flight) enterLesion(LES.pending);
   }
@@ -2787,14 +2787,22 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   const INSETS_BY_MODE = { precursors: [{ key: 'mcn', pos: { right: 16, top: 70 } }, { key: 'panin', pos: { right: 16, bottom: 70 } }, { key: 'ipmn', pos: { left: 16, bottom: 70 } }],
     pancreatitis: [{ key: 'acute', pos: { right: 16, top: 70 } }, { key: 'chronic', pos: { left: 16, bottom: 70 } }], pda: [{ key: 'pda', pos: { right: 16, bottom: 70 } }] };
   let INSETS = INSETS_BY_MODE.precursors;
+  // In the Pancreas view, small H&E insets of the real tissue, each opening its atlas entry.
+  const PANCREAS_INSETS = [{ id: 'normal-acini', pos: { right: 16, top: 70 } }, { id: 'normal-islet', pos: { right: 16, bottom: 70 } }, { id: 'normal-intralobular-duct', pos: { left: 16, bottom: 258 } }, { id: 'normal-interlobular-duct', pos: { left: 16, bottom: 70 } }];
   const INSET_CROP = { panin: '50% 50%', ipmn: '50% 40%', mcn: '50% 30%', acute: '45% 35%', chronic: '30% 70%', pda: '50% 60%' }, INSET_IMG = { panin: 'panin2-hp', ipmn: 'ipmn-lowgrade', mcn: 'mcn-hp', acute: 'acute', chronic: 'chronic-fibrosis', pda: 'pda-hp' };
   function insetDom() {
-    const box = $('insets'); if (box.dataset.built === MODE) return; box.dataset.built = MODE; INSETS = INSETS_BY_MODE[MODE] || [];
+    const box = $('insets'); if (box.dataset.built === MODE) return; box.dataset.built = MODE;
+    if (MODE === 'pancreas') { INSETS = PANCREAS_INSETS;
+      box.innerHTML = '<svg aria-hidden="true"></svg>' + INSETS.map((t) => { const e = AT_BY[t.id], im = e.thumb || (e.images[0] && e.images[0].src); return `<div class="inset" data-atlasinset="${t.id}" style="${Object.entries(t.pos).map(([k, v]) => `${k}:${v}px`).join(';')};background-image:url(${im})" role="button" tabindex="0" aria-label="Open the atlas: ${esc(e.name)}"><b>${esc(e.name)} ›</b></div>`; }).join('');
+      box.querySelectorAll('[data-atlasinset]').forEach((el) => { const go = () => { setMode('atlas'); atlasOpen(el.dataset.atlasinset); }; el.addEventListener('click', go); el.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(); }); });
+      return; }
+    INSETS = INSETS_BY_MODE[MODE] || [];
     box.innerHTML = '<svg aria-hidden="true"></svg>' + INSETS.map((t) => `<div class="inset" data-inset="${t.key}" style="${Object.entries(t.pos).map(([k, v]) => `${k}:${v}px`).join(';')};background-image:url(${HISTO_IMG[INSET_IMG[t.key]]});background-position:${INSET_CROP[t.key]}" role="button" tabindex="0" aria-label="Open ${LESION_VIEWS[t.key].title}: histology"><b>${LESION_VIEWS[t.key].title} ›</b></div>`).join('');
     box.querySelectorAll('[data-inset]').forEach((el) => { el.addEventListener('click', () => enterLesion(el.dataset.inset)); el.addEventListener('keydown', (e) => { if (e.key === 'Enter') enterLesion(el.dataset.inset); }); });
   }
   function drawInsets(now, show) {
     const box = $('insets'); show = show && $('showinsets').checked; box.style.display = show ? '' : 'none'; if (!show) return; insetDom();
+    if (MODE === 'pancreas') { box.querySelector('svg').innerHTML = ''; return; }   // atlas insets, no leader lines
     const st = stage.getBoundingClientRect(), svg = box.querySelector('svg'), lines = [];
     INSETS.forEach((t) => { const el = box.querySelector(`[data-inset="${t.key}"]`), r = el.getBoundingClientRect(), x = r.left - st.left, y = r.top - st.top, w = r.width, h = r.height;
       const at = lesionGroup && lesionGroup.getObjectByName(LESION_VIEWS[t.key].at); if (!at) return; const p = groups.organ.userData.inner.localToWorld(at.userData.at.clone()).project(camera);
@@ -2934,7 +2942,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     if (q.get('disease')) setDisease(q.get('disease'));
     if (v && v[0] !== 'organ') { const [lvl, br, kind] = v; setIsletKind(kind); if (br) document.querySelectorAll('[data-branch]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.branch === br))); flyTo(stopFor(lvl, br), br, MODE_OF[lvl]); } }
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => location.reload());
-  buildOrgan().then(() => { camera.position.set(0, 0.25, 1).normalize().multiplyScalar(STOPS.organ); controls.target.set(0, 0, 0); controls.update(); $('status').style.display = 'none'; renderer.setAnimationLoop(frame); readHash(START_HASH); hashReady = true; window.addEventListener('hashchange', () => readHash()); })
+  buildOrgan().then(() => { camera.position.set(0, 0.25, 1).normalize().multiplyScalar(STOPS.organ); controls.target.set(0, 0, 0); controls.update(); $('status').style.display = 'none'; renderer.setAnimationLoop(frame); readHash(START_HASH); hashReady = true; if (!START_HASH) setMode('atlas'); window.addEventListener('hashchange', () => readHash()); })
     .catch((e) => { $('status').textContent = 'The organ could not be read: ' + e; });
   // ---------- the name of what is under the pointer, in a box below the level's name (top right of the view)
   const PART_NAMES = { lobule: 'Lobule (cut)', lobuleHull: 'Lobule', septa: 'Septum (connective tissue)', mainDuct: 'Large interlobular duct', interlobularDuct: 'Interlobular duct', intralobularDuct: 'Intralobular duct',
