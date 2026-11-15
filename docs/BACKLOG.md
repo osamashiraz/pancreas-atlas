@@ -19,9 +19,17 @@
 13. Precursor views: PanIN location sources disagree (Beger ch. 126 head > tail; ch. 119 table head = tail); IPMN multifocality 10–20% (Robbins) vs 20–40% (Beger ch. 81); MCN size by chapter (median 3.5–5 cm; mean 6.5 cm; range 2–35 cm). Marker positions on the micrographs were placed by eye; worth a pathologist's check. A normal intralobular duct micrograph (e.g. Berkshire Community College CC0 series) could be added beside PanIN.
 
 14. Organs round the pancreas: male model only (the female united model is a 76 MB 7z archive not yet fetched); the neighbours file is not yet registered in the module's loader or tests. The HRA v2.0 model has no stomach or adrenals.
-15. Pancreatitis and PDA: placement and sizes on the organ are simulated; no open-licensed H&E of chronic pancreatitis was found (a gross specimen is shown); the PDA head/body/tail split comes from Robbins (9th ed.), whose survival figure (under 5%) is older than Beger's (about 10%).
+15. Pancreatitis and PDA: placement and sizes on the organ are simulated; the PDA head/body/tail split comes from Robbins (9th ed.), whose survival figure (under 5%) is older than Beger's (about 10%). An open-licensed H&E of chronic pancreatitis was later found (Chekmareva 2025, CC BY) and is now shown.
+
+16. Atlas and 2D tabs (added this round):
+    - Atlas image pins and the 2D inset arrow anchors were placed by eye; worth a pathologist's check.
+    - The flat 2D schematic (`PANC2D`) is deliberately not to measured scale (tall and narrow for legibility, not anatomical proportion); do not treat its geometry as a source.
+    - Mouse-model images: the original KC/KPC/KDC paper figures are copyright, so images come from later CC BY papers using the same models; the one real KPC image (Trp53 R172H, Nature 2025, CC BY) is small (366 px) and flagged, and KDC has no open image yet.
+    - The duct + islet + vessel "triad" the user asked about is only partly supported by the sources (no source uses the word "triad"); it is rendered instead as the accurate sourced note that islets lie alongside ducts and are richly vascularised (insulo-acinar portal system). Revisit if a primary source names a formal triad.
+    - The PDA "spread" view orders metastatic sites (liver → peritoneum, lung, nodes) without per-organ percentages; add sourced frequencies only if an open dataset supports them.
 
 ## Next steps (agreed or proposed)
+- **Incorporate the user's new figures** (in `figures/`: anima/illustration sets for the pancreas organ overview, acinar cell, duct–duodenum, beta-cell steps, islet glucose loop, secretion) into the app — agreed for the next update.
 - Disease states still to add: type 1 diabetes (beta-cell loss, insulitis), type 2 (islet amyloid, reduced beta cells).
 - Overlay user data (single-cell, spatial, CODEX) onto cell types.
 - Nerves (coeliac plexus, splanchnic, vagal, intrapancreatic ganglia) — needs more of the HRA body model.
