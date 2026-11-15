@@ -1901,6 +1901,8 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     pancreatitis: [{ t: 'lesion', id: 'acute', label: 'Acute', slot: 'TR', a: 'body' }, { t: 'lesion', id: 'chronic', label: 'Chronic', slot: 'BL', a: 'head' }],
     precursors: [{ t: 'lesion', id: 'ipmn', label: 'IPMN', slot: 'TL', a: 'mainDuct' }, { t: 'lesion', id: 'panin', label: 'PanIN', slot: 'BL', a: 'smallDuctHead' }, { t: 'lesion', id: 'mcn', label: 'MCN', slot: 'TR', a: 'tail' }],
     pda: [{ t: 'entry', id: 'perineural-invasion', label: 'Perineural invasion', slot: 'TL', a: 'neck' }, { t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', a: 'head' }, { t: 'entry', id: 'liver-metastasis', label: 'Liver metastasis', slot: 'TR', a: 'tail' }] };
+  let PDA_SUB = 'spread';
+  const PDA_ALL_INSETS = [{ t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', a: 'head' }, { t: 'entry', id: 'pancreatoblastoma', label: 'Pancreatoblastoma', slot: 'TL', a: 'neck' }, { t: 'entry', id: 'acinar-cell-carcinoma', label: 'Acinar cell carcinoma', slot: 'ML', a: 'body' }, { t: 'entry', id: 'pannet', label: 'Neuroendocrine tumour', slot: 'TR', a: 'tail' }, { t: 'entry', id: 'solid-pseudopapillary', label: 'Solid pseudopapillary', slot: 'BR', a: 'branchBody' }];
   function flatImg(it) { if (it.t === 'entry') { const e = AT_BY[it.id]; return e && (e.thumb || (e.images[0] && e.images[0].src)); } return HISTO_IMG[INSET_IMG[it.id]]; }
   // A flat schematic of the gland, generated once: regional colours, acinar texture, the duct tree (main, interlobular,
   // terminal), scattered islets; parts carry data-label for hover. A holds coordinates of named patterns for the inset arrows.
@@ -1938,25 +1940,56 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     const it = islets.filter((i) => i[2] > 0.62).sort((a, b) => b[2] - a[2])[0] || islets[0]; A.isletTail = [it[0], it[1]];
     return { svg: g.join(''), A };
   })();
+  const flatInset = (it) => { const [bx, by] = SLOT[it.slot], img = flatImg(it), tgt = it.t === 'entry' ? `data-flat-entry="${it.id}"` : `data-flat-lesion="${it.id}"`;
+    return `<g class="finset" ${tgt} role="button" tabindex="0" aria-label="${esc(it.label)}: histology">${img ? `<image x="${bx}" y="${by}" width="196" height="132" preserveAspectRatio="xMidYMid slice" href="${img}"/>` : `<rect x="${bx}" y="${by}" width="196" height="132" fill="var(--panel)"/><text x="${bx + 98}" y="${by + 66}" class="orglbl" text-anchor="middle">drawing</text>`}<rect x="${bx}" y="${by}" width="196" height="132" rx="8" fill="none" stroke="var(--accent)" stroke-width="2.5"/><rect x="${bx}" y="${by + 108}" width="196" height="24" fill="rgba(247,240,244,.9)"/><text x="${bx + 10}" y="${by + 125}" class="flabel">${esc(it.label)} ›</text></g>`; };
+  function boardSVG(list) { const insets = list.map((it) => Object.assign({}, it, { at: PANC2D.A[it.a] || [500, 300] }));
+    const line = (it) => { const [bx, by] = SLOT[it.slot]; return `<line x1="${bx + 98}" y1="${by + 66}" x2="${it.at[0]}" y2="${it.at[1]}"/><circle cx="${it.at[0]}" cy="${it.at[1]}" r="6"/>`; };
+    return '<svg viewBox="0 0 1000 620" class="flatsvg" role="img" aria-label="Schematic of the pancreas with histology insets">' + PANC2D.svg
+      + `<g class="leaders" stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${insets.map(line).join('')}</g>` + insets.map(flatInset).join('') + '</svg>'; }
+  const ORG_LEGEND = `<div class="orglegend"><span><i style="background:${PANC2D_COL.acini}"></i>Acini (parenchyma)</span><span><i style="background:${DUCTCOL.main}"></i>Ducts <small>(main, interlobular, terminal — darker to lighter)</small></span><span><i style="background:${ISLETCOL.f};border-color:${ISLETCOL.s}"></i>Islets</span><span><i style="background:${VESSELCOL}"></i>Vessels</span></div>`;
+  // A simple body schematic for where PDA spreads: lungs, liver, stomach, pancreas (with the tumour), peritoneum, nodes.
+  function bodyMetSVG() {
+    const dot = (x, y, lab, id) => `<g class="rpart${id ? ' finset' : ''}"${id ? ` data-flat-entry="${id}" role="button" tabindex="0"` : ''} data-label="${lab}"><circle cx="${x}" cy="${y}" r="7" fill="#7a1f2b" stroke="#fff" stroke-width="1.5"/></g>`;
+    return '<svg viewBox="0 0 300 440" class="bodysvg" role="img" aria-label="Where pancreatic cancer spreads">'
+      + '<path d="M150 20 a26 26 0 1 0 0.1 0 Z" fill="#e8d3c2"/><path d="M110 70 q40 -16 80 0 l18 150 q-58 26 -116 0 Z" fill="#edd9c9"/>'   // head, torso
+      + '<path d="M96 96 q-26 6 -30 60 l34 6 Z" fill="#edd9c9"/><path d="M204 96 q26 6 30 60 l-34 6 Z" fill="#edd9c9"/>'   // arms
+      + '<ellipse cx="128" cy="120" rx="26" ry="34" fill="#f0c3c9" class="rpart" data-label="Lung"/><ellipse cx="172" cy="120" rx="26" ry="34" fill="#f0c3c9" class="rpart" data-label="Lung"/>'
+      + '<path d="M112 168 q44 -12 78 0 q6 44 -39 46 q-45 -2 -39 -46 Z" fill="#9e5b4e" class="rpart" data-label="Liver"/>'
+      + '<path d="M150 178 q34 -4 40 22 q-6 22 -40 18 q-30 -4 -34 -20 q4 -18 34 -20 Z" fill="#e3a3ab" class="rpart" data-label="Stomach"/>'
+      + '<path d="M96 214 q60 14 112 -2" fill="none" stroke="#e8b84e" stroke-width="12" stroke-linecap="round" class="rpart" data-label="Pancreas"/>'
+      + '<circle cx="104" cy="214" r="9" fill="#6b4a3a" stroke="#fff" stroke-width="1.5" class="rpart" data-label="Pancreatic cancer (usually the head)"/>'
+      + dot(150, 182, 'Liver metastases (the commonest distant site)', 'liver-metastasis') + dot(170, 184, 'Liver metastases', '') + dot(134, 186, 'Liver metastases', '')
+      + dot(128, 118, 'Lung metastases', '') + dot(132, 250, 'Peritoneal spread', '') + dot(168, 256, 'Peritoneal spread', '') + dot(150, 236, 'Peritoneal spread', '')
+      + dot(120, 206, 'Regional lymph nodes', '') + dot(186, 206, 'Regional lymph nodes', '')
+      + '<text x="150" y="300" class="orglbl" text-anchor="middle">Liver · peritoneum · lung · nodes</text></svg>'; }
   function renderFlat() {
     const box = $('overviewpanel'), on = FLAT.includes(MODE); box.hidden = !on; if (!on) return;
-    const head = FLAT_HEAD[MODE], insets = (FLAT_INSETS[MODE] || []).map((it) => Object.assign({}, it, { at: PANC2D.A[it.a] || [500, 280] }));
-    const line = (it) => { const [bx, by] = SLOT[it.slot]; return `<line x1="${bx + 98}" y1="${by + 66}" x2="${it.at[0]}" y2="${it.at[1]}"/><circle cx="${it.at[0]}" cy="${it.at[1]}" r="6"/>`; };
-    const inset = (it) => { const [bx, by] = SLOT[it.slot], img = flatImg(it), tgt = it.t === 'entry' ? `data-flat-entry="${it.id}"` : `data-flat-lesion="${it.id}"`;
-      return `<g class="finset" ${tgt} role="button" tabindex="0" aria-label="${esc(it.label)}: histology">${img ? `<image x="${bx}" y="${by}" width="196" height="132" preserveAspectRatio="xMidYMid slice" href="${img}"/>` : `<rect x="${bx}" y="${by}" width="196" height="132" fill="var(--panel)"/><text x="${bx + 98}" y="${by + 66}" class="orglbl" text-anchor="middle">drawing</text>`}<rect x="${bx}" y="${by}" width="196" height="132" rx="8" fill="none" stroke="var(--accent)" stroke-width="2.5"/><rect x="${bx}" y="${by + 108}" width="196" height="24" fill="rgba(247,240,244,.9)"/><text x="${bx + 10}" y="${by + 125}" class="flabel">${esc(it.label)} ›</text></g>`; };
-    const toggle = MODE === 'overview' ? '<div class="dimtoggle"><button type="button" class="abtn primary" data-dim="2d">2D</button><button type="button" class="abtn" data-dim="3d">3D model</button></div>' : '';
-    const legend = `<div class="orglegend"><span><i style="background:${PANC2D_COL.acini}"></i>Acini (parenchyma)</span><span><i style="background:${DUCTCOL.main}"></i>Ducts <small>(main, interlobular, terminal — darker to lighter)</small></span><span><i style="background:${ISLETCOL.f};border-color:${ISLETCOL.s}"></i>Islets</span><span><i style="background:${VESSELCOL}"></i>Vessels</span></div>`;
-    const note = MODE === 'overview' ? '<p class="orgnote">In the normal gland the islets lie alongside the ducts and are richly vascularised; islet blood drains into the neighbouring acinar capillaries (the insulo-acinar portal system). <span class="src">Gorelick and Williams 2021, ch. 1; Beger et al. 2023, ch. 2.</span></p>' : '';
-    box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2>${toggle}</div><p class="intro">${esc(head[1])} Hover the drawing to name each part.</p>`
-      + `<div class="flatwrap"><div class="orghover" hidden></div><svg viewBox="0 0 1000 620" class="flatsvg" role="img" aria-label="Schematic of the pancreas with histology insets">`
-      + PANC2D.svg + `<g class="leaders" stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${insets.map(line).join('')}</g>` + insets.map(inset).join('') + '</svg></div>' + legend + note;
+    const head = FLAT_HEAD[MODE];
+    const hov = '<div class="orghover" hidden></div>';
+    if (MODE === 'pda') {
+      const tg = `<div class="dimtoggle"><button type="button" class="abtn${PDA_SUB === 'spread' ? ' primary' : ''}" data-pdasub="spread">This cancer</button><button type="button" class="abtn${PDA_SUB === 'all' ? ' primary' : ''}" data-pdasub="all">All pancreatic cancers</button></div>`;
+      if (PDA_SUB === 'all') {
+        box.innerHTML = `<div class="abar"><h2>Pancreatic cancers by where they arise</h2>${tg}</div><p class="intro">Ductal adenocarcinoma is by far the commonest; the others are rarer and sit in characteristic places. Pick one for its histology. Hover the drawing to name each part.</p>`
+          + `<div class="flatwrap">${hov}${boardSVG(PDA_ALL_INSETS)}</div>${ORG_LEGEND}<p class="orgnote">Ductal adenocarcinoma is about three-quarters of resected pancreatic neoplasms; neuroendocrine tumours are next, the rest uncommon. <span class="src">Kleeff et al. 2016; Robbins and Cotran 9th ed., ch. 19 and 24; Beger et al. 2023, ch. 80, 98, 125.</span></p>`;
+      } else {
+        box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2>${tg}</div><p class="intro">${esc(head[1])} It spreads along nerves and vessels and then to distant organs.</p>`
+          + `<div class="pdarow"><div class="pdacol"><h3>In the pancreas</h3><div class="flatwrap">${hov}${boardSVG(FLAT_INSETS.pda)}</div></div>`
+          + `<div class="pdacol pdabody"><h3>Where it spreads</h3>${bodyMetSVG()}<p class="orgnote">Nearly every tumour invades nerves and vessels; distant spread is mainly to the liver, then the peritoneum and lungs, with regional nodes. Click the liver for the histology. <span class="src">Robbins and Cotran 9th ed., ch. 19; Beger et al. 2023, ch. 125, 133; Kleeff et al. 2016.</span></p></div></div>`;
+      }
+    } else {
+      const toggle = MODE === 'overview' ? '<div class="dimtoggle"><button type="button" class="abtn primary" data-dim="2d">2D</button><button type="button" class="abtn" data-dim="3d">3D model</button></div>' : '';
+      const note = MODE === 'overview' ? '<p class="orgnote">In the normal gland the islets lie alongside the ducts and are richly vascularised; islet blood drains into the neighbouring acinar capillaries (the insulo-acinar portal system). <span class="src">Gorelick and Williams 2021, ch. 1; Beger et al. 2023, ch. 2.</span></p>' : '';
+      box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2>${toggle}</div><p class="intro">${esc(head[1])} Hover the drawing to name each part.</p>`
+        + `<div class="flatwrap">${hov}${boardSVG(FLAT_INSETS[MODE] || [])}</div>${ORG_LEGEND}${note}`;
+    }
     box.scrollTop = 0;
-    const svg = box.querySelector('.flatsvg'), hov = box.querySelector('.orghover');
-    svg.addEventListener('pointermove', (e) => { const el = e.target.closest('[data-label]'); if (!el) { hov.hidden = true; return; } const r = box.getBoundingClientRect(); hov.textContent = el.dataset.label; hov.hidden = false; hov.style.left = (e.clientX - r.left + 14) + 'px'; hov.style.top = (e.clientY - r.top + 14) + 'px'; });
-    svg.addEventListener('pointerleave', () => { hov.hidden = true; });
+    const hovEl = box.querySelector('.orghover');
+    box.querySelectorAll('.flatsvg, .bodysvg').forEach((svg) => {
+      svg.addEventListener('pointermove', (e) => { const el = e.target.closest('[data-label]'); if (!el) { hovEl.hidden = true; return; } const r = box.getBoundingClientRect(); hovEl.textContent = el.dataset.label; hovEl.hidden = false; hovEl.style.left = (e.clientX - r.left + 14) + 'px'; hovEl.style.top = (e.clientY - r.top + 14) + 'px'; });
+      svg.addEventListener('pointerleave', () => { hovEl.hidden = true; }); });
   }
   $('overviewpanel').addEventListener('click', (ev) => { const le = ev.target.closest('[data-flat-lesion]'), en = ev.target.closest('[data-flat-entry]');
-    if (le) { enterLesion(le.dataset.flatLesion); return; } if (en) { setMode('atlas'); atlasOpen(en.dataset.flatEntry); return; } const dim = ev.target.closest('[data-dim]'); if (dim) setMode(dim.dataset.dim === '3d' ? 'pancreas' : 'overview'); });
+    if (le) { enterLesion(le.dataset.flatLesion); return; } if (en) { setMode('atlas'); atlasOpen(en.dataset.flatEntry); return; } const dim = ev.target.closest('[data-dim]'); if (dim) { setMode(dim.dataset.dim === '3d' ? 'pancreas' : 'overview'); return; } const ps = ev.target.closest('[data-pdasub]'); if (ps) { PDA_SUB = ps.dataset.pdasub; renderFlat(); } });
   function flatFrame(now) {
     const key = 'flat:' + MODE + ':' + (LES.view || '');
     if (lastLevel !== key) { lastLevel = key; UI.levelname.textContent = LES.view ? LESION_VIEWS[LES.view].title + ': histology' : (FLAT_HEAD[MODE] ? FLAT_HEAD[MODE][0] : ''); showMarkers(null); }
