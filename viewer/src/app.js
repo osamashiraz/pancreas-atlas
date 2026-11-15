@@ -1895,14 +1895,22 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     pda: ['Pancreatic ductal adenocarcinoma', 'The common pancreatic cancer and how it spreads. Pick one for its histology.'] };
   const SLOT = { TL: [18, 92], TR: [786, 92], ML: [18, 246], MR: [786, 246], BL: [18, 446], BR: [786, 446] };
   const FLAT_INSETS = {
-    overview: [{ t: 'entry', id: 'normal-acini', label: 'Acini', slot: 'TL', a: 'aciniBody' }, { t: 'entry', id: 'normal-lobule', label: 'Lobule', slot: 'ML', a: 'lobuleBody' },
+    overview: [{ t: 'entry', id: 'normal-acini', label: 'Acini', slot: 'TL', a: 'aciniBody' }, { t: 'entry', id: 'normal-lobule', label: 'Lobule', slot: 'ML', box: 'lobule' },
       { t: 'entry', id: 'normal-interlobular-duct', label: 'Large duct', slot: 'BL', a: 'mainDuctHead' }, { t: 'entry', id: 'normal-islet', label: 'Islet', slot: 'TR', a: 'isletTail' },
       { t: 'entry', id: 'normal-intralobular-duct', label: 'Small duct', slot: 'BR', a: 'branchBody' }],
-    pancreatitis: [{ t: 'lesion', id: 'acute', label: 'Acute', slot: 'TR', a: 'body' }, { t: 'lesion', id: 'chronic', label: 'Chronic', slot: 'BL', a: 'head' }],
-    precursors: [{ t: 'lesion', id: 'ipmn', label: 'IPMN', slot: 'TL', a: 'mainDuct' }, { t: 'lesion', id: 'panin', label: 'PanIN', slot: 'BL', a: 'smallDuctHead' }, { t: 'lesion', id: 'mcn', label: 'MCN', slot: 'TR', a: 'tail' }],
-    pda: [{ t: 'entry', id: 'perineural-invasion', label: 'Perineural invasion', slot: 'TL', a: 'neck' }, { t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', a: 'head' }, { t: 'entry', id: 'liver-metastasis', label: 'Liver metastasis', slot: 'TR', a: 'tail' }] };
+    pancreatitis: [{ t: 'lesion', id: 'acute', label: 'Acute', slot: 'TR', box: 'bodyTail' }, { t: 'lesion', id: 'chronic', label: 'Chronic', slot: 'BL', box: 'head' }],
+    precursors: [{ t: 'lesion', id: 'ipmn', label: 'IPMN', slot: 'TL', a: 'mainDuct' }, { t: 'lesion', id: 'panin', label: 'PanIN', slot: 'BL', a: 'smallDuctHead' }, { t: 'lesion', id: 'mcn', label: 'MCN', slot: 'TR', box: 'tail' }],
+    pda: [{ t: 'entry', id: 'perineural-invasion', label: 'Perineural invasion', slot: 'TL', a: 'neck' }, { t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', box: 'head' }, { t: 'entry', id: 'liver-metastasis', label: 'Liver metastasis', slot: 'TR', a: 'tail' }] };
+  const REGION_BOX = { head: [196, 356, 198, 168], body: [430, 258, 206, 120], bodyTail: [430, 150, 430, 220], tail: [600, 150, 260, 150], whole: [196, 150, 664, 374], lobule: [456, 298, 92, 72] };
   let PDA_SUB = 'spread';
-  const PDA_ALL_INSETS = [{ t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', a: 'head' }, { t: 'entry', id: 'pancreatoblastoma', label: 'Pancreatoblastoma', slot: 'TL', a: 'neck' }, { t: 'entry', id: 'acinar-cell-carcinoma', label: 'Acinar cell carcinoma', slot: 'ML', a: 'body' }, { t: 'entry', id: 'pannet', label: 'Neuroendocrine tumour', slot: 'TR', a: 'tail' }, { t: 'entry', id: 'solid-pseudopapillary', label: 'Solid pseudopapillary', slot: 'BR', a: 'branchBody' }];
+  const PDA_ALL_INSETS = [{ t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', box: 'head' }, { t: 'entry', id: 'pancreatoblastoma', label: 'Pancreatoblastoma', slot: 'TL', a: 'neck' }, { t: 'entry', id: 'acinar-cell-carcinoma', label: 'Acinar cell carcinoma', slot: 'ML', a: 'body' }, { t: 'entry', id: 'pannet', label: 'Neuroendocrine tumour', slot: 'TR', box: 'whole' }, { t: 'entry', id: 'solid-pseudopapillary', label: 'Solid pseudopapillary', slot: 'BR', box: 'tail' }];
+  // Types of pancreatic cancer compared, for the bottom-of-page table (locations/frequencies from anatomy-spread-facts.json).
+  const CANCER_COMPARE = [
+    { id: 'pda', name: 'Ductal adenocarcinoma', where: 'Head ~60%, body 15%, tail 5%, diffuse 20%', freq: 'The great majority (~75–80% of resected neoplasms)' },
+    { id: 'pannet', name: 'Neuroendocrine tumour', where: 'Anywhere in the gland', freq: '~2% of pancreatic tumours (15–20% of resected series)' },
+    { id: 'acinar-cell-carcinoma', name: 'Acinar cell carcinoma', where: 'Anywhere; often large', freq: '1–2%' },
+    { id: 'solid-pseudopapillary', name: 'Solid pseudopapillary neoplasm', where: 'Body and tail (any part); young women', freq: '~2%' },
+    { id: 'pancreatoblastoma', name: 'Pancreatoblastoma', where: 'Any part; mainly in childhood', freq: '~0.5%' }];
   function flatImg(it) { if (it.t === 'entry') { const e = AT_BY[it.id]; return e && (e.thumb || (e.images[0] && e.images[0].src)); } return HISTO_IMG[INSET_IMG[it.id]]; }
   // A flat schematic of the gland, generated once: regional colours, acinar texture, the duct tree (main, interlobular,
   // terminal), scattered islets; parts carry data-label for hover. A holds coordinates of named patterns for the inset arrows.
@@ -1942,8 +1950,8 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   })();
   const flatInset = (it) => { const [bx, by] = SLOT[it.slot], img = flatImg(it), tgt = it.t === 'entry' ? `data-flat-entry="${it.id}"` : `data-flat-lesion="${it.id}"`;
     return `<g class="finset" ${tgt} role="button" tabindex="0" aria-label="${esc(it.label)}: histology">${img ? `<image x="${bx}" y="${by}" width="196" height="132" preserveAspectRatio="xMidYMid slice" href="${img}"/>` : `<rect x="${bx}" y="${by}" width="196" height="132" fill="var(--panel)"/><text x="${bx + 98}" y="${by + 66}" class="orglbl" text-anchor="middle">drawing</text>`}<rect x="${bx}" y="${by}" width="196" height="132" rx="8" fill="none" stroke="var(--accent)" stroke-width="2.5"/><rect x="${bx}" y="${by + 108}" width="196" height="24" fill="rgba(247,240,244,.9)"/><text x="${bx + 10}" y="${by + 125}" class="flabel">${esc(it.label)} ›</text></g>`; };
-  function boardSVG(list) { const insets = list.map((it) => Object.assign({}, it, { at: PANC2D.A[it.a] || [500, 300] }));
-    const line = (it) => { const [bx, by] = SLOT[it.slot]; return `<line x1="${bx + 98}" y1="${by + 66}" x2="${it.at[0]}" y2="${it.at[1]}"/><circle cx="${it.at[0]}" cy="${it.at[1]}" r="6"/>`; };
+  function boardSVG(list) { const insets = list.map((it) => { const r = it.box && REGION_BOX[it.box]; return Object.assign({}, it, { at: r ? [r[0] + r[2] / 2, r[1] + r[3] / 2] : (PANC2D.A[it.a] || [500, 300]), r }); });
+    const line = (it) => { const [bx, by] = SLOT[it.slot]; return `<line x1="${bx + 98}" y1="${by + 66}" x2="${it.at[0]}" y2="${it.at[1]}"/>` + (it.r ? `<rect x="${it.r[0]}" y="${it.r[1]}" width="${it.r[2]}" height="${it.r[3]}" rx="10" fill="none" stroke-dasharray="7 5"/>` : `<circle cx="${it.at[0]}" cy="${it.at[1]}" r="6"/>`); };
     return '<svg viewBox="0 0 1000 620" class="flatsvg" role="img" aria-label="Schematic of the pancreas with histology insets">' + PANC2D.svg
       + `<g class="leaders" stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${insets.map(line).join('')}</g>` + insets.map(flatInset).join('') + '</svg>'; }
   const ORG_LEGEND = `<div class="orglegend"><span><i style="background:${PANC2D_COL.acini}"></i>Acini (parenchyma)</span><span><i style="background:${DUCTCOL.main}"></i>Ducts <small>(main, interlobular, terminal — darker to lighter)</small></span><span><i style="background:${ISLETCOL.f};border-color:${ISLETCOL.s}"></i>Islets</span><span><i style="background:${VESSELCOL}"></i>Vessels</span></div>`;
@@ -1969,8 +1977,11 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     if (MODE === 'pda') {
       const tg = `<div class="dimtoggle"><button type="button" class="abtn${PDA_SUB === 'spread' ? ' primary' : ''}" data-pdasub="spread">This cancer</button><button type="button" class="abtn${PDA_SUB === 'all' ? ' primary' : ''}" data-pdasub="all">All pancreatic cancers</button></div>`;
       if (PDA_SUB === 'all') {
+        const rows = CANCER_COMPARE.map((c) => `<tr><th><button type="button" class="linkish" data-flat-entry="${c.id}">${esc(c.name)}</button></th><td>${esc(c.where)}</td><td>${esc(c.freq)}</td></tr>`).join('');
         box.innerHTML = `<div class="abar"><h2>Pancreatic cancers by where they arise</h2>${tg}</div><p class="intro">Ductal adenocarcinoma is by far the commonest; the others are rarer and sit in characteristic places. Pick one for its histology. Hover the drawing to name each part.</p>`
-          + `<div class="flatwrap">${hov}${boardSVG(PDA_ALL_INSETS)}</div>${ORG_LEGEND}<p class="orgnote">Ductal adenocarcinoma is about three-quarters of resected pancreatic neoplasms; neuroendocrine tumours are next, the rest uncommon. <span class="src">Kleeff et al. 2016; Robbins and Cotran 9th ed., ch. 19 and 24; Beger et al. 2023, ch. 80, 98, 125.</span></p>`;
+          + `<div class="flatwrap">${hov}${boardSVG(PDA_ALL_INSETS)}</div>${ORG_LEGEND}`
+          + `<h3 class="cmphd">Types compared</h3><div class="tablewrap"><table class="cmptable"><thead><tr><th>Tumour</th><th>Where it arises</th><th>How common</th></tr></thead><tbody>${rows}</tbody></table></div>`
+          + `<p class="orgnote"><b>In short:</b> ductal adenocarcinoma dwarfs the rest (about three-quarters of resected pancreatic neoplasms); neuroendocrine tumours come next (15–20% of surgical series, ~2% overall); acinar cell carcinoma, solid pseudopapillary neoplasm and pancreatoblastoma are each about 2% or less. <span class="src">Kleeff et al. 2016; Robbins and Cotran 9th ed., ch. 19 and 24; Beger et al. 2023, ch. 80, 98, 125.</span></p>`;
       } else {
         box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2>${tg}</div><p class="intro">${esc(head[1])} It spreads along nerves and vessels and then to distant organs.</p>`
           + `<div class="pdarow"><div class="pdacol"><h3>In the pancreas</h3><div class="flatwrap">${hov}${boardSVG(FLAT_INSETS.pda)}</div></div>`
