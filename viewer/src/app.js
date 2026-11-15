@@ -1893,47 +1893,49 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     pancreatitis: ['Pancreatitis', 'Inflammation of the gland. Pick acute or chronic for the histology.'],
     precursors: ['Precursors of pancreatic cancer', 'The lesions that can precede ductal adenocarcinoma, where each arises. Pick one for its histology.'],
     pda: ['Pancreatic ductal adenocarcinoma', 'The common pancreatic cancer and how it spreads. Pick one for its histology.'] };
-  const SLOT = { TL: [18, 72], TR: [786, 72], ML: [18, 214], MR: [786, 214], BL: [18, 396], BR: [786, 396] };
+  const SLOT = { TL: [18, 92], TR: [786, 92], ML: [18, 246], MR: [786, 246], BL: [18, 446], BR: [786, 446] };
   const FLAT_INSETS = {
-    overview: [{ t: 'entry', id: 'normal-lobule', label: 'Lobule', slot: 'TL', a: 'lobuleBody' }, { t: 'entry', id: 'normal-acini', label: 'Acini', slot: 'TR', a: 'aciniBody' },
-      { t: 'entry', id: 'normal-islet', label: 'Islet', slot: 'MR', a: 'isletTail' }, { t: 'entry', id: 'normal-intralobular-duct', label: 'Small duct', slot: 'BR', a: 'branchBody' },
-      { t: 'entry', id: 'normal-interlobular-duct', label: 'Large duct', slot: 'BL', a: 'mainDuct' }],
+    overview: [{ t: 'entry', id: 'normal-acini', label: 'Acini', slot: 'TL', a: 'aciniBody' }, { t: 'entry', id: 'normal-lobule', label: 'Lobule', slot: 'ML', a: 'lobuleBody' },
+      { t: 'entry', id: 'normal-interlobular-duct', label: 'Large duct', slot: 'BL', a: 'mainDuctHead' }, { t: 'entry', id: 'normal-islet', label: 'Islet', slot: 'TR', a: 'isletTail' },
+      { t: 'entry', id: 'normal-intralobular-duct', label: 'Small duct', slot: 'BR', a: 'branchBody' }],
     pancreatitis: [{ t: 'lesion', id: 'acute', label: 'Acute', slot: 'TR', a: 'body' }, { t: 'lesion', id: 'chronic', label: 'Chronic', slot: 'BL', a: 'head' }],
-    precursors: [{ t: 'lesion', id: 'panin', label: 'PanIN', slot: 'BL', a: 'smallDuctHead' }, { t: 'lesion', id: 'ipmn', label: 'IPMN', slot: 'TR', a: 'mainDuct' }, { t: 'lesion', id: 'mcn', label: 'MCN', slot: 'MR', a: 'tail' }],
-    pda: [{ t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', a: 'head' }, { t: 'entry', id: 'perineural-invasion', label: 'Perineural invasion', slot: 'TR', a: 'neck' }, { t: 'entry', id: 'liver-metastasis', label: 'Liver metastasis', slot: 'MR', a: 'tail' }] };
+    precursors: [{ t: 'lesion', id: 'ipmn', label: 'IPMN', slot: 'TL', a: 'mainDuct' }, { t: 'lesion', id: 'panin', label: 'PanIN', slot: 'BL', a: 'smallDuctHead' }, { t: 'lesion', id: 'mcn', label: 'MCN', slot: 'TR', a: 'tail' }],
+    pda: [{ t: 'entry', id: 'perineural-invasion', label: 'Perineural invasion', slot: 'TL', a: 'neck' }, { t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', a: 'head' }, { t: 'entry', id: 'liver-metastasis', label: 'Liver metastasis', slot: 'TR', a: 'tail' }] };
   function flatImg(it) { if (it.t === 'entry') { const e = AT_BY[it.id]; return e && (e.thumb || (e.images[0] && e.images[0].src)); } return HISTO_IMG[INSET_IMG[it.id]]; }
   // A flat schematic of the gland, generated once: regional colours, acinar texture, the duct tree (main, interlobular,
   // terminal), scattered islets; parts carry data-label for hover. A holds coordinates of named patterns for the inset arrows.
+  const DUCTCOL = { main: '#1f8f99', inter: '#3cb0ba', term: '#86d0d7' }, ISLETCOL = { f: '#d7b6e0', s: '#9c6fb0' }, VESSELCOL = '#cf5b63', PANC2D_COL = { acini: '#e9bc90' };
   const PANC2D = (function build2D() {
     let s = 20250214; const R = () => { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; };
-    const P = [[345, 330], [470, 300], [640, 225], [770, 175]];
+    const P = [[335, 438], [430, 382], [560, 252], [705, 150]];
     const cub = (t) => { const u = 1 - t; return [u * u * u * P[0][0] + 3 * u * u * t * P[1][0] + 3 * u * t * t * P[2][0] + t * t * t * P[3][0], u * u * u * P[0][1] + 3 * u * u * t * P[1][1] + 3 * u * t * t * P[2][1] + t * t * t * P[3][1]]; };
     const der = (t) => { const a = cub(Math.max(0, t - 0.001)), b = cub(Math.min(1, t + 0.001)), dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1; return [dx / L, dy / L]; };
-    const COL = { head: '#e0a877', uncinate: '#d59a66', neck: '#e9bc90', body: '#efcaa2', tail: '#f5d9bb' }, reg = (t) => t < 0.22 ? 'neck' : t < 0.62 ? 'body' : 'tail', cap = (r) => r[0].toUpperCase() + r.slice(1);
-    const g = [], A = { head: [285, 352], uncinate: [300, 438], neck: cub(0.12), body: cub(0.42), tail: cub(0.82), mainDuct: cub(0.5) };
-    g.push('<path d="M250 250 q-120 10 -120 112 q0 112 120 122 q42 3 72 -9" fill="none" stroke="#d9b48a" stroke-width="24" stroke-linecap="round" opacity=".6"/>');
-    g.push(`<ellipse cx="285" cy="352" rx="78" ry="72" fill="${COL.head}" class="rpart" data-label="Head"/>`);
-    g.push(`<path d="M250 406 q-18 36 22 50 q34 11 50 -18 z" fill="${COL.uncinate}" class="rpart" data-label="Uncinate process"/>`);
-    const N = 22, blobs = [];
-    for (let i = 0; i <= N; i++) { const t = 0.05 + i / N * 0.95, p = cub(t), d = der(t), w = 78 * (1 - t) + 34 * t, cx = p[0] + (R() - 0.5) * 8, cy = p[1] + (R() - 0.5) * 8, ang = Math.atan2(d[1], d[0]) * 180 / Math.PI;
-      g.push(`<ellipse cx="${cx.toFixed(0)}" cy="${cy.toFixed(0)}" rx="${(w * 0.62).toFixed(0)}" ry="${(w * 0.5).toFixed(0)}" transform="rotate(${ang.toFixed(0)} ${cx.toFixed(0)} ${cy.toFixed(0)})" fill="${COL[reg(t)]}" class="rpart" data-label="${cap(reg(t))}"/>`); blobs.push([cx, cy, w * 0.62, w * 0.5, t]); }
-    A.lobuleBody = (() => { const b = blobs.find((b) => b[4] > 0.4); return [b[0], b[1]]; })(); A.aciniBody = (() => { const b = blobs.find((b) => b[4] > 0.5); return [b[0], b[1]]; })();
-    let stip = ''; blobs.forEach(([cx, cy, rx, ry]) => { for (let k = 0; k < 7; k++) { const a = R() * 6.28, rr = R() * 0.82, x = cx + Math.cos(a) * rx * rr, y = cy + Math.sin(a) * ry * rr; stip += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(1.5 + R() * 1.2).toFixed(1)}" fill="rgba(140,70,120,.16)"/>`; } });
+    const wAt = (t) => 96 * (1 - t) + 42 * t;
+    const flank = (t, up, f) => { const p = cub(t), d = der(t); let n = [-d[1], d[0]]; if ((up && n[1] > 0) || (!up && n[1] < 0)) n = [-n[0], -n[1]]; const a = wAt(t) * (f || 0.34); return [p[0] + n[0] * a, p[1] + n[1] * a]; };
+    const COL = { head: '#e0a877', uncinate: '#d59a66', neck: '#e9bc90', body: '#efcaa2', tail: '#f5d9bb' }, reg = (t) => t < 0.22 ? 'neck' : t < 0.6 ? 'body' : 'tail', cap = (r) => r[0].toUpperCase() + r.slice(1);
+    const g = [], A = { head: [300, 434], uncinate: [300, 500], neck: cub(0.14), body: cub(0.48), tail: cub(0.84), mainDuct: cub(0.5), mainDuctHead: cub(0.1), branchBody: flank(0.5, false, 0.3), smallDuctHead: flank(0.2, true, 0.3), lobuleBody: flank(0.36, true), aciniBody: flank(0.55, true) };
+    g.push('<path d="M262 318 q-120 12 -120 118 q0 118 122 128" fill="none" stroke="#d9b48a" stroke-width="26" stroke-linecap="round" opacity=".55"/>');
+    g.push(`<ellipse cx="300" cy="434" rx="86" ry="80" fill="${COL.head}" class="rpart" data-label="Head"/>`);
+    g.push(`<path d="M266 500 q-16 40 26 54 q36 11 52 -20 z" fill="${COL.uncinate}" class="rpart" data-label="Uncinate process"/>`);
+    const N = 20, blobs = [];
+    for (let i = 0; i <= N; i++) { const t = 0.05 + i / N * 0.95, p = cub(t), d = der(t), w = wAt(t), cx = p[0] + (R() - 0.5) * 7, cy = p[1] + (R() - 0.5) * 7, ang = Math.atan2(d[1], d[0]) * 180 / Math.PI;
+      g.push(`<ellipse cx="${cx.toFixed(0)}" cy="${cy.toFixed(0)}" rx="${(w * 0.6).toFixed(0)}" ry="${(w * 0.5).toFixed(0)}" transform="rotate(${ang.toFixed(0)} ${cx.toFixed(0)} ${cy.toFixed(0)})" fill="${COL[reg(t)]}" class="rpart" data-label="${cap(reg(t))}"/>`); blobs.push([cx, cy, w]); }
+    let stip = ''; blobs.forEach(([cx, cy, w]) => { for (let k = 0; k < 7; k++) { const a = R() * 6.28, rr = R() * 0.8, x = cx + Math.cos(a) * w * 0.55 * rr, y = cy + Math.sin(a) * w * 0.45 * rr; stip += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(1.4 + R() * 1.1).toFixed(1)}" fill="rgba(150,80,40,.18)"/>`; } });
     g.push(`<g pointer-events="none">${stip}</g>`);
-    g.push(`<path d="M285 352 q-40 6 -70 2" fill="none" stroke="var(--organduct)" stroke-width="5" stroke-linecap="round" class="rpart" data-label="Main pancreatic duct"/>`);
-    let dp = 'M285 352 '; for (let t = 0; t <= 1.001; t += 0.05) { const p = cub(t); dp += `L${p[0].toFixed(0)} ${p[1].toFixed(0)} `; }
+    g.push(`<path d="M300 434 q-36 2 -62 -6" fill="none" stroke="${DUCTCOL.main}" stroke-width="5" stroke-linecap="round" class="rpart" data-label="Main pancreatic duct"/>`);
+    let dp = 'M300 434 '; for (let t = 0; t <= 1.001; t += 0.05) { const p = cub(t); dp += `L${p[0].toFixed(0)} ${p[1].toFixed(0)} `; }
     const br = [], tm = [];
-    [0.18, 0.34, 0.5, 0.66, 0.82].forEach((t, i) => { const p = cub(t), d = der(t); let nx = -d[1], ny = d[0]; if (i % 2) { nx = -nx; ny = -ny; } const w = 78 * (1 - t) + 34 * t, ex = p[0] + nx * w * 0.5, ey = p[1] + ny * w * 0.5;
-      br.push(`<line x1="${p[0].toFixed(0)}" y1="${p[1].toFixed(0)}" x2="${ex.toFixed(0)}" y2="${ey.toFixed(0)}" stroke="var(--organduct)" stroke-width="3" stroke-linecap="round" class="rpart" data-label="Interlobular duct (branch)"/>`);
-      for (let j = -1; j <= 1; j++) { const tx = ex + nx * 9 - ny * j * 10, ty = ey + ny * 9 + nx * j * 10; tm.push(`<line x1="${ex.toFixed(0)}" y1="${ey.toFixed(0)}" x2="${tx.toFixed(0)}" y2="${ty.toFixed(0)}" stroke="var(--organduct)" stroke-width="1.5" stroke-linecap="round" class="rpart" data-label="Terminal (intercalated) duct"/>`); }
-      if (i === 2) A.branchBody = [ex, ey]; if (i === 0) A.smallDuctHead = [ex, ey]; });
-    g.push(`<path d="${dp}" fill="none" stroke="var(--organduct)" stroke-width="6" stroke-linecap="round" class="rpart" data-label="Main pancreatic duct (large duct)"/>`);
+    [0.2, 0.36, 0.52, 0.68, 0.84].forEach((t, i) => { const p = cub(t), d = der(t); let n = [-d[1], d[0]]; if (i % 2) n = [-n[0], -n[1]]; const w = wAt(t), ex = p[0] + n[0] * w * 0.3, ey = p[1] + n[1] * w * 0.3;
+      br.push(`<line x1="${p[0].toFixed(0)}" y1="${p[1].toFixed(0)}" x2="${ex.toFixed(0)}" y2="${ey.toFixed(0)}" stroke="${DUCTCOL.inter}" stroke-width="3" stroke-linecap="round" class="rpart" data-label="Interlobular duct"/>`);
+      for (let j = -1; j <= 1; j++) { const tx = ex + n[0] * 7 - n[1] * j * 7, ty = ey + n[1] * 7 + n[0] * j * 7; tm.push(`<line x1="${ex.toFixed(0)}" y1="${ey.toFixed(0)}" x2="${tx.toFixed(0)}" y2="${ty.toFixed(0)}" stroke="${DUCTCOL.term}" stroke-width="1.7" stroke-linecap="round" class="rpart" data-label="Terminal (intercalated) duct"/>`); } });
+    g.push(`<path d="${dp}" fill="none" stroke="${DUCTCOL.main}" stroke-width="6" stroke-linecap="round" class="rpart" data-label="Main pancreatic duct (large duct)"/>`);
     g.push('<g>' + br.join('') + tm.join('') + '</g>');
-    let isl = ''; const islets = [];
-    for (let i = 0; i < 12; i++) { const t = 0.1 + R() * 0.86, p = cub(t), d = der(t), off = (R() - 0.5) * (78 * (1 - t) + 34 * t) * 0.6, x = p[0] - d[1] * off, y = p[1] + d[0] * off, r = 4 + R() * 3;
-      isl += `<ellipse cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" rx="${(r * 1.2).toFixed(1)}" ry="${r.toFixed(1)}" fill="#ecd9ee" stroke="#c9a6cf" stroke-width="1" class="rpart" data-label="Islet of Langerhans"/>`; islets.push([x, y, t]); }
-    g.push('<g>' + isl + '</g>');
-    const it = islets.filter((i) => i[2] > 0.6).sort((a, b) => b[2] - a[2])[0] || islets[0]; A.isletTail = [it[0], it[1]];
+    let isl = '', ves = ''; const islets = [];
+    for (let i = 0; i < 11; i++) { const t = 0.12 + R() * 0.82, p = cub(t), d = der(t), off = (R() - 0.5) * wAt(t) * 0.46, x = p[0] - d[1] * off, y = p[1] + d[0] * off, r = 4.5 + R() * 2.8;
+      isl += `<ellipse cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" rx="${(r * 1.15).toFixed(1)}" ry="${r.toFixed(1)}" fill="${ISLETCOL.f}" stroke="${ISLETCOL.s}" stroke-width="1" class="rpart" data-label="Islet of Langerhans"/>`; islets.push([x, y, t]); }
+    islets.forEach(([x, y], k) => { if (k % 4 === 1) ves += `<line x1="${(x - 11).toFixed(0)}" y1="${(y + 9).toFixed(0)}" x2="${(x + 12).toFixed(0)}" y2="${(y + 4).toFixed(0)}" stroke="${VESSELCOL}" stroke-width="2.4" stroke-linecap="round" class="rpart" data-label="Vessel (arteriole / venule)"/>`; });
+    g.push('<g>' + ves + '</g><g>' + isl + '</g>');
+    const it = islets.filter((i) => i[2] > 0.62).sort((a, b) => b[2] - a[2])[0] || islets[0]; A.isletTail = [it[0], it[1]];
     return { svg: g.join(''), A };
   })();
   function renderFlat() {
@@ -1943,9 +1945,11 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     const inset = (it) => { const [bx, by] = SLOT[it.slot], img = flatImg(it), tgt = it.t === 'entry' ? `data-flat-entry="${it.id}"` : `data-flat-lesion="${it.id}"`;
       return `<g class="finset" ${tgt} role="button" tabindex="0" aria-label="${esc(it.label)}: histology">${img ? `<image x="${bx}" y="${by}" width="196" height="132" preserveAspectRatio="xMidYMid slice" href="${img}"/>` : `<rect x="${bx}" y="${by}" width="196" height="132" fill="var(--panel)"/><text x="${bx + 98}" y="${by + 66}" class="orglbl" text-anchor="middle">drawing</text>`}<rect x="${bx}" y="${by}" width="196" height="132" rx="8" fill="none" stroke="var(--accent)" stroke-width="2.5"/><rect x="${bx}" y="${by + 108}" width="196" height="24" fill="rgba(247,240,244,.9)"/><text x="${bx + 10}" y="${by + 125}" class="flabel">${esc(it.label)} ›</text></g>`; };
     const toggle = MODE === 'overview' ? '<div class="dimtoggle"><button type="button" class="abtn primary" data-dim="2d">2D</button><button type="button" class="abtn" data-dim="3d">3D model</button></div>' : '';
+    const legend = `<div class="orglegend"><span><i style="background:${PANC2D_COL.acini}"></i>Acini (parenchyma)</span><span><i style="background:${DUCTCOL.main}"></i>Ducts <small>(main, interlobular, terminal — darker to lighter)</small></span><span><i style="background:${ISLETCOL.f};border-color:${ISLETCOL.s}"></i>Islets</span><span><i style="background:${VESSELCOL}"></i>Vessels</span></div>`;
+    const note = MODE === 'overview' ? '<p class="orgnote">In the normal gland the islets lie alongside the ducts and are richly vascularised; islet blood drains into the neighbouring acinar capillaries (the insulo-acinar portal system). <span class="src">Gorelick and Williams 2021, ch. 1; Beger et al. 2023, ch. 2.</span></p>' : '';
     box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2>${toggle}</div><p class="intro">${esc(head[1])} Hover the drawing to name each part.</p>`
-      + `<div class="flatwrap"><div class="orghover" hidden></div><svg viewBox="0 0 1000 560" class="flatsvg" role="img" aria-label="Schematic of the pancreas with histology insets">`
-      + PANC2D.svg + `<g class="leaders" stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${insets.map(line).join('')}</g>` + insets.map(inset).join('') + '</svg></div>';
+      + `<div class="flatwrap"><div class="orghover" hidden></div><svg viewBox="0 0 1000 620" class="flatsvg" role="img" aria-label="Schematic of the pancreas with histology insets">`
+      + PANC2D.svg + `<g class="leaders" stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${insets.map(line).join('')}</g>` + insets.map(inset).join('') + '</svg></div>' + legend + note;
     box.scrollTop = 0;
     const svg = box.querySelector('.flatsvg'), hov = box.querySelector('.orghover');
     svg.addEventListener('pointermove', (e) => { const el = e.target.closest('[data-label]'); if (!el) { hov.hidden = true; return; } const r = box.getBoundingClientRect(); hov.textContent = el.dataset.label; hov.hidden = false; hov.style.left = (e.clientX - r.left + 14) + 'px'; hov.style.top = (e.clientY - r.top + 14) + 'px'; });

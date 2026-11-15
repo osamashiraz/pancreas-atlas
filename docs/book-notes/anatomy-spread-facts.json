@@ -1,0 +1,282 @@
+{
+ "triad": {
+  "verdict": "partly",
+  "note": "No source read uses the word 'triad' for duct + islet + vessel (the only 'triad' hits are clinical: Whipple, Virchow, etc.). Closest wording: larger islets lie along main/interlobular ducts; islet capillaries drain into the adjacent acinar capillary bed (insulo-acinar portal system). Say 'islets sit next to ducts and are richly vascularised', not 'triad'. The sources do not describe a terminal (intercalated) duct specifically paired with an islet; the duct association is stated for interlobular and main ducts, while small islets lie within lobules.",
+  "facts": [
+   {
+    "fact": "Larger islets are sited along the main and interlobular ducts; smaller islets are scattered through the acinar lobules",
+    "value": "most larger islets along main + interlobular ducts; small islets dispersed in lobules",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p19; Gorelick & Williams 2021 ch.1 (Longnecker) p11",
+    "snippet": "most larger islets lie along the main and interlobular ducts of the pancreas",
+    "confidence": "high"
+   },
+   {
+    "fact": "Islet shape is often moulded by an adjacent duct",
+    "value": "irregular islets often reflect an adjacent structure, often a duct",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p19",
+    "snippet": "sometimes reflecting the presence of an adjacent structure, often a duct",
+    "confidence": "high"
+   },
+   {
+    "fact": "Isolated islet cells also occur in association with ducts",
+    "value": "islet cells dispersed in lobules or ductal association",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p20",
+    "snippet": "isolated islet cells may be found dispersed in the acinar lobules or in association with ducts",
+    "confidence": "high"
+   },
+   {
+    "fact": "Islet capillaries connect to the capillaries of neighbouring acini; the acinar cells next to an islet form a halo and get high islet-hormone exposure ('insulo-acinar portal system')",
+    "value": "insulo-acinar portal system (islet -> adjacent acinar capillary bed)",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p20",
+    "snippet": "has been referred to as an insulo-acinar portal system",
+    "confidence": "high"
+   },
+   {
+    "fact": "Normal-tissue micrograph shows a small islet in a lobule beside a small intralobular duct/ductule, with a small artery and vein nearby (single image, not a stated rule)",
+    "value": "co-occurrence in one H&E field only",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) Fig 2.10 caption p16; Gorelick & Williams 2021 ch.1 (Longnecker) Fig 27 caption p12",
+    "snippet": "A small vein (d) and artery (e) are at image right above center. A small islet is near the lower image right corner.",
+    "confidence": "medium"
+   },
+   {
+    "fact": "PanNET histology: tumour cells keep their orientation to the vasculature, like giant islets (supports islets being tightly vascular; not a duct-vessel-islet unit)",
+    "value": "tumour mimics islet cord/vessel relation",
+    "source": "Robbins 9e ch.24 p1121",
+    "snippet": "preservation of the regular cords of monotonous cells and their orientation to the vasculature",
+    "confidence": "medium"
+   }
+  ]
+ },
+ "microanatomy": {
+  "facts": [
+   {
+    "fact": "Duct hierarchy: acinar tubules -> ductules (intercalated) -> small intralobular ducts -> interlobular ducts -> main duct (Wirsung) -> papilla; accessory duct of Santorini drains at the minor papilla in some people",
+    "value": "ductule/intercalated -> intralobular -> interlobular -> main",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p17; Gorelick & Williams 2021 ch.1 (Longnecker) p7",
+    "snippet": "ductules that join to form the intralobular ducts, then into the interlobular ducts and main duct",
+    "confidence": "high"
+   },
+   {
+    "fact": "Intralobular ducts are also called intercalated ductules and link acinar tubules to interlobular ducts",
+    "value": "terminology",
+    "source": "Gorelick & Williams 2021 ch.1 (Longnecker) p7",
+    "snippet": "intralobular ducts (sometimes called intercalated duct-ules) that link acinar tubules to the interlobular ducts",
+    "confidence": "high"
+   },
+   {
+    "fact": "Interlobular ducts are the major branches draining into the main duct throughout the gland; they have thick collagenous walls with myofibroblasts and some smooth muscle, thinner than the main duct",
+    "value": "interlobular duct wall: collagenous, thinner than main",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p17; Gorelick & Williams 2021 ch.1 (Longnecker) Fig 26 p11",
+    "snippet": "The collagenous wall is conspicuous but clearly thinner than that of the main duct.",
+    "confidence": "high"
+   },
+   {
+    "fact": "Smallest intralobular ducts and ductules have little or no connective-tissue wall and no smooth muscle; walls thicken progressively as ducts join",
+    "value": "wall thickness increases toward main duct",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p17",
+    "snippet": "The smallest intralobular ducts lack smooth muscle cells.",
+    "confidence": "high"
+   },
+   {
+    "fact": "Duct lining is a single layer of cuboidal cells; centroacinar cells sit at the junction of acinus and ductule (may also lie within an acinar tubule)",
+    "value": "simple cuboidal; centroacinar at acinus-ductule junction",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p17; Gorelick & Williams 2021 ch.1 (Longnecker) Fig 15 p6",
+    "snippet": "Centroacinar cells (CACs) are typically located at the junction of an acinus or acinar tubule with a small ductule",
+    "confidence": "high"
+   },
+   {
+    "fact": "Exocrine tissue is better described as an anastomosing tubular network that ends in some places as classic acini, not grape-like clusters on a branching duct",
+    "value": "acinar tubule network, not strict grapes",
+    "source": "Gorelick & Williams 2021 ch.1 (Longnecker) Fig 15 caption p6",
+    "snippet": "not arranged in clusters like grapes at the ends of a branching duct system but rather as an anastomosing tubular network",
+    "confidence": "high"
+   },
+   {
+    "fact": "Interstitium around acinar lobules holds capillaries, arteries, veins, lymphatics, nerves, fat and stellate cells; acinar basal surface faces the interstitial space with vessels and nerves",
+    "value": "vessels/nerves in interstitium between acinar units",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p18 and Fig 2.11 caption p16",
+    "snippet": "The basal portion (B) of the acinar cells lies next to the interstitial space that contains vessels (V), nerves, and connective tissue.",
+    "confidence": "high"
+   },
+   {
+    "fact": "Lobules are separated by connective-tissue septa (mesenchyme-derived); exocrine tissue is about 95%+ of mass, islets 1-2%",
+    "value": "lobules + septa; islets 1-2% of mass",
+    "source": "Beger 2023 ch.2 p9 and early development chapter; Beger 2023 ch.2 (Longnecker & Thompson) p9",
+    "snippet": "The islets comprise 1–2% of pancreatic mass.",
+    "confidence": "medium (septa wording from developmental chapter: 'embryonic mesenchyme, which forms the septa that separate the many lobules')"
+   },
+   {
+    "fact": "Islet size 50-250 um (~70%), mean 100-150 um; ~0.5-1 million islets in adult human; possibly higher islet density in tail",
+    "value": "size/number",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p19-20",
+    "snippet": "~70% are in the size range 50–250 μm in diameter in humans, with an average in the range 100–150 μm",
+    "confidence": "high"
+   },
+   {
+    "fact": "Islet cell mix in dorsal-anlage regions: beta 75-80%, alpha ~15%, delta ~5%, few PP; uncinate/ventral region is PP-rich with few alpha cells",
+    "value": "regional composition",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p20",
+    "snippet": "the majority of islet cells are β cells (75–80%), followed by α cells (about 15%)",
+    "confidence": "high"
+   },
+   {
+    "fact": "Gross layout: head sits in the duodenal C-loop; neck lies anterior to the SMV/portal vein; body behind the stomach; tail near splenic hilum; no landmark between body and tail",
+    "value": "gross relations",
+    "source": "Beger 2023 ch.2 (Longnecker & Thompson) p9",
+    "snippet": "The tail of the pancreas lies near the hilum of the spleen.",
+    "confidence": "high"
+   }
+  ]
+ },
+ "pda_metastasis": {
+  "facts": [
+   {
+    "fact": "PDAC is highly infiltrative: perineural and intravascular invasion present in practically all cases; nerves serve as pathways for spread beyond the pancreas",
+    "value": "perineural + vascular invasion ~universal",
+    "source": "Beger 2023 ch.125 (Pittman & Hruban) p958-959",
+    "snippet": "Perineural and intravascular invasion are present in practically all cases",
+    "confidence": "high"
+   },
+   {
+    "fact": "Vascular invasion leads to widespread dissemination, particularly to the liver; tumour cells may also creep along vessel endothelium or inside pre-existing ducts",
+    "value": "liver is the principal distant site",
+    "source": "Beger 2023 ch.125 p959",
+    "snippet": "Vascular invasion often leads to widespread dissemination of the neoplastic cells to other organs, particularly the liver.",
+    "confidence": "high"
+   },
+   {
+    "fact": "Local spread: grows along nerves, invades blood vessels and retroperitoneum; can directly invade spleen, adrenals, transverse colon, stomach",
+    "value": "direct extension",
+    "source": "Robbins 9e ch.19 p894",
+    "snippet": "Pancreatic cancers often grow along nerves and invade into blood vessels and the retroperitoneum.",
+    "confidence": "high"
+   },
+   {
+    "fact": "Nodal spread: peripancreatic, gastric, mesenteric, omental and portohepatic nodes often involved; distant mets principally liver and lungs",
+    "value": "nodes frequent; distant: liver, lung",
+    "source": "Robbins 9e ch.19 p894",
+    "snippet": "Distant metastases occur, principally to the liver and lungs.",
+    "confidence": "high"
+   },
+   {
+    "fact": "Most patients present with locally advanced disease (vascular involvement) or widespread metastasis, generally to liver and peritoneum; <20% resectable",
+    "value": "liver + peritoneum are the usual metastatic sites",
+    "source": "Kleeff 2016 Nat Rev Dis Primers p10",
+    "snippet": "widespread metastatic disease, generally to the liver and peritoneum",
+    "confidence": "high"
+   },
+   {
+    "fact": "Stage at diagnosis: ~10-20% resectable, 30-40% borderline/locally advanced, 50-60% metastatic (Kleeff); 15-20% resectable, 40-50% metastatic, 30-40% locally advanced (Beger ch.134)",
+    "value": "metastatic at presentation 40-60%",
+    "source": "Kleeff 2016 p(Surgery section); Beger 2023 ch.134 (Lindberg et al.) p1037",
+    "snippet": "harbor metastatic disease (40–50%) or locally advanced tumors (30–40%)",
+    "confidence": "high"
+   },
+   {
+    "fact": "Over 80% of patients have unresectable disease at diagnosis from local invasion and/or distant liver and peritoneal metastases; occult peritoneal and small surface liver mets often missed on imaging",
+    "value": "liver + peritoneum; >80% unresectable",
+    "source": "Beger 2023 ch.133 (Kyoto) p1033-1034",
+    "snippet": "distant metastases involving the liver and peritoneum",
+    "confidence": "high"
+   },
+   {
+    "fact": "Body/tail tumours carry higher risk of peritoneal dissemination than head tumours because they face the free lesser sac",
+    "value": "body/tail > head for peritoneal spread",
+    "source": "Beger 2023 ch.133 p1034",
+    "snippet": "Body and tail tumors are at higher risk of peritoneal dissemination than head tumors",
+    "confidence": "high"
+   },
+   {
+    "fact": "Occult sites at laparoscopy: posterior liver surface, paraduodenal retroperitoneum, proximal jejunal mesentery, lesser sac; Douglas pouch for cytology",
+    "value": "peritoneal/mesenteric sites",
+    "source": "Beger 2023 ch.133 p1035",
+    "snippet": "posterior liver surface, paraduodenal retroperitoneum, proximal jejunal mesentery, and lesser sac are possible sites",
+    "confidence": "high"
+   },
+   {
+    "fact": "Clinical nodal/peritoneal markers: Virchow node (supraclavicular), Sister Mary Joseph node (umbilical), Blumer shelf (pelvic peritoneal implants)",
+    "value": "distant nodal/peritoneal signs",
+    "source": "Beger 2023 ch.134 p1037-1038",
+    "snippet": "Involved supraclavicular (Virchow’s node) or umbilical (Sister Mary Joseph node) nodes",
+    "confidence": "high"
+   },
+   {
+    "fact": "After resection ~76% recur (877-patient series); liver-only or multi-site recurrence has worse survival than lung-only or local-only recurrence; isolated lung metastases are rare",
+    "value": "recurrence 76%; lung-only rare, better outcome",
+    "source": "Beger 2023 ch.155 (recurrence) p1213, citing Groot et al.",
+    "snippet": "Six-hundred sixty-two (76%) of the 877 patients had disease recurrence",
+    "confidence": "medium"
+   },
+   {
+    "fact": "Per-organ percentages (liver x%, lung y%, peritoneum z%) are NOT given in the sources read; only ordering (liver first, then peritoneum and lung, plus nodes)",
+    "value": "no per-organ percentages found",
+    "source": "all sources read",
+    "snippet": "(none)",
+    "confidence": "high"
+   }
+  ]
+ },
+ "tumour_locations": [
+  {
+   "tumour": "Ductal adenocarcinoma (PDAC)",
+   "location": "Head ~60%, body ~15%, tail ~5%, diffuse whole gland ~20%; head tumours obstruct bile duct (jaundice)",
+   "frequency": "Commonest; 75-80% of resected pancreatic neoplasms at Johns Hopkins (Kleeff Fig 1). The 85-90% figure was not found in the sources read.",
+   "source": "Robbins 9e ch.19 p893-894; Beger 2023 ch.125 p958; Kleeff 2016 Fig 1"
+  },
+  {
+   "tumour": "Pancreatic neuroendocrine tumour (PanNET)",
+   "location": "Anywhere along the gland (no head/tail predilection stated), or in peripancreatic tissue",
+   "frequency": "~2% of pancreatic neoplasms (Robbins) / <3% (Beger ch.98); 15-20% of resected neoplasms in a surgical series (Kleeff Fig 1); 7% of resected cystic neoplasms",
+   "source": "Robbins 9e ch.24 p1121; Beger 2023 ch.98 p753; Kleeff 2016 Fig 1; Beger ch.80 p620"
+  },
+  {
+   "tumour": "Acinar cell carcinoma",
+   "location": "Location not stated in sources read (bulky, well-circumscribed, fleshy mass)",
+   "frequency": "<2% of resected pancreatic neoplasms (Beger); ~1% (Kleeff Fig 1)",
+   "source": "Beger 2023 ch.125 p963; Kleeff 2016 Fig 1"
+  },
+  {
+   "tumour": "Solid pseudopapillary neoplasm (SPN)",
+   "location": "Equally head, body and tail",
+   "frequency": "~2% of pancreatic cancers (Kleeff); 3% of 851 resected cystic neoplasms; >85% female, median age 35; metastases at surgery 15-20%",
+   "source": "Beger 2023 ch.125 p962 and ch.80 p620; Kleeff 2016 Fig 1; Robbins 9e ch.19 p891"
+  },
+  {
+   "tumour": "Pancreatoblastoma",
+   "location": "Location not stated in sources read; one of the commonest pancreatic malignancies of childhood",
+   "frequency": "~0.5% of pancreatic tumours (Kleeff Fig 1)",
+   "source": "Beger 2023 ch.125 p964; Kleeff 2016 Fig 1"
+  },
+  {
+   "tumour": "Mucinous cystic neoplasm (MCN)",
+   "location": "Body/tail (>90%); tail most often; >95% female; does not communicate with duct (<5%)",
+   "frequency": "23% of 851 resected cystic neoplasms; up to 30% have associated invasive carcinoma",
+   "source": "Beger 2023 ch.80 p620 and ch.125 p961; Robbins 9e ch.19 p890-891"
+  },
+  {
+   "tumour": "Intraductal papillary mucinous neoplasm (IPMN)",
+   "location": "Branch-duct: ~60% head, 40% body/tail; main-duct/multifocal: majority in one site, most often head; 36% multi-location",
+   "frequency": "Commonest resected cystic neoplasm: 38% of 851 (main duct 21%, branch duct 17%); 15-40% of BD-IPMN multifocal",
+   "source": "Beger 2023 ch.80 p619-620; Robbins 9e ch.19 p891 (head more than tail)"
+  },
+  {
+   "tumour": "Serous cystadenoma (SCN/SCA)",
+   "location": "Evenly spread: 40% head, 34% body, 26% tail (Beger); Robbins says usually tail",
+   "frequency": "16% of 851 resected cystic neoplasms (~25% of cystic neoplasms per Robbins); malignancy ~0.1%",
+   "source": "Beger 2023 ch.80 p620; Robbins 9e ch.19 p890"
+  }
+ ],
+ "_sources": [
+  "Longnecker DS, Thompson ED. Anatomy, Histology, and Fine Structure of the Pancreas. In: Beger HG et al., eds. The Pancreas: An Integrated Textbook of Basic Science, Medicine, and Surgery, 4th ed. Wiley; 2023. Chapter 2, pp.9-21.",
+  "Longnecker DS. Anatomy and histology of the pancreas. In: Gorelick FS, Williams JA, eds. The Pancreas: Biology and Physiology. American Pancreatic Association / Michigan Publishing; 2021 (CC BY-NC-ND 4.0). Chapter 1, pp.1-12 (figures 15, 26, 27 and Endocrine Pancreas section).",
+  "Majumder S, Chari ST. Epidemiology of Cystic Neoplasms of the Pancreas. In: Beger et al., The Pancreas, 4th ed. 2023. Chapter 80, pp.617-622 (as page-numbered in the PDF).",
+  "Pittman ME, Hruban RH. Pathology of Exocrine Pancreatic Tumors. In: Beger et al., The Pancreas, 4th ed. 2023. Chapter 125, pp.957-964.",
+  "Mukherjee JJ, Lee KO, Kaltsas G. Epidemiology and Classification of Neuroendocrine Tumors of the Pancreas. In: Beger et al., The Pancreas, 4th ed. 2023. Chapter 98, p.753ff.",
+  "Kyoto authors. The Role of Laparoscopy and Peritoneal Cytology in the Management of Pancreatic Cancer. In: Beger et al., The Pancreas, 4th ed. 2023. Chapter 133, pp.1033-1035 (author names not recorded in the extract).",
+  "Lindberg JM, Whalen GF, LaFemina J. Clinical Assessment and Staging of Advanced Pancreatic Cancer. In: Beger et al., The Pancreas, 4th ed. 2023. Chapter 134, p.1037ff.",
+  "Beger et al. The Pancreas, 4th ed. 2023. Chapter 155, Recurrence of Pancreatic Cancer, p.1213 (citing Groot et al.).",
+  "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease, 9th ed. Elsevier; 2015. Chapter 19 The Pancreas (neoplasms pp.890-894) and Chapter 24 The Endocrine System (pancreatic neuroendocrine tumors p.1121).",
+  "Kleeff J, Korc M, Apte M, et al. Pancreatic cancer. Nat Rev Dis Primers 2016;2:16022. doi:10.1038/nrdp.2016.22 (Fig 1, Management and Surgery sections).",
+  "Not useful for this task: literature/978-3-319-00999-5.pdf (Rev Physiol Biochem Pharmacol vol 165, pancreatic ion transport); page numbers above are approximate printed pages read from text dumps and should be re-checked in the PDFs before citing in print."
+ ]
+}
