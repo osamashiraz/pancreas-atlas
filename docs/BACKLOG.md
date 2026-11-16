@@ -31,7 +31,7 @@
 - **Glossary** (proposed 2026-11-16, awaiting the user's go-ahead): a Glossary page of about 40 plain-language terms (cells and tissue, secretion, histology words, lesions, genes, microenvironment, mouse models), opened from a button beside the theme switch, with terms underlined on first use per page; plus "How to read the figure" keys like the KRAS one for the desmoplasia and progression figures only.
 - **Lesion figures**: the user will supply figures to replace the removed histology cartoons in the lesion views.
 - Open items from the 2026-11-15 review: one figure manifest and one numbers table with a source test; per-tab tests with the smoke test served over http; figure folder renames and older figures light-default; content gaps (WHO 2019 terms, chronic pancreatitis vs PDA pitfall box, IPMN risk features).
-- The `repo/` TypeScript module and its tests were written for a TypeScript host project (references to it removed 2026-11-16); decide whether to keep, adapt or drop them.
+- The TypeScript module and its 23 tests were removed (2026-11-16). Port the tissue-rule checks to a small Python test (one intercalated duct per acinus, no overlapping acini or acini in the islet, reach, packing above 45%, capillary reach, islet composition, manifest checksums) so the rules stay enforced.
 - Disease states still to add: type 1 diabetes (beta-cell loss, insulitis), type 2 (islet amyloid, reduced beta cells).
 - Overlay user data (single-cell, spatial, CODEX) onto cell types.
 - Nerves (coeliac plexus, splanchnic, vagal, intrapancreatic ganglia) — needs more of the HRA body model.

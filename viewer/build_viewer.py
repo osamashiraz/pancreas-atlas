@@ -8,8 +8,7 @@ Inputs:  viewer/template.html, viewer/src/app.js, and from the repo
          islets.manifest.json}, and data/human-pancreas-markers.json
 Output:  dist/pancreas-organ-to-cell.html (about 8 MB; the published page must stay under 16 MB)
 
-The viewer no longer generates blocks in the browser (each site shows its region's tested block). viewer/src/generator.js, the
-TypeScript generator compiled by viewer/compile_generator.mjs, is kept for other uses but is not embedded.
+Each site shows its region's tested tissue block, built by repo/scripts/human/build_tissue_block.py.
 """
 import base64, json, shutil, sys
 from pathlib import Path

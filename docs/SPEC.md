@@ -6,12 +6,12 @@ A source-grounded learning tool on the human pancreas and its diseases (page tit
 
 ## 2. Architecture
 
-- **Repo module** (`repo/`): TypeScript domain data (inventory, circuits, tissue levels, generators), a checksum-bounded loader, tests, Python builders, and model data under `public/atlas-human/`.
+- **Model data** (`repo/`): the inventory and marker data (`data/`), the Python builders (`scripts/human/`) and the model files with checksummed manifests (`public/atlas-human/`). The TypeScript module, its tests and the browser generator were removed on 2026-11-16 (recoverable from git history).
 - **Standalone page** (`viewer/`, built to `dist/pancreas-organ-to-cell.html`, about 13.9 MB, under the 16 MB limit): three.js r147 from jsDelivr, with the region model, islet distribution, three tested tissue blocks and the lesion micrographs embedded. Five tabs: **Atlas** (default), **Pancreas**, **Pancreatitis**, **PDA precursors**, **PDA**; the four content tabs are figure-led pages (section 6b), and the **interactive 3D model** opens from the Pancreas page (a shared `#site=` link opens straight into it). Atlas images (`dist/atlas/`) and the eleven interactive figures (`dist/figures/`, each with `viewer/src/figure-embed.html` injected) are separate files beside the page. Light theme by default with a Dark/Light switch at the top right (stored as `pz-theme`). The figure sources (anima build scripts, PROMPT.md files) live in the top-level `figures/` folder, which is kept local and not in git.
 - **Repository and site**: the GitHub repository is `osamashiraz/pancreas-atlas` (renamed from `pancreas-3d`); published via GitHub Pages at https://osamashiraz.github.io/pancreas-atlas/ (the built `dist/pancreas-organ-to-cell.html` deployed as `index.html` with `dist/atlas/` and `dist/figures/` beside it; the workflow checks every registered figure exists).
 - **World**: one coordinate system in micrometres. The chosen tissue site in the organ is the origin; the tissue block is centred there; finer levels sit inside coarser ones at true scale.
 
-## 3. Organ level (`src/domain/human-pancreas-structures.ts`)
+## 3. Organ level (`repo/data/human-pancreas-inventory.json`)
 
 - Source: HRA 3D Reference Object Library v2.0 (CC BY 4.0), male and female, from the Visible Human Project. `scripts/human/extract_pancreas_region.py` copies 29 named nodes per sex unchanged from the united body models into `pancreas-region-<sex>.glb` (positions verified by per-node SHA-256).
 - Inventory: 38 structures per sex. Ready: 22 drawn by HRA (head, uncinate, neck, body, tail; main and accessory ducts, bile duct, ampulla, sphincter; coeliac trunk, common and proper hepatic, splenic and superior mesenteric arteries; splenic, superior mesenteric, portal and inferior pancreaticoduodenal veins; duodenum, duodenal bulb, spleen), 6 simulated vessel structures (gastroduodenal artery; superior and inferior pancreaticoduodenal arteries forming anterior and posterior arcades; dorsal and transverse, great and caudal pancreatic arteries), 4 simulated lymph node groups (21 nodes per body; Japan Pancreas Society stations 8a, 8p, 10, 11p, 11d, 13a, 13b, 14, 17a, 17b). Planned: minor papilla, superior pancreaticoduodenal veins, four nerve structures.
@@ -27,7 +27,7 @@ A source-grounded learning tool on the human pancreas and its diseases (page tit
 
 ## 5. Tissue block (300 µm)
 
-- Python builder `build_tissue_block.py <region>` (tested blocks for body, head, tail) and TypeScript generator `generateBlock(seed, region)` (any seed; about 5 s in the browser), same rules:
+- Python builder `build_tissue_block.py <region>` (tested blocks for body, head, tail), rules:
   - intralobular duct tree by space colonization, tapering by Murray's law;
   - acini (13–19 µm radius) budding in grape-like clusters (CODA) on their own intercalated ducts, then a grid pass filling remaining pockets; no anastomoses (Endo 2002, rat);
   - capillaries: minimum spanning tree plus loops through free space; every acinus within 6 µm;
@@ -80,7 +80,7 @@ A source-grounded learning tool on the human pancreas and its diseases (page tit
 
 ## 7. Acceptance checks
 
-- `repo/tests/human-pancreas.test.ts` (23 tests: inventory, registries, extraction, simulated vessels and nodes, islet model and distribution, tissue blocks per region, generators, ontology) was written for a TypeScript host project and is kept with the module; the page itself builds with `python3 viewer/build_viewer.py repo dist/pancreas-organ-to-cell.html`.
+- The page builds with `python3 viewer/build_viewer.py repo dist/pancreas-organ-to-cell.html`. The tissue rules (section 5) were tested by the removed TypeScript suite; they now need a Python check (see BACKLOG).
 - `viewer/build_viewer.py` reproduces `dist/` byte for byte from sources; `viewer/test/smoke.py` loads the page on the Atlas, checks the Atlas grid and that an entry opens, switches to the Pancreas 3D view (`window.__zoom.setMode('pancreas')`), then zooms in over the organ, walks the layer stops, every branch down to its cells, the cell-type stain, the pancreatitis/precursor/PDA tabs, the comparison and a link to a view, and fails on any page error or missed stage. `viewer/test/atlas_check.py` checks every Atlas entry has sources, credits and an open licence. GitHub Actions runs both (software WebGL) before each Pages deployment.
 - `viewer/test/profile.py` reports draw calls, triangles and frame times per stage (`--dpr2` for Retina): the Tissue level was cut 9.6 M → 2.3 M triangles (core-only block) and gross acini/block duct cells use lighter shapes (Lobules 2.1 M → 0.7 M); multisampling is off on dense screens, a single cell no longer draws its islet behind it unless surroundings are on, and dynamic resolution lowers the pixel ratio (never below 1×) while frames run slow.
 

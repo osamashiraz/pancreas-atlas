@@ -77,7 +77,7 @@ Every structure in the 3D model has one of three labels, and the viewer shows it
 - **traced**: followed from a published image;
 - **simulated**: placed by a written rule from published measurements (small vessels, lymph nodes, lobules, acini, islets, cells).
 
-Every number either names its source or is marked *not yet sourced* in the code, and the tests fail if one is missing. The illustrated figures are simplified drawings of mechanisms, not to scale. The micrographs are examples chosen to show a feature, not a measure of how common it is.
+Every number either names its source or is marked *not yet sourced* in the data. The illustrated figures are simplified drawings of mechanisms, not to scale. The micrographs are examples chosen to show a feature, not a measure of how common it is.
 
 ## More about each part
 
@@ -159,7 +159,7 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 ## How it is built
 
 - **Organ**: meshes extracted unchanged from the HRA united body models. Small arteries (gastroduodenal, pancreaticoduodenal arcades, dorsal/great/caudal pancreatic) are routed by shortest path around drawn structures. Lymph nodes are placed at the Japan Pancreas Society stations, checked against its eighth edition (2024). Gray's Anatomy, cited for vessel anatomy, is still to be checked.
-- **Tissue**: deterministic builders (Python, and a TypeScript generator that also runs in the browser) grow a duct tree, bud acini on their own intercalated ducts, route capillaries so every acinus is within reach, and add stroma and one islet. Cells then grow until they meet a neighbour. Tests check the rules: no overlapping acini, one duct per acinus, packing above 45%, islet composition and size.
+- **Tissue**: deterministic Python builders grow a duct tree, bud acini on their own intercalated ducts, route capillaries so every acinus is within reach, and add stroma and one islet. Cells then grow until they meet a neighbour. The builders hold to these rules: no overlapping acini, one duct per acinus, packing above 45%, islet composition and size.
 - **Figures**: interactive isometric SVG figures built with the anima figure kit. Each has its own source script and a sources block, and an automatic layout audit checks every figure.
 - **Viewer**: a single self-contained HTML page (three.js) with the models embedded, so it can be hosted anywhere static. In the layered openings, each opening grows with the zoom to nearly half the height of the view, outer layers stay as rings, and vessels and ducts of the organ are left uncut.
 
@@ -170,7 +170,7 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 | `dist/pancreas-organ-to-cell.html` | The built viewer (published to GitHub Pages)                                                                                                                                                                             |
 | `dist/atlas/`                      | The atlas images, loaded by the page only when the atlas is opened                                                                                                                                                       |
 | `dist/figures/`                    | The interactive illustrated figures, embedded in the pages                                                                                                                                                               |
-| `viewer/`                          | Viewer sources (`template.html`, `src/app.js`, `src/atlas.json`, `src/generator.js`), images (`assets/`), build script, tests (`test/smoke.py`, `test/atlas_check.py`, `test/profile.py`), earlier versions in `legacy/` |
+| `viewer/`                          | Viewer sources (`template.html`, `src/app.js`, `src/atlas.json`, `src/figure-embed.html`), images (`assets/`), build script, tests (`test/smoke.py`, `test/atlas_check.py`, `test/profile.py`), earlier versions in `legacy/` |
 | `repo/`                            | Model data and the code that builds and tests it: inventory, generators, loader, tests, Python builders                                                                                                                  |
 | `docs/`                            | Specification, backlog, change history, sources, README images                                                                                                                                                           |
 

@@ -3,7 +3,7 @@
 
 Original integration code: MIT. The output is derived from CC BY 4.0 HRA geometry and keeps that licence.
 
-Reads   data/human-pancreas-inventory.json          (from scripts/human/export_inventory.ts)
+Reads   data/human-pancreas-inventory.json          (the inventory, edited by hand)
         public/atlas-human/pancreas-region-<sex>.glb (checked against pancreas-region.manifest.json)
 Writes  public/atlas-human/pancreas-simulated-<sex>.glb
         public/atlas-human/pancreas-simulated.manifest.json

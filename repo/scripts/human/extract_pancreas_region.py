@@ -32,7 +32,7 @@ SOURCES = {
 RELEASE = {'repository': 'https://github.com/hubmapconsortium/ccf-releases', 'version': 'v2.0', 'commit': 'b036a91aaf7234f462b1249d4a5f4fb0e982f412', 'license': 'CC-BY-4.0'}
 
 # Node names without the sex prefix. Where the sexes spell a node differently, both spellings are listed;
-# exactly one must exist in each source. Keep in step with src/domain/human-pancreas-structures.ts; tests/human-pancreas.test.ts checks it.
+# exactly one must exist in each source. Keep in step with data/human-pancreas-inventory.json.
 NODES = [
     'head_of_pancreas', ('uncinate_process_of_the_pancreas', 'ucinate_process1'), 'neck_of_pancreas', 'body_of_pancreas', 'tail_of_pancreas',
     'ventral_pancreatic_duct', 'dorsal_pancreatic_duct', 'common_bile_duct', 'hepatopancreatic_ampulla',
