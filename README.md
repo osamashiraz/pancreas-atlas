@@ -33,9 +33,9 @@ Understanding the biology and pathology of the pancreas has directly improved my
 
 ## A quick tour
 
-The bar at the top left switches between five pages.
+The bar at the top left switches between five pages. The button at the top right switches between the light theme (the default) and a dark theme.
 
-**Atlas.** This is a gallery of 51 openly licensed micrographs in ten groups: normal pancreas, injury and repair, pancreatitis, cysts, precursor lesions, PDA by grade, its variants, how it spreads, the other tumours it is mistaken for, and mouse models by genotype. Each entry gives a one-line description, two to four numbered "look for" pins placed on the picture, and one line to remember. Folds below hold the features under the microscope, look-alikes, facts and sources with page numbers. Further tools: a **side by side** comparison with a look-alike, a **progression** strip with the genetic changes, a **features table** and a **quiz**. Entries can be linked, e.g. [`#atlas=pda-poor`](https://osamashiraz.github.io/pancreas-atlas/#atlas=pda-poor).
+**Atlas.** This is a gallery of 51 entries in ten groups, with 79 openly licensed images: normal pancreas, injury and repair, pancreatitis, cysts, precursor lesions, PDA by grade, its variants, how it spreads, the other tumours it is mistaken for, and mouse models by genotype. Each entry gives a one-line description, numbered "look for" points (pinned on the picture where they can be seen), and one line to remember. Eight entries have no open image yet. Folds below hold the features under the microscope, look-alikes, facts and sources with page numbers. Further tools: a **side by side** comparison with a look-alike, a **progression** strip with the genetic changes, a **features table** and a **quiz**. Entries can be linked, e.g. [`#atlas=pda-poor`](https://osamashiraz.github.io/pancreas-atlas/#atlas=pda-poor).
 
 **Pancreas: organ to cell.** The page starts with the organ, its exocrine tissue and its islets. It then shows how the gland secretes: digestive juice into the duodenum, and hormones into the blood. Next come the H&E of each tissue (lobule, acini, ducts, islet). Last, each cell's job sits beside its H&E: enzyme secretion by acinar cells, bicarbonate by duct cells, and glucose control by the islet.
 
@@ -53,7 +53,7 @@ The bar at the top left switches between five pages.
 
 ![PDA page: desmoplasia and the tumour microenvironment](docs/images/tour-tab-pda.jpg)
 
-**Interactive 3D model** (the "Interactive 3D model" button on the Pancreas page). You can zoom continuously from the reference organ (about 15 cm, from the Human Reference Atlas) through its lobules and duct tree to a core of tissue. From there you go to an acinus, islet or duct, then its cells, and finally one cell with its organelles. Everything is at true scale, in H&E or cell-type colours. **Play the journey** gives a 16-step narrated tour. Use the **seek bar** under it to go back or forward to any step.
+**Interactive 3D model** (the "Interactive 3D model" button on the Pancreas page; inside the model, a 2D / 3D model switch at the top goes back). You can zoom continuously from the reference organ (about 15 cm, from the Human Reference Atlas) through its lobules and duct tree to a core of tissue. From there you go to an acinus, islet or duct, then its cells, and finally one cell with its organelles. Everything is at true scale, in H&E or cell-type colours. **Play the journey** gives a 16-step narrated tour. Use the **seek bar** under it to go back or forward to any step.
 
 | The organ                                             | A step of the narrated journey                                                                     |
 | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -123,16 +123,11 @@ The pancreas is two organs in one, and the model shows both:
 
 ### Histology views
 
-On the disease pages, picking a lesion opens its **histology view**. It starts with a drawing in H&E colours of the lesion's key architecture. Real H&E micrographs follow (open-licensed, credited) with the same features numbered alike, then high-power views of the cells.
+On the Pancreatitis, PDA precursors and PDA pages, picking a lesion card opens its **histology view**. It shows real, openly licensed H&E micrographs with the key features numbered, then high-power views of the cells. Below come the list of key features, what sets the lesion apart, and a comparison table. A button at the top right goes back to the page you came from.
 
-| PanIN                                                                                                                                                                                             | IPMN                                                                                                                                                                                                   | MCN                                                                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![PanIN histology](docs/images/panin.jpg)                                                                                                                                                         | ![IPMN histology](docs/images/ipmn.jpg)                                                                                                                                                                | ![MCN histology](docs/images/mcn.jpg)                                                                                                                       |
-| Normal duct → PanIN-1a → 1b → 2 → 3: low cuboidal cells become tall columnar with apical mucin, then micropapillae and papillae with crowded, atypical nuclei; KRAS and telomere shortening first | Gross specimen and H&E: dilated main duct and branch-duct cysts that open into it; tall mucinous papillae (gastric type), complex papillae (pancreatobiliary type); ordinary stroma, no ovarian stroma | Fibrous capsule, mucin-filled cyst, mucinous columnar lining, and the dense, cellular ovarian-type stroma of spindle cells with wavy nuclei that defines it |
+![Histology view: chronic pancreatitis in H&E, with the key features numbered](docs/images/tour-histology.jpg)
 
-Images: Hackeng et al., *Diagn Pathol* 2016 (CC BY 4.0); Shibata et al., *Clin J Gastroenterol* 2017 (CC BY 4.0); Nephron and Humpath, Wikimedia Commons (CC BY-SA 3.0). See [`viewer/assets/histology/CREDITS.md`](viewer/assets/histology/CREDITS.md).
-
-Each comes with a card on its appearance, grading, genes, who it affects and survival, in my own words, citing Hingorani 2007, Rodriguez et al. 2007, *The Pancreas: An Integrated Textbook* (Beger et al., 4th ed., 2023) and *Robbins and Cotran Pathologic Basis of Disease* (9th ed.). Placement on the organ is simulated by rule; drawn sizes follow the stated sizes.
+Each view has a card on its appearance, grading, genes, who it affects and survival, in my own words. It cites Hingorani 2007, Rodriguez et al. 2007, *The Pancreas: An Integrated Textbook* (Beger et al., 4th ed., 2023) and *Robbins and Cotran Pathologic Basis of Disease* (9th ed.). Image credits are under each picture and in [`viewer/assets/histology/CREDITS.md`](viewer/assets/histology/CREDITS.md).
 
 ### The organs round the pancreas
 
@@ -182,7 +177,7 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 
 ### Run it locally
 
-Open `dist/pancreas-organ-to-cell.html` in a browser (it needs internet for three.js and fonts). To rebuild and test:
+Open `dist/pancreas-organ-to-cell.html` in a browser (it needs internet for three.js and fonts). To rebuild and test, from a folder that holds this repository as `pancreas-atlas` (rename the paths if your copy has another name):
 
 ```bash
 git clone https://github.com/Qasim-Hussain-Code/MouseBio_3D && cd MouseBio_3D && npm ci
