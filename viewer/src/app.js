@@ -139,7 +139,7 @@
     group.add(m); return m; }
   const MP = (group, color, planes, extra = {}) => M(group, color, planes, Object.assign({ physical: true, sheen: 0.12, sheenRoughness: 0.55, sheenColor: new THREE.Color('#ffd9e6'), roughness: 0.55 }, extra));
 
-  // ---------- layers opened in place, after MouseBio_3D's zoom-unfold. At the chosen site a line goes into the gland. As
+  // ---------- layers opened in place. At the chosen site a line goes into the gland. As
   // you zoom, the organ's surface opens a round hole on that line; inside it the lobules stand cut across, with their own,
   // smaller opening onto the duct tree of the lobules near the site; that opens in turn onto a core of the tissue. Each
   // outer layer stays as a ring round the next, and closes again as you zoom out. Ducts and vessels of the organ are not cut.
@@ -608,7 +608,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     return { organ: ramp(d, 4500, 6500), gross: ramp(d, 52000, 44000) * (1 - det), block: (LAYER.R.value.z > 1 ? 1 : 0) * Math.max(1 - det, surroundings ? 0.12 * det : 0), detail: det * (1 - (surroundings ? 0.95 : 1) * ce), cell: ce, explode: ex };
   }
   // How far each layer has opened at a distance: from nothing to nearly half the height of the view at the end of its opening
-  // (MouseBio_3D's share, 0.46), growing by equal steps of zoom, and no wider than the layer beneath can fill.
+  // (a share of 0.46), growing by equal steps of zoom, and no wider than the layer beneath can fill.
   const Hv = (d) => 2 * d * Math.tan(camera.fov * Math.PI / 360);
   const opening = (d, [a, b]) => { const t = THREE.MathUtils.clamp(Math.log(a / d) / Math.log(a / b), 0, 1); return t * t * (3 - 2 * t); };
   const OPEN = { organ: [45000, 14000], lobules: [12000, 3200], core: [2600, 1000] }, SHARE = 0.46, FLARE = 0.36;   // a slope a little steeper than the view's half-angle

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Assemble the standalone zoom viewer (one self-contained HTML file) from its sources and the module's data.
 
-  python3 viewer/build_viewer.py <path to MouseBio_3D checkout with the module installed> [out.html]
+  python3 viewer/build_viewer.py <path to the model folder, normally repo> [out.html]
 
 Inputs:  viewer/template.html, viewer/src/app.js, and from the repo
          public/atlas-human/{tissue-block.json, tissue-block-head.json, tissue-block-tail.json, pancreas-region-male.glb,

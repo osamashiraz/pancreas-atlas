@@ -1,6 +1,6 @@
 # Human pancreas module
 
-This module is the first organ of a human counterpart to MouseBio_3D. It keeps the mouse project's rule that every structure says what it rests on, and adds a `status` field, so the inventory can list planned structures without the viewer ever showing them as if they existed.
+This module models the human pancreas. It keeps the rule that every structure says what it rests on, and adds a `status` field, so the inventory can list planned structures without the viewer ever showing them as if they existed.
 
 ## Files
 

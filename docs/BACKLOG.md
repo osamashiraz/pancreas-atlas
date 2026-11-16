@@ -9,7 +9,7 @@
 6. Verify Gray's Anatomy 42nd ed. (vessel anatomy). The Japan Pancreas Society stations were checked against the eighth edition (2024); the model still divides 13 and 17 into a/b (earlier editions) and does not split 14 by tumour side.
 7. Report the HRA crosswalk error (male superior mesenteric vein mapped to UBERON:0001182, the artery).
 
-8. Layers opened in place: turning the view far from the line going in while deep in the opening looks into the wall of the lobule column (as in MouseBio_3D); names behind that wall are hidden. Around 2 mm from the site the duct tree near the line can crowd the view (the large interlobular duct may pass close to it).
+8. Layers opened in place: turning the view far from the line going in while deep in the opening looks into the wall of the lobule column; names behind that wall are hidden. Around 2 mm from the site the duct tree near the line can crowd the view (the large interlobular duct may pass close to it).
 
 9. Marker data (`repo/data/human-pancreas-markers.json`) was extracted by one-off scripts (provenance, URLs and checksums are in the file); add a builder script to reproduce it from the pinned ASCT+B file and the HPA release.
 10. HPA lumps human islet endocrine cells; beta and alpha HPA lists come from bulk-derived cell-type enrichment intersected with the islet list and are noisy. Delta granule size: Brereton 2015 (read in full) gives 250 nm, smaller than alpha and beta granules, as drawn. Primary sources for delta-cell process length (Grube & Bohn 1983; Baskin 1984) not checked.
@@ -21,15 +21,17 @@
 14. Organs round the pancreas: male model only (the female united model is a 76 MB 7z archive not yet fetched); the neighbours file is not yet registered in the module's loader or tests. The HRA v2.0 model has no stomach or adrenals.
 15. Pancreatitis and PDA: placement and sizes on the organ are simulated; the PDA head/body/tail split comes from Robbins (9th ed.), whose survival figure (under 5%) is older than Beger's (about 10%). An open-licensed H&E of chronic pancreatitis was later found (Chekmareva 2025, CC BY) and is now shown.
 
-16. Atlas and 2D tabs (added this round):
-    - Atlas image pins and the 2D inset arrow anchors were placed by eye; worth a pathologist's check.
-    - The flat 2D schematic (`PANC2D`) is deliberately not to measured scale (tall and narrow for legibility, not anatomical proportion); do not treat its geometry as a source.
+16. Atlas and pages:
+    - Atlas and histology-view pins were placed by eye (IPMN pins 3, 6, 7 corrected 2026-11-16); worth a pathologist's check.
     - Mouse-model images: the original KC/KPC/KDC paper figures are copyright, so images come from later CC BY papers using the same models; the one real KPC image (Trp53 R172H, Nature 2025, CC BY) is small (366 px) and flagged, and KDC has no open image yet.
     - The duct + islet + vessel "triad" the user asked about is only partly supported by the sources (no source uses the word "triad"); it is rendered instead as the accurate sourced note that islets lie alongside ducts and are richly vascularised (insulo-acinar portal system). Revisit if a primary source names a formal triad.
     - The PDA "spread" view orders metastatic sites (liver → peritoneum, lung, nodes) without per-organ percentages; add sourced frequencies only if an open dataset supports them.
 
 ## Next steps (agreed or proposed)
-- **Incorporate the user's new figures** (in `figures/`: anima/illustration sets for the pancreas organ overview, acinar cell, duct–duodenum, beta-cell steps, islet glucose loop, secretion) into the app — agreed for the next update.
+- **Glossary** (proposed 2026-11-16, awaiting the user's go-ahead): a Glossary page of about 40 plain-language terms (cells and tissue, secretion, histology words, lesions, genes, microenvironment, mouse models), opened from a button beside the theme switch, with terms underlined on first use per page; plus "How to read the figure" keys like the KRAS one for the desmoplasia and progression figures only.
+- **Lesion figures**: the user will supply figures to replace the removed histology cartoons in the lesion views.
+- Open items from the 2026-11-15 review: one figure manifest and one numbers table with a source test; per-tab tests with the smoke test served over http; figure folder renames and older figures light-default; content gaps (WHO 2019 terms, chronic pancreatitis vs PDA pitfall box, IPMN risk features).
+- The `repo/` TypeScript module and its tests were written for a TypeScript host project (references to it removed 2026-11-16); decide whether to keep, adapt or drop them.
 - Disease states still to add: type 1 diabetes (beta-cell loss, insulitis), type 2 (islet amyloid, reduced beta cells).
 - Overlay user data (single-cell, spatial, CODEX) onto cell types.
 - Nerves (coeliac plexus, splanchnic, vagal, intrapancreatic ganglia) — needs more of the HRA body model.

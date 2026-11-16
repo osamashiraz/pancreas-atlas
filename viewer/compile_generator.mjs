@@ -1,5 +1,5 @@
 // Compile src/domain/human-pancreas-generator.ts to viewer/src/generator.js (window.HPGen), using the esbuild that tsx ships with.
-// Run from the MouseBio_3D checkout:  node <package>/viewer/compile_generator.mjs <package>/viewer/src/generator.js
+// Usage:  node viewer/compile_generator.mjs viewer/src/generator.js
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);

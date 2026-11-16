@@ -1,9 +1,9 @@
 /**
- * The inventory of the human pancreas module. Every structure declares its evidence,
- * following scripts/living/structures.ts of MouseBio_3D. It lives in src/domain because the
+ * The inventory of the human pancreas module. Every structure declares its evidence.
+ * It lives in src/domain because the
  * viewer reads it directly; there is no build step between it and the scene.
  *
- * Differences from the mouse inventory:
+ * Notes on the inventory:
  * - The base is not one segmented volume but the HRA 3D reference organs, which are
  *   meshes drawn from the Visible Human Male and Female (NLM). Each organ region is a
  *   named node in a GLB, so "source" means "this node of that file", not a label number.
@@ -109,7 +109,7 @@ const POSE = 'The Visible Human was imaged supine after death; the organ is show
 const SIDE = 'In the HRA frame the tail lies at higher x than the head, so +x is taken as the left of the body. This is inferred from the mesh and not stated by the source.';
 
 // ---------------------------------------------------------------------------
-// Helpers, one per kind of evidence, as in the mouse inventory.
+// Helpers, one per kind of evidence.
 
 /** One region of the HRA pancreas, exactly as the reference organ draws it. */
 const region = (sex: Sex, id: string, name: string, node: string, ontology: OntologyTerm, color: string, note: string): StructurePlan => ({

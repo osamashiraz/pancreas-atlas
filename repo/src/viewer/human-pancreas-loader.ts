@@ -2,8 +2,7 @@
  *
  * Builds the human pancreas and its neighbours from the extracted HRA region file, and the simulated
  * vessels and lymph node stations placed on it by scripts/human/place_simulated.py.
- * The bytes are fetched through the same bounded, checksum-checked path as every
- * MouseBio_3D model, and only structures marked `ready` in the inventory are built.
+ * The bytes are fetched through a bounded, checksum-checked path, and only structures marked `ready` in the inventory are built.
  * A ready structure whose node is absent is reported, never drawn from another node.
  *
  * Coordinates stay in the HRA frame, converted from metres to millimetres and centred

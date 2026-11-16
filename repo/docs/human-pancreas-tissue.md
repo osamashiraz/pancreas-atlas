@@ -58,7 +58,7 @@ The viewer has sixty tissue sites, twenty each in the head (with the uncinate pr
 
 ## Viewer tools
 
-Following the features of MouseBio_3D (its Play journey, names on the model, and selection tools that isolate a structure or change its opacity), the zoom viewer has:
+The zoom viewer has a Play journey, names on the model, and selection tools that isolate a structure or change its opacity:
 
 - Slice apart: a knob that cuts the organ into eight transverse slices, or the tissue block into six serial sections, and spreads them apart, as serial sections are spread for 3D reconstruction (CODA). Each slab draws only the cells near it, so slicing costs about as much as the whole block. Labels move with their slab.
 - Play the journey: an automatic tour from the organ through an acinus and acinar cell, a duct and duct cell, and the islet and a beta cell, and back, with captions. Any scroll, click or key stops it.

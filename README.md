@@ -85,7 +85,7 @@ Every number either names its source or is marked *not yet sourced* in the code,
 
 The model shows the reference pancreas (head, neck, body, tail, uncinate process) with the main and accessory pancreatic ducts, bile duct and ampulla, and the coeliac, splenic, hepatic and superior mesenteric vessels. Thirty tissue sites (ten each in head, body and tail, scattered at random) lie hidden in the gland. Each shows its region's tissue (islets in the uncinate process are rich in PP cells). Zoom in on any part of the organ, and one of the sites nearest the pointer is picked at random and brought to the middle of the view.
 
-Zooming into a site opens the gland **in place, layer by layer**, the way [MouseBio_3D](https://github.com/Qasim-Hussain-Code/MouseBio_3D) opens the mouse. A line goes into the gland at the site, and as you zoom, the organ's surface opens round it. Inside, the **lobules** stand cut across, with pale septa of connective tissue between them. Round the line, the lobules near the site open in turn to show what fills them. Inside is the **duct tree**: a large interlobular duct with its artery and vein, then interlobular, intralobular and terminal ducts ending in grape-like clusters of acini. Among them lie the **islets**, twice as dense in the tail as in the head. At the bottom of the opening lies a **core of tissue**, cut flat through its islet. Each outer layer stays as a ring round the next, and zooming out closes them again.
+Zooming into a site opens the gland **in place, layer by layer**. A line goes into the gland at the site, and as you zoom, the organ's surface opens round it. Inside, the **lobules** stand cut across, with pale septa of connective tissue between them. Round the line, the lobules near the site open in turn to show what fills them. Inside is the **duct tree**: a large interlobular duct with its artery and vein, then interlobular, intralobular and terminal ducts ending in grape-like clusters of acini. Among them lie the **islets**, twice as dense in the tail as in the head. At the bottom of the opening lies a **core of tissue**, cut flat through its islet. Each outer layer stays as a ring round the next, and zooming out closes them again.
 
 | Organ                           | The surface opens                                          | Lobules and their ducts                                       | Tissue core                                                     |
 | ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
@@ -161,7 +161,7 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 - **Organ**: meshes extracted unchanged from the HRA united body models. Small arteries (gastroduodenal, pancreaticoduodenal arcades, dorsal/great/caudal pancreatic) are routed by shortest path around drawn structures. Lymph nodes are placed at the Japan Pancreas Society stations, checked against its eighth edition (2024). Gray's Anatomy, cited for vessel anatomy, is still to be checked.
 - **Tissue**: deterministic builders (Python, and a TypeScript generator that also runs in the browser) grow a duct tree, bud acini on their own intercalated ducts, route capillaries so every acinus is within reach, and add stroma and one islet. Cells then grow until they meet a neighbour. Tests check the rules: no overlapping acini, one duct per acinus, packing above 45%, islet composition and size.
 - **Figures**: interactive isometric SVG figures built with the anima figure kit. Each has its own source script and a sources block, and an automatic layout audit checks every figure.
-- **Viewer**: a single self-contained HTML page (three.js) with the models embedded, so it can be hosted anywhere static. The layered openings follow MouseBio_3D's zoom-unfold: each opening grows with the zoom to nearly half the height of the view, outer layers stay as rings, and vessels and ducts of the organ are left uncut.
+- **Viewer**: a single self-contained HTML page (three.js) with the models embedded, so it can be hosted anywhere static. In the layered openings, each opening grows with the zoom to nearly half the height of the view, outer layers stay as rings, and vessels and ducts of the organ are left uncut.
 
 ## Repository layout
 
@@ -173,16 +173,14 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 | `viewer/`                          | Viewer sources (`template.html`, `src/app.js`, `src/atlas.json`, `src/generator.js`), images (`assets/`), build script, tests (`test/smoke.py`, `test/atlas_check.py`, `test/profile.py`), earlier versions in `legacy/` |
 | `repo/`                            | Model data and the code that builds and tests it: inventory, generators, loader, tests, Python builders                                                                                                                  |
 | `docs/`                            | Specification, backlog, change history, sources, README images                                                                                                                                                           |
-| `scripts/install_into_mousebio.sh` | Copies `repo/` into a MouseBio_3D checkout and runs its checks                                                                                                                                                           |
 
 ### Run it locally
 
-Open `dist/pancreas-organ-to-cell.html` in a browser (it needs internet for three.js and fonts). To rebuild and test, from a folder that holds this repository as `pancreas-atlas` (rename the paths if your copy has another name):
+Open `dist/pancreas-organ-to-cell.html` in a browser (it needs internet for three.js and fonts). To rebuild it, run from the repository folder:
 
 ```bash
-git clone https://github.com/Qasim-Hussain-Code/MouseBio_3D && cd MouseBio_3D && npm ci
-bash ../pancreas-atlas/scripts/install_into_mousebio.sh .        # copy the module in, type-check, run its tests
-python3 ../pancreas-atlas/viewer/build_viewer.py . ../pancreas-atlas/dist/pancreas-organ-to-cell.html
+python3 viewer/build_viewer.py repo dist/pancreas-organ-to-cell.html   # writes the page; dist/atlas and dist/figures are copied beside it
+python3 viewer/test/atlas_check.py                                       # checks the atlas sources, credits and licences
 ```
 
 Python builders need `numpy` and `scipy`; the smoke test needs `playwright`. Pushing a new `dist/` to `main` republishes the GitHub Pages site.
