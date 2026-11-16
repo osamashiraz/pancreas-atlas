@@ -1827,11 +1827,33 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
       return `<tr class="grp"><th colspan="${AT_FEATURES.length + 1}">${esc(g.title)}</th></tr>` + es.map((e) => `<tr><th><a href="#atlas=${e.id}" data-entry="${e.id}">${esc(e.name)}</a></th>${AT_FEATURES.map(([k]) => `<td>${esc(e.features[k] || '–')}</td>`).join('')}</tr>`).join(''); }).join('');
     return `<p class="aline">Every entry by the same six features. Read down a column to see how one feature changes from normal to cancer.</p><div class="tablewrap"><table class="matrix"><thead><tr><th></th>${AT_FEATURES.map(([, l]) => `<th>${l}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table></div>`;
   }
+  const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  // Questions come from a shuffled deck: no entry is asked again until every entry in the group has been asked,
+  // and a new deck never starts with the question just asked.
+  let quizDeck = [], quizDeckKey = '';
   function atQuizNew() {
-    const pool = ATLAS_DATA.entries.filter((e) => atImg(e) && (AT.group === 'all' || e.group === AT.group)), e = pool[Math.floor(Math.random() * pool.length)];
+    const pool = ATLAS_DATA.entries.filter((e) => atImg(e) && (AT.group === 'all' || e.group === AT.group)), last = AT.quiz && AT.quiz.e;
+    if (quizDeckKey !== AT.group || !quizDeck.length) { quizDeckKey = AT.group; quizDeck = shuffle(pool.slice());
+      if (quizDeck.length > 1 && quizDeck[quizDeck.length - 1] === last) quizDeck.unshift(quizDeck.pop()); }
+    const e = quizDeck.pop();
     const near = (e.mimics || []).map((m) => AT_BY[m.id]).filter(Boolean), same = pool.filter((x) => x.group === e.group && x !== e), rest = ATLAS_DATA.entries.filter((x) => x !== e && x.species === e.species);
-    const opts = [e]; [near, same, rest].forEach((list) => { list.slice().sort(() => Math.random() - 0.5).forEach((x) => { if (opts.length < 4 && !opts.includes(x)) opts.push(x); }); });
-    AT.quiz = { e, opts: opts.sort(() => Math.random() - 0.5), picked: null };
+    const opts = [e]; [near, same, rest].forEach((list) => { shuffle(list.slice()).forEach((x) => { if (opts.length < 4 && !opts.includes(x)) opts.push(x); }); });
+    AT.quiz = { e, opts: shuffle(opts), picked: null };
+  }
+  // A right answer throws a small burst of pancreas-shaped confetti from the button (none under reduced motion).
+  const PANC_PATH = 'M2 15C1 7 8 3 13 6c4 2 8 2 12 0 5-2 10-3 13-1 3 2 1 6-3 8-5 3-11 4-16 7-7 4-18 5-19-5z';
+  function pancreasConfetti(el) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !el || !el.animate) return;
+    const r = el.getBoundingClientRect(), x0 = r.left + r.width / 2, y0 = r.top + r.height / 2, cols = ['#e8b98a', '#e58fae', '#9a7fd1', '#f2c9a0', '#c96f8f', '#7fb7c9'];
+    for (let i = 0; i < 28; i++) {
+      const d = document.createElement('div'), w = 30 + Math.random() * 16, a = -Math.PI / 2 + (Math.random() - 0.5) * 2.4, v = 160 + Math.random() * 220;
+      d.className = 'pconf'; d.style.cssText = `left:${x0 - w / 2}px;top:${y0 - w / 4}px;width:${w}px`;
+      d.innerHTML = `<svg viewBox="0 0 40 26" aria-hidden="true"><path d="${PANC_PATH}" fill="${cols[i % cols.length]}" stroke="rgba(60,30,40,.45)" stroke-width="1"/><path d="M9 14c8-1 16-5 26-7" fill="none" stroke="rgba(60,30,40,.35)" stroke-width="1"/></svg>`;
+      document.body.appendChild(d);
+      const dx = Math.cos(a) * v, dy = Math.sin(a) * v, rot = (Math.random() - 0.5) * 720, t = 1100 + Math.random() * 600;
+      d.animate([{ transform: 'translate(0,0) rotate(0deg)', opacity: 1 }, { transform: `translate(${dx * 0.8}px,${dy * 0.8}px) rotate(${rot * 0.5}deg)`, opacity: 1, offset: 0.4 },
+        { transform: `translate(${dx}px,${dy + 260}px) rotate(${rot}deg)`, opacity: 0 }], { duration: t, easing: 'cubic-bezier(.2,.7,.4,1)' }).onfinish = () => d.remove();
+    }
   }
   function atQuiz() {
     const Q = AT.quiz, im = atImg(Q.e), done = Q.picked !== null;
@@ -1859,7 +1881,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   $('atlaspanel').addEventListener('click', (ev) => {
     const t = ev.target, zoom = t.closest('img[data-zoom]'), ent = t.closest('[data-entry]'), pair = t.closest('[data-pair]'), view = t.closest('[data-atlas-view]'), ans = t.closest('[data-answer]'), see = t.closest('[data-see]');
     if (zoom) { const lb = $('lightbox'); lb.querySelector('img').src = zoom.src; lb.querySelector('p').textContent = zoom.dataset.zoom; lb.hidden = false; return; }
-    if (ans) { AT.quiz.picked = ans.dataset.answer; AT.score[1]++; if (AT.quiz.picked === AT.quiz.e.id) AT.score[0]++; renderAtlas(); return; }
+    if (ans) { if (AT.quiz.picked !== null) return; AT.quiz.picked = ans.dataset.answer; AT.score[1]++; const right = AT.quiz.picked === AT.quiz.e.id; if (right) AT.score[0]++; renderAtlas(); if (right) pancreasConfetti($('atlaspanel').querySelector('.quiz .opts button.right')); return; }
     if (view) { AT.view = view.dataset.atlasView; AT.entry = AT.pair = null; if (AT.view === 'quiz') atQuizNew(); renderAtlas(); return; }
     if (pair) { atlasOpen(AT.entry, pair.dataset.pair); return; }
     if (ent) { ev.preventDefault(); atlasOpen(ent.dataset.entry); return; }
