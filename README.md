@@ -23,13 +23,13 @@ This tool is for quick, simple learning. It links the normal histology, biology 
 
 ## Why I built this
 
-I am a bioinformatician, and I work on pancreatic cancer, much of it with spatial transcriptomics data. To read those data well I wanted a deeper understanding of the biology behind them: the molecular and cancer biology, and the histology and pathology of the pancreas and its diseases.
+I am a bioinformatician working on spatial profiling of pancreatic cancer. To read these data well, I needed to understand the biology behind them: the molecular and cancer biology, and the histology and pathology of the pancreas and its diseases. I made this resource for others in the same position: students, trainees and computational biologists new to the pancreas. I am still learning myself, so corrections and suggestions are very welcome (see [Feedback, collaboration and contributions](#feedback-collaboration-and-contributions)).
 
-**H&E is where that understanding starts.** Haematoxylin and eosin were first used together in 1876, about 150 years ago, and H&E is still the standard stain in medicine. Pathologists use it to see what a disease looks like, to diagnose it, and to grade and stage tumours, which inform prognosis.
+**That understanding starts with H&E.** Haematoxylin and eosin were first combined in 1876. About 150 years later, H&E is still the standard stain in medicine. Pathologists use it to see what a disease looks like, to diagnose it, and to grade and stage tumours, which informs prognosis.
 
-So I began curating what I learned from papers, textbooks and open resources. I could not find one open resource that gave a simple overview of the whole path, from the normal pancreas with its exocrine and endocrine parts to the diseases of each. So I built one as a learning tool, together with Claude Code and agentic pipelines. Those pipelines collect and check the sources, draw the figures, and have independent "reviewer" agents (cell, molecular, cancer and spatial biology) check the content.
+I gathered what I learned from papers, textbooks and open resources. But I could not find one open resource that linked the normal pancreas, with its exocrine and endocrine functions, to the diseases of each part in a single overview. So I built one as a learning tool, using Claude Code and agentic pipelines. I picked up these skills recently in my Agentic AI course at Johns Hopkins University. I wanted to apply them to something worth learning from.
 
-It has helped my own understanding of pancreatic cancer, especially when working with spatial transcriptomics datasets. Seeing histology side by side with spatial data is how I connect the two. Clinics today read tissue by H&E. Spatial transcriptomics might one day add to that. Placing them side by side helps me see where H&E is already enough (recognising tissue, lesions, grade and invasion) and where spatial data may add more: cell states and neighbourhoods that look alike on H&E. I share it as a learning resource in case it helps others in the same position: students, trainees, and computational biologists new to the pancreas.
+Understanding the biology and pathology of the pancreas has directly improved my own data analyses. Seeing histology beside spatial data is how I connect the two. In the clinic, diagnosis, grading and staging still rest on H&E. Spatial transcriptomics may one day add to that. Putting them side by side shows me where H&E is already enough (recognising tissue, lesions, grade and invasion) and where spatial data may add more: cell states and neighbourhoods that look alike on H&E. If you are new to the pancreas, start with the [suggested route](#a-suggested-route) below.
 
 ## A quick tour
 
@@ -53,10 +53,10 @@ The bar at the top left switches between five pages.
 
 ![PDA page: desmoplasia and the tumour microenvironment](docs/images/tour-tab-pda.jpg)
 
-**Interactive 3D model** (the "Interactive 3D model" button on the Pancreas page). You can zoom continuously from the reference organ (about 15 cm, from the Human Reference Atlas) through its lobules and duct tree to a core of tissue, then an acinus, islet or duct, its cells, and one cell with its organelles. Everything is at true scale, in H&E or cell-type colours. **Play the journey** gives a 16-step narrated tour. Use the **seek bar** under it to go back or forward to any step.
+**Interactive 3D model** (the "Interactive 3D model" button on the Pancreas page). You can zoom continuously from the reference organ (about 15 cm, from the Human Reference Atlas) through its lobules and duct tree to a core of tissue. From there you go to an acinus, islet or duct, then its cells, and finally one cell with its organelles. Everything is at true scale, in H&E or cell-type colours. **Play the journey** gives a 16-step narrated tour. Use the **seek bar** under it to go back or forward to any step.
 
-| The organ | A step of the narrated journey |
-|---|---|
+| The organ                                             | A step of the narrated journey                                                                     |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | ![3D model: the organ](docs/images/tour-3d-organ.jpg) | ![3D model: the journey inside an acinar cell, with the seek bar](docs/images/tour-3d-journey.jpg) |
 
 ### A suggested route
@@ -83,12 +83,12 @@ Every number either names its source or is marked *not yet sourced* in the code,
 
 ### The 3D model: the organ, opened layer by layer
 
-The reference pancreas (head, neck, body, tail, uncinate process) with the main and accessory pancreatic ducts, bile duct and ampulla, and the coeliac, splenic, hepatic and superior mesenteric vessels. Thirty tissue sites (ten each in head, body and tail, scattered at random) lie hidden in the gland, each showing its region's tissue (islets in the uncinate process are rich in PP cells): zoom in on any part of the organ and one of the sites nearest the pointer is picked at random and brought to the middle of the view.
+The model shows the reference pancreas (head, neck, body, tail, uncinate process) with the main and accessory pancreatic ducts, bile duct and ampulla, and the coeliac, splenic, hepatic and superior mesenteric vessels. Thirty tissue sites (ten each in head, body and tail, scattered at random) lie hidden in the gland. Each shows its region's tissue (islets in the uncinate process are rich in PP cells). Zoom in on any part of the organ, and one of the sites nearest the pointer is picked at random and brought to the middle of the view.
 
-Zooming into a site opens the gland **in place, layer by layer**, the way [MouseBio_3D](https://github.com/Qasim-Hussain-Code/MouseBio_3D) opens the mouse: a line goes into the gland at the site, and as you zoom the organ's surface opens round it. Inside, the **lobules** stand cut across, with pale septa of connective tissue between them. Round the line, the lobules near the site open in turn to show what fills them: the **duct tree** (large interlobular duct with its artery and vein, interlobular, intralobular and terminal ducts ending in grape-like clusters of acini) and the **islets**, twice as dense in the tail as in the head. At the bottom of the opening lies a **core of tissue**, cut flat through its islet. Each outer layer stays as a ring round the next, and zooming out closes them again.
+Zooming into a site opens the gland **in place, layer by layer**, the way [MouseBio_3D](https://github.com/Qasim-Hussain-Code/MouseBio_3D) opens the mouse. A line goes into the gland at the site, and as you zoom, the organ's surface opens round it. Inside, the **lobules** stand cut across, with pale septa of connective tissue between them. Round the line, the lobules near the site open in turn to show what fills them. Inside is the **duct tree**: a large interlobular duct with its artery and vein, then interlobular, intralobular and terminal ducts ending in grape-like clusters of acini. Among them lie the **islets**, twice as dense in the tail as in the head. At the bottom of the opening lies a **core of tissue**, cut flat through its islet. Each outer layer stays as a ring round the next, and zooming out closes them again.
 
-| Organ | The surface opens | Lobules and their ducts | Tissue core |
-|---|---|---|---|
+| Organ                           | The surface opens                                          | Lobules and their ducts                                       | Tissue core                                                     |
+| ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
 | ![Organ](docs/images/organ.jpg) | ![The organ opens round the site](docs/images/opening.jpg) | ![Lobules opened onto their duct tree](docs/images/gross.jpg) | ![Tissue core inside the opening](docs/images/tissue-block.jpg) |
 
 **Compare head, body and tail** puts the three regions' lobule columns side by side, each opened to its duct tree and islets:
@@ -99,11 +99,11 @@ Zooming into a site opens the gland **in place, layer by layer**, the way [Mouse
 
 The pancreas is two organs in one, and the model shows both:
 
-- **Exocrine (digestion)** — about 98% of the tissue. Wedge-shaped *acinar cells* arranged like orange segments around a tiny lumen make digestive enzymes: rough ER around the basal nucleus synthesises them, the Golgi packages them, and *zymogen granules* wait at the cell apex for release. Each acinus empties into its own *intercalated duct*, lined at its start by *centroacinar cells*; ducts merge into intralobular, interlobular and finally the main pancreatic duct, which joins the bile duct at the ampulla in the duodenum. *Duct cells* add bicarbonate-rich fluid (through CFTR and SLC26A6) that carries the enzymes and neutralises stomach acid.
-- **Endocrine (blood sugar)** — about 1–2%. *Islets of Langerhans* (about 110 µm, a few hundred cells each) contain beta cells (insulin), alpha cells (glucagon), delta cells (somatostatin) and PP cells, intermixed along a dense capillary bed as in human islets. A *beta cell* is shown with its insulin granules (dense crystalline cores in pale halos), primary cilium and neighbouring capillary.
+- **Exocrine (digestion)**: about 98% of the tissue. Wedge-shaped *acinar cells*, arranged like orange segments around a tiny lumen, make digestive enzymes. Rough ER around the basal nucleus synthesises them, the Golgi packages them, and *zymogen granules* wait at the cell apex for release. Each acinus empties into its own *intercalated duct*, lined at its start by *centroacinar cells*. Ducts merge into intralobular, interlobular and finally the main pancreatic duct, which joins the bile duct at the ampulla in the duodenum. *Duct cells* add bicarbonate-rich fluid (through CFTR and SLC26A6) that carries the enzymes and neutralises stomach acid.
+- **Endocrine (blood sugar)**: about 1–2% of the tissue. *Islets of Langerhans* (about 110 µm, a few hundred cells each) contain beta cells (insulin), alpha cells (glucagon), delta cells (somatostatin) and PP cells, intermixed along a dense capillary bed as in human islets. A *beta cell* is shown with its insulin granules (dense crystalline cores in pale halos), primary cilium and neighbouring capillary.
 
-| Acinus | Islet (cell-type colours) | Acinar cell | Beta cell |
-|---|---|---|---|
+| Acinus                            | Islet (cell-type colours)                 | Acinar cell                                 | Beta cell                               |
+| --------------------------------- | ----------------------------------------- | ------------------------------------------- | --------------------------------------- |
 | ![Acinus](docs/images/acinus.jpg) | ![Islet](docs/images/islet-celltypes.jpg) | ![Acinar cell](docs/images/acinar-cell.jpg) | ![Beta cell](docs/images/beta-cell.jpg) |
 
 ### 3D model features
@@ -114,72 +114,72 @@ The pancreas is two organs in one, and the model shows both:
 - **Stain**: H&E (purple nuclei, pink cytoplasm, red granules, pale islets) or **Cell types** (immunofluorescence-like colours).
 - **Cut open** a structure, **slice apart** (organ into transverse slices, tissue into serial sections), **split screen** to compare two views, **compare head, body and tail**.
 - **Beta, alpha and delta cells**, each with its own granules (beta ~350 nm with clear halos, alpha ~200 nm and dense, delta ~250 nm); the delta cell reaches its neighbours with long processes.
-- **Secretion in motion** (Motion on): zymogen granules travel to the apex and release enzymes down the duct; duct cells secrete bicarbonate through CFTR and SLC26A6; a beta cell takes up glucose and releases insulin into its capillary; alpha cells release glucagon; delta cells release somatostatin beside their neighbours. The journey narrates each.
+- **Secretion in motion** (Motion on). Zymogen granules travel to the apex and release enzymes down the duct. Duct cells secrete bicarbonate through CFTR and SLC26A6. A beta cell takes up glucose and releases insulin into its capillary. Alpha cells release glucagon, and delta cells release somatostatin beside their neighbours. The journey narrates each.
 - **Marker genes** for the cell in view or clicked, from the HRA ASCT+B table and the Human Protein Atlas, each linking to its HPA page.
 - **Play the journey**: a 16-step narrated tour in Google's UK English female voice (Chrome; other browsers use a standard UK voice). A **seek bar** (◀ step slider ▶) jumps back or forward to any step.
 - Click any cell or structure to name it, isolate it or fade it.
-- A quiet side panel: sources and the less-used controls (voice, speed, split screen, slice apart, comparison) are folded away, closed until opened.
+- A quiet side panel: sources and the less-used controls (voice, speed, split screen, slice apart, comparison) are folded away until opened.
 - **Links to a view**: the address follows what you are looking at, e.g. [`#site=9&view=islet&stain=if`](https://osamashiraz.github.io/pancreas-atlas/#site=9&view=islet&stain=if), so a view can be shared or used in teaching.
 
 ### Histology views
 
 On the disease pages, picking a lesion opens its **histology view**. It starts with a drawing in H&E colours of the lesion's key architecture. Real H&E micrographs follow (open-licensed, credited) with the same features numbered alike, then high-power views of the cells.
 
-| PanIN | IPMN | MCN |
-|---|---|---|
-| ![PanIN histology](docs/images/panin.jpg) | ![IPMN histology](docs/images/ipmn.jpg) | ![MCN histology](docs/images/mcn.jpg) |
+| PanIN                                                                                                                                                                                             | IPMN                                                                                                                                                                                                   | MCN                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![PanIN histology](docs/images/panin.jpg)                                                                                                                                                         | ![IPMN histology](docs/images/ipmn.jpg)                                                                                                                                                                | ![MCN histology](docs/images/mcn.jpg)                                                                                                                       |
 | Normal duct → PanIN-1a → 1b → 2 → 3: low cuboidal cells become tall columnar with apical mucin, then micropapillae and papillae with crowded, atypical nuclei; KRAS and telomere shortening first | Gross specimen and H&E: dilated main duct and branch-duct cysts that open into it; tall mucinous papillae (gastric type), complex papillae (pancreatobiliary type); ordinary stroma, no ovarian stroma | Fibrous capsule, mucin-filled cyst, mucinous columnar lining, and the dense, cellular ovarian-type stroma of spindle cells with wavy nuclei that defines it |
 
 Images: Hackeng et al., *Diagn Pathol* 2016 (CC BY 4.0); Shibata et al., *Clin J Gastroenterol* 2017 (CC BY 4.0); Nephron and Humpath, Wikimedia Commons (CC BY-SA 3.0). See [`viewer/assets/histology/CREDITS.md`](viewer/assets/histology/CREDITS.md).
 
-Each comes with a card on its appearance, grading, genes, who it affects and survival, in our own words, citing Hingorani 2007, Rodriguez et al. 2007, *The Pancreas: An Integrated Textbook* (Beger et al., 4th ed., 2023) and *Robbins and Cotran Pathologic Basis of Disease* (9th ed.). Placement on the organ is simulated by rule; drawn sizes follow the stated sizes.
+Each comes with a card on its appearance, grading, genes, who it affects and survival, in my own words, citing Hingorani 2007, Rodriguez et al. 2007, *The Pancreas: An Integrated Textbook* (Beger et al., 4th ed., 2023) and *Robbins and Cotran Pathologic Basis of Disease* (9th ed.). Placement on the organ is simulated by rule; drawn sizes follow the stated sizes.
 
 ### The organs round the pancreas
 
-The liver, gallbladder, kidneys and their vessels, aorta, inferior vena cava and transverse colon are extracted unchanged from the same HRA body model (`repo/scripts/human/extract_neighbours.py`), shown faintly round the pancreas with their names when “Show the organs round the pancreas” is ticked (off by default). The HRA v2.0 body model has no stomach or adrenal glands, so they are not shown.
+The liver, gallbladder, kidneys and their vessels, aorta, inferior vena cava and transverse colon are extracted unchanged from the same HRA body model (`repo/scripts/human/extract_neighbours.py`). They are shown faintly round the pancreas, with their names, when “Show nearby organs” is ticked (off by default). The HRA v2.0 body model has no stomach or adrenal glands, so they are not shown.
 
 ## Datasets and sources
 
-| What | Source | Use in the model |
-|---|---|---|
-| Organ, ducts, large vessels, duodenum, spleen | **HRA 3D Reference Object Library** v2.0 (HuBMAP), derived from the **Visible Human Project** (U.S. National Library of Medicine), male and female; CC BY 4.0 | 29 named meshes per sex copied byte-for-byte; organ volume by voxelisation |
-| Cell types and ontology terms | **HRA ASCT+B table** for the pancreas and the HRA crosswalk | Cell-type names, UBERON/FMA/CL identifiers, islet composition |
-| Islet number, size, clustering | Hahn et al., *Commun Biol* 2021 | ~1.7–1.8 million islets per organ, peripheral clusters |
-| Regional islet density | Wang et al., *PLoS One* 2013 | Tail about twice head and body |
-| Islet architecture | Cabrera et al., *PNAS* 2006; Brissova et al., *J Histochem Cytochem* 2005 | Intermixed alpha/beta cells, 71% heterotypic contacts |
-| Beta-cell volume | Reers et al., *Eur J Endocrinol* 2009 | Beta-cell volume fraction (2.3%) |
-| Tissue architecture | Kiemen et al. (CODA), *Nat Methods* 2022 | Grape-like acinar clusters, collagen along ducts |
-| Ducts and centroacinar cells | Endo et al. 2002 (rat); Beer et al. 2016 | One intercalated duct per acinus, no anastomoses |
-| Cell biology | Palade 1975; Messenger et al. 2014; Berclaz et al. 2016; Steward & Ishiguro 2009; Hegyi & Rakonczay 2015; diIorio et al. 2014 | Secretory pathway, zymogen and insulin granules, duct secretion, cilia |
-| Marker genes | **HRA ASCT+B** pancreas v1.3 (doi:10.48539/HBM336.TBNP.923); **Human Protein Atlas** v26.0 (CC BY 4.0) | Marker panel per cell type (`repo/data/human-pancreas-markers.json`) |
-| Pancreatitis and PDA | Kumar, Abbas, Aster, *Robbins and Cotran*, 9th ed., 2015 (ch. 19); Beger et al., *The Pancreas*, 4th ed., 2023 (ch. 7, 17, 41, 47, 119, 125, 128, 130, 134, 137); images from Wikimedia Commons (Patho; Université Laval; KGH; Singh et al. 2016; Wang et al. 2016) | Organ changes, histology drawings, cards, comparison tables |
-| Organs round the pancreas | HRA 3D Reference Object Library v2.0, male united model | Liver, gallbladder, kidneys, great vessels, colon (geometry unchanged) |
-| Precursor lesions | Hingorani, *Gastroenterology* 2007 (doi:10.1053/j.gastro.2007.05.059); Rodriguez et al., *Gastroenterology* 2007; Beger et al., *The Pancreas*, 4th ed., Wiley 2023 (ch. 81, 84, 86, 125, 126); Kumar, Abbas, Aster, *Robbins and Cotran*, 9th ed., 2015 (ch. 19) | Where PanIN, MCN and IPMN arise; sizes, grades, genes; architecture of each view |
-| Normal anatomy (checks) | Gorelick & Williams, eds., *The Pancreas: Biology and Physiology*, APA 2021 (CC BY-NC-ND; ch. 1 Longnecker) | Islet size and number, endocrine fraction, zymogen granule size |
-| Secretion and islet cells | Lee et al., *Physiol Rev* 2012; Rorsman & Ashcroft, *Physiol Rev* 2018; Brereton et al., *J Histochem Cytochem* 2015; Arrojo e Drigo et al., *Nat Commun* 2019 | Bicarbonate and insulin secretion; granule sizes; delta-cell processes |
-| Teaching text | StatPearls (NCBI Bookshelf, CC BY 4.0); Columbia and Basel histology notes; Human Protein Atlas | Narration, paraphrased in our own words with credit |
+| What                                          | Source                                                                                                                                                                                                                                                              | Use in the model                                                                 |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Organ, ducts, large vessels, duodenum, spleen | **HRA 3D Reference Object Library** v2.0 (HuBMAP), derived from the **Visible Human Project** (U.S. National Library of Medicine), male and female; CC BY 4.0                                                                                                       | 29 named meshes per sex copied byte-for-byte; organ volume by voxelisation       |
+| Cell types and ontology terms                 | **HRA ASCT+B table** for the pancreas and the HRA crosswalk                                                                                                                                                                                                         | Cell-type names, UBERON/FMA/CL identifiers, islet composition                    |
+| Islet number, size, clustering                | Hahn et al., *Commun Biol* 2021                                                                                                                                                                                                                                     | ~1.7–1.8 million islets per organ, peripheral clusters                           |
+| Regional islet density                        | Wang et al., *PLoS One* 2013                                                                                                                                                                                                                                        | Tail about twice head and body                                                   |
+| Islet architecture                            | Cabrera et al., *PNAS* 2006; Brissova et al., *J Histochem Cytochem* 2005                                                                                                                                                                                           | Intermixed alpha/beta cells, 71% heterotypic contacts                            |
+| Beta-cell volume                              | Reers et al., *Eur J Endocrinol* 2009                                                                                                                                                                                                                               | Beta-cell volume fraction (2.3%)                                                 |
+| Tissue architecture                           | Kiemen et al. (CODA), *Nat Methods* 2022                                                                                                                                                                                                                            | Grape-like acinar clusters, collagen along ducts                                 |
+| Ducts and centroacinar cells                  | Endo et al. 2002 (rat); Beer et al. 2016                                                                                                                                                                                                                            | One intercalated duct per acinus, no anastomoses                                 |
+| Cell biology                                  | Palade 1975; Messenger et al. 2014; Berclaz et al. 2016; Steward & Ishiguro 2009; Hegyi & Rakonczay 2015; diIorio et al. 2014                                                                                                                                       | Secretory pathway, zymogen and insulin granules, duct secretion, cilia           |
+| Marker genes                                  | **HRA ASCT+B** pancreas v1.3 (doi:10.48539/HBM336.TBNP.923); **Human Protein Atlas** v26.0 (CC BY 4.0)                                                                                                                                                              | Marker panel per cell type (`repo/data/human-pancreas-markers.json`)             |
+| Pancreatitis and PDA                          | Kumar, Abbas, Aster, *Robbins and Cotran*, 9th ed., 2015 (ch. 19); Beger et al., *The Pancreas*, 4th ed., 2023 (ch. 7, 17, 41, 47, 119, 125, 128, 130, 134, 137); images from Wikimedia Commons (Patho; Université Laval; KGH; Singh et al. 2016; Wang et al. 2016) | Organ changes, histology drawings, cards, comparison tables                      |
+| Organs round the pancreas                     | HRA 3D Reference Object Library v2.0, male united model                                                                                                                                                                                                             | Liver, gallbladder, kidneys, great vessels, colon (geometry unchanged)           |
+| Precursor lesions                             | Hingorani, *Gastroenterology* 2007 (doi:10.1053/j.gastro.2007.05.059); Rodriguez et al., *Gastroenterology* 2007; Beger et al., *The Pancreas*, 4th ed., Wiley 2023 (ch. 81, 84, 86, 125, 126); Kumar, Abbas, Aster, *Robbins and Cotran*, 9th ed., 2015 (ch. 19)   | Where PanIN, MCN and IPMN arise; sizes, grades, genes; architecture of each view |
+| Normal anatomy (checks)                       | Gorelick & Williams, eds., *The Pancreas: Biology and Physiology*, APA 2021 (CC BY-NC-ND; ch. 1 Longnecker)                                                                                                                                                         | Islet size and number, endocrine fraction, zymogen granule size                  |
+| Secretion and islet cells                     | Lee et al., *Physiol Rev* 2012; Rorsman & Ashcroft, *Physiol Rev* 2018; Brereton et al., *J Histochem Cytochem* 2015; Arrojo e Drigo et al., *Nat Commun* 2019                                                                                                      | Bicarbonate and insulin secretion; granule sizes; delta-cell processes           |
+| Teaching text                                 | StatPearls (NCBI Bookshelf, CC BY 4.0); Columbia and Basel histology notes; Human Protein Atlas                                                                                                                                                                     | Narration, paraphrased in my own words with credit                              |
 
 Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still awaiting a source (for example acinar cell height, duct radii, lobule size, organelle counts) are listed in [`docs/SPEC.md`](docs/SPEC.md) §9.
 
 ## How it is built
 
-- **Organ**: meshes extracted unchanged from the HRA united body models; small arteries (gastroduodenal, pancreaticoduodenal arcades, dorsal/great/caudal pancreatic) routed by shortest path around drawn structures; lymph nodes placed at the Japan Pancreas Society stations (checked against its eighth edition, 2024; Gray's Anatomy, cited for vessel anatomy, is still to be checked).
-- **Tissue**: deterministic builders (Python, and a TypeScript generator that also runs in the browser) grow a duct tree, bud acini on their own intercalated ducts, route capillaries so every acinus is within reach, add stroma and one islet, then let cells grow until they meet a neighbour. Tests check the rules: no overlapping acini, one duct per acinus, packing above 45%, islet composition and size.
-- **Figures**: interactive isometric SVG figures built with the anima figure kit, one source script per figure, each with a sources block; every figure is checked by an automatic layout audit.
+- **Organ**: meshes extracted unchanged from the HRA united body models. Small arteries (gastroduodenal, pancreaticoduodenal arcades, dorsal/great/caudal pancreatic) are routed by shortest path around drawn structures. Lymph nodes are placed at the Japan Pancreas Society stations, checked against its eighth edition (2024). Gray's Anatomy, cited for vessel anatomy, is still to be checked.
+- **Tissue**: deterministic builders (Python, and a TypeScript generator that also runs in the browser) grow a duct tree, bud acini on their own intercalated ducts, route capillaries so every acinus is within reach, and add stroma and one islet. Cells then grow until they meet a neighbour. Tests check the rules: no overlapping acini, one duct per acinus, packing above 45%, islet composition and size.
+- **Figures**: interactive isometric SVG figures built with the anima figure kit. Each has its own source script and a sources block, and an automatic layout audit checks every figure.
 - **Viewer**: a single self-contained HTML page (three.js) with the models embedded, so it can be hosted anywhere static. The layered openings follow MouseBio_3D's zoom-unfold: each opening grows with the zoom to nearly half the height of the view, outer layers stay as rings, and vessels and ducts of the organ are left uncut.
 
 ## Repository layout
 
-| Path | What |
-|---|---|
-| `dist/pancreas-organ-to-cell.html` | The built viewer (published to GitHub Pages) |
-| `dist/atlas/` | The atlas images, loaded by the page only when the atlas is opened |
-| `dist/figures/` | The interactive illustrated figures, embedded in the pages |
-| `viewer/` | Viewer sources (`template.html`, `src/app.js`, `src/atlas.json`, `src/generator.js`), images (`assets/`), build script, tests (`test/smoke.py`, `test/atlas_check.py`, `test/profile.py`), earlier versions in `legacy/` |
-| `repo/` | Model data and the code that builds and tests it: inventory, generators, loader, tests, Python builders |
-| `docs/` | Specification, backlog, change history, sources, README images |
-| `scripts/install_into_mousebio.sh` | Copies `repo/` into a MouseBio_3D checkout and runs its checks |
-| `CLAUDE.md` | Working rules for continuing the project with Claude Code |
+| Path                               | What                                                                                                                                                                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `dist/pancreas-organ-to-cell.html` | The built viewer (published to GitHub Pages)                                                                                                                                                                             |
+| `dist/atlas/`                      | The atlas images, loaded by the page only when the atlas is opened                                                                                                                                                       |
+| `dist/figures/`                    | The interactive illustrated figures, embedded in the pages                                                                                                                                                               |
+| `viewer/`                          | Viewer sources (`template.html`, `src/app.js`, `src/atlas.json`, `src/generator.js`), images (`assets/`), build script, tests (`test/smoke.py`, `test/atlas_check.py`, `test/profile.py`), earlier versions in `legacy/` |
+| `repo/`                            | Model data and the code that builds and tests it: inventory, generators, loader, tests, Python builders                                                                                                                  |
+| `docs/`                            | Specification, backlog, change history, sources, README images                                                                                                                                                           |
+| `scripts/install_into_mousebio.sh` | Copies `repo/` into a MouseBio_3D checkout and runs its checks                                                                                                                                                           |
+| `CLAUDE.md`                        | Working rules for continuing the project with Claude Code                                                                                                                                                                |
 
 ### Run it locally
 
@@ -207,11 +207,11 @@ This work is evolving. Corrections, suggestions and contributions are very welco
 
 ## Limitations
 
-This is a teaching and communication model, not a patient-specific or diagnostic one. The organ comes from one male and one female reference body; everything below the organ scale is simulated from published descriptions, and some sizes are typical values not yet sourced (marked in the code and listed in the spec). Known issues are in [`docs/BACKLOG.md`](docs/BACKLOG.md).
+This is a teaching and communication model, not a patient-specific or diagnostic one. The organ comes from one male and one female reference body. Everything below the organ scale is simulated from published descriptions, and some sizes are typical values not yet sourced (marked in the code and listed in the spec). Known issues are in [`docs/BACKLOG.md`](docs/BACKLOG.md).
 
 ## Licence and credit
 
 - Code: MIT (see [`LICENSE`](LICENSE)).
-- Model data derived from the HRA 3D Reference Object Library: CC BY 4.0 — see [`repo/public/atlas-human/NOTICE.md`](repo/public/atlas-human/NOTICE.md). Cite: Börner K, et al. *Nat Methods* 2025;22:845–860. doi:10.1038/s41592-024-02563-5.
+- Model data derived from the HRA 3D Reference Object Library: CC BY 4.0 (see [`repo/public/atlas-human/NOTICE.md`](repo/public/atlas-human/NOTICE.md)). Cite: Börner K, et al. *Nat Methods* 2025;22:845–860. doi:10.1038/s41592-024-02563-5.
 - Visible Human Project, U.S. National Library of Medicine.
-- Narration and page text are our own wording, paraphrased from open sources (StatPearls CC BY 4.0, university histology notes, Human Protein Atlas) with credit.
+- Narration and page text are in my own words, paraphrased from open sources (StatPearls CC BY 4.0, university histology notes, Human Protein Atlas) with credit.
