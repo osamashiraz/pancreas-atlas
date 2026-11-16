@@ -39,9 +39,6 @@ body[data-stain="if"] .stage{background:radial-gradient(ellipse at 50% 38%,#2a25
 body[data-mode]:not([data-mode="pancreas"]) .ladder-pancreas{display:none}.ladder-mode{display:none}
 body[data-mode="precursors"] .ladder-mode[data-for-mode="precursors"],body[data-mode="pancreatitis"] .ladder-mode[data-for-mode="pancreatitis"],body[data-mode="pda"] .ladder-mode[data-for-mode="pda"],body[data-mode="atlas"] .ladder-mode[data-for-mode="atlas"]{display:flex}
 .ladder-pancreas,.ladder-mode{flex-direction:column;gap:5px}.ladder-pancreas{display:flex}
-.insets{position:absolute;inset:0;pointer-events:none;z-index:4}.insets svg{position:absolute;inset:0;width:100%;height:100%}
-.inset{position:absolute;width:250px;height:178px;border:2px solid var(--accent);border-radius:8px;pointer-events:auto;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-.inset{background-size:cover;background-color:var(--panel)}
 .histo{position:absolute;top:0;right:0;bottom:0;left:360px;overflow:auto;padding:14px 22px 30px;z-index:4;background:var(--canvas);color:var(--ink)}
 .histo .hhead{display:flex;justify-content:space-between;align-items:center;gap:12px}.histo h2{font:560 22px/1.2 "Newsreader",Georgia,serif;margin:6px 0}.histo h3{font:560 16px/1.3 "Newsreader",Georgia,serif;margin:16px 0 6px}
 .histo .hclose{font:inherit;font-size:13px;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:6px;padding:5px 10px;cursor:pointer}
@@ -95,9 +92,8 @@ body[data-mode="atlas"] .app,body[data-mode="overview"] .app{grid-template-colum
 #overviewpanel{position:absolute;inset:0;overflow:auto;padding:72px 22px 30px;z-index:3;background:var(--canvas);color:var(--ink)}#overviewpanel[hidden]{display:none}body[data-mode="pancreatitis"] .app,body[data-mode="precursors"] .app,body[data-mode="pda"] .app{grid-template-columns:minmax(0,1fr)}body[data-mode="pancreatitis"] aside,body[data-mode="precursors"] aside,body[data-mode="pda"] aside,body[data-mode="pancreatitis"] .reset,body[data-mode="precursors"] .reset,body[data-mode="pda"] .reset,body[data-mode="pancreatitis"] .scale,body[data-mode="precursors"] .scale,body[data-mode="pda"] .scale,body[data-mode="pancreatitis"] .hint,body[data-mode="precursors"] .hint,body[data-mode="pda"] .hint{display:none}body[data-mode="pancreatitis"] .histo,body[data-mode="precursors"] .histo,body[data-mode="pda"] .histo{left:0;padding-top:66px}body[data-mode="pancreatitis"] .ladder-mode[data-for-mode="pancreatitis"],body[data-mode="precursors"] .ladder-mode[data-for-mode="precursors"],body[data-mode="pda"] .ladder-mode[data-for-mode="pda"]{display:none}
 .atlas .intro{font-size:14px;color:var(--muted);max-width:860px;margin:-4px 0 14px}.orgnote{max-width:1040px;margin:10px auto 0;font-size:13.5px;color:var(--ink)}.orgnote .src{color:var(--muted);font-size:12px}.cmphd{max-width:1180px;margin:18px 0 6px;font:560 17px/1.2 "Newsreader",Georgia,serif}.cmptable{border-collapse:collapse;font-size:13.5px;width:100%;max-width:1180px}.cmptable th,.cmptable td{border-bottom:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top}.cmptable thead th{font-weight:600;color:var(--muted)}.linkish{font:inherit;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-align:left}.linkish:hover{text-decoration:underline}.abar .dimtoggle{display:flex;gap:6px;margin-left:auto}.dim3d{position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:6;display:none;gap:6px}body[data-mode="pancreas"] .dim3d{display:flex}.dim3d .abtn,.dimtoggle .abtn{font:inherit;font-size:13px;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:6px;padding:5px 12px;cursor:pointer}.dim3d .abtn.primary,.dimtoggle .abtn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}#atlasnav{max-width:208px}#atlasnav button{min-width:0}body[data-mode="atlas"] .histo{left:228px;padding-top:70px}@media (max-width:880px){body[data-mode="atlas"] .histo{left:0}#atlasnav{max-width:none}}
 @media (max-width:880px){.atlas .aentry,.atlas .pair,.atlas .quiz .opts{grid-template-columns:1fr}}
-.inset b{position:absolute;left:0;right:0;bottom:0;font:600 12.5px "Public Sans",system-ui,sans-serif;background:color-mix(in srgb,var(--panel) 90%,transparent);color:var(--ink);padding:3px 8px;border-radius:0 0 6px 6px}
-.inset:hover{border-color:var(--ink)}.flash{position:absolute;inset:0;background:var(--canvas);opacity:0;pointer-events:none;transition:opacity .35s;z-index:3}
-@media (max-width:880px){.inset{width:150px;height:110px}}
+
+.flash{position:absolute;inset:0;background:var(--canvas);opacity:0;pointer-events:none;transition:opacity .35s;z-index:3}
 .ladder button[aria-current="true"]{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
 .levelname{position:absolute;left:50%;top:14px;transform:translateX(-50%);font:560 19px/1.2 "Newsreader",Georgia,serif;color:var(--ink);background:color-mix(in srgb,var(--panel) 80%,transparent);padding:3px 12px;border-radius:12px;pointer-events:none}
 .labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
@@ -106,6 +102,7 @@ body[data-mode="atlas"] .app,body[data-mode="overview"] .app{grid-template-colum
 .caption:empty{display:none}
 .tools{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:8px 0;margin:4px 0 12px}
 .tools .row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:14px;margin:6px 0}
+.seek{gap:6px;align-items:center;flex-wrap:nowrap}.seek input{flex:1;min-width:80px;accent-color:var(--accent)}.seek button{font:inherit;font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:3px 8px;cursor:pointer}.seek span{font-size:12.5px;color:var(--muted);white-space:nowrap}
 .play{font:inherit;font-size:14px;color:var(--panel);background:var(--accent);border:0;border-radius:6px;padding:6px 14px;cursor:pointer}
 .preset{font:inherit;font-size:12.5px;color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:3px 9px;cursor:pointer}
 .picker{display:flex;align-items:center;gap:8px;margin:2px 0 12px;font-size:13.5px}
@@ -214,7 +211,6 @@ details.src{font-size:11.5px;color:var(--muted);margin:4px 0 0}details.src>summa
    <button type="button" data-lesion="mcn">MCN<span>mucinous cyst, body and tail</span></button>
    </div>
   </nav>
-  <div class="insets" id="insets" aria-hidden="false"></div>
   <div class="dim3d" id="dim3d"><button type="button" class="abtn" data-dim="2d">2D</button><button type="button" class="abtn primary" data-dim="3d">3D model</button></div>
   <div class="flash" id="flash"></div>
   <section class="histo" id="histopanel" hidden aria-live="polite"></section>
@@ -232,6 +228,7 @@ details.src{font-size:11.5px;color:var(--muted);margin:4px 0 0}details.src>summa
    <div class="row"><button class="play" id="play" type="button">Play the journey</button>
     <label><input type="checkbox" id="voice" checked> Voice</label>
     <label><input type="checkbox" id="names" checked> Names</label><label><input type="checkbox" id="motion"> Motion <small style="color:var(--muted)">(illustrative)</small></label></div>
+   <div class="row seek" role="group" aria-label="Journey steps"><button type="button" id="tprev" aria-label="Previous step">&#9664;</button><input type="range" id="tseek" min="1" max="16" value="1" step="1" aria-label="Journey step"><button type="button" id="tnext" aria-label="Next step">&#9654;</button><span id="tstep">Step 1 of 16</span></div>
    <details class="fold" id="moreopts"><summary>More options</summary>
    <div class="row" style="gap:8px"><label style="display:flex;gap:6px;align-items:center;font-size:13px">Voice <select id="voicepick" aria-label="Narration voice" style="font:inherit;font-size:13px;max-width:170px;color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:3px"></select></label>
     <label style="display:flex;gap:6px;align-items:center;font-size:13px">Speed <input type="range" id="voicerate" min="0.7" max="1.15" step="0.01" value="0.88" style="width:90px" aria-label="Narration speed"><span id="ratelabel"></span></label></div>
@@ -245,7 +242,6 @@ details.src{font-size:11.5px;color:var(--muted);margin:4px 0 0}details.src>summa
    </details>
   </div>
   <label class="toggle" data-for="organ pancreatitis pda precursors"><input type="checkbox" id="neighbours"> Show nearby organs <small>(liver, gallbladder, kidneys, colon, great vessels)</small></label>
-  <label class="toggle" data-for="organ gross tissue pancreatitis pda precursors"><input type="checkbox" id="showinsets" checked> Show insets <small>(histology beside the organ)</small></label>
   <div class="selection" id="selection" hidden>
    <h3 id="selname"></h3><p id="seltext"></p>
    <div class="row"><button type="button" id="isolate">Isolate</button><label style="display:flex;gap:6px;align-items:center;font-size:13px">Opacity <input type="range" id="selop" min="0" max="1" step="0.01" value="1" style="width:110px"></label><button type="button" id="selclose" aria-label="Clear selection">Clear</button></div>

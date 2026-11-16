@@ -1005,9 +1005,19 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   function stopTour() { if (!tour) return; if (window.speechSynthesis) speechSynthesis.cancel(); tour = null; flight = null; STAGE.locked = false; $('play').textContent = 'Play the journey'; $('caption').textContent = ''; }
   function nextTour() { if (!tour) return; if (tour.i >= TOUR.length) { stopTour(); return; } const s = TOUR[tour.i++];
     setIsletKind(s.k); flyTo(s.d, s.br, s.m); tour.phase = 'fly'; tour.hold = s.hold; $('caption').textContent = s.say; say(s.say);
+    showStep(tour.i);
     if (s.br) document.querySelectorAll('[data-branch]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.branch === s.br))); }
-  $('play').addEventListener('click', () => { if (tour) { stopTour(); return; } if (MODE !== 'pancreas') setMode('pancreas'); tour = { i: 0, view: focus }; $('play').textContent = 'Stop'; if (!motionOn) { motionOn = true; $('motion').checked = true; }   // the journey shows secretion in motion
-    if (window.speechSynthesis) speechSynthesis.getVoices(); nextTour(); });
+  function startTour(i) { if (MODE !== 'pancreas') setMode('pancreas'); tour = { i, view: focus }; $('play').textContent = 'Stop'; if (!motionOn) { motionOn = true; $('motion').checked = true; }   // the journey shows secretion in motion
+    if (window.speechSynthesis) speechSynthesis.getVoices(); nextTour(); }
+  $('play').addEventListener('click', () => { if (tour) stopTour(); else startTour(0); });
+  // Seek bar: jump back or forward to any step (1-based on screen); it starts the journey there if it is not playing.
+  function showStep(n) { $('tseek').value = n; $('tstep').textContent = `Step ${n} of ${TOUR.length}`; }
+  function seekTour(n) { n = Math.max(1, Math.min(TOUR.length, n)); if (tour) { tour.i = n - 1; nextTour(); } else startTour(n - 1); }
+  $('tseek').max = TOUR.length; showStep(1);
+  $('tseek').addEventListener('input', (e) => { $('tstep').textContent = `Step ${e.target.value} of ${TOUR.length}`; });
+  $('tseek').addEventListener('change', (e) => seekTour(+e.target.value));
+  $('tprev').addEventListener('click', () => seekTour((tour ? tour.i : +$('tseek').value) - 1));
+  $('tnext').addEventListener('click', () => seekTour((tour ? tour.i : +$('tseek').value) + 1));
   // The journey keeps going while you turn, zoom or click the model; only the Stop button ends it.
 
   // ---------- names
@@ -1195,7 +1205,6 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     // Scale bar
     drawScale(d);
     controls.update(); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.render(scene, camera);
-    if (v.i === focus) drawInsets(now, (MODE === 'pancreas' ? (lv === 'organ' || lv === 'gross' || lv === 'tissue') : lv === 'organ') && UI.w > 640);
     // Zooming into a lesion opens its view.
     if (MODE !== 'pancreas' && LES.pending && d < 70000 && !flight) enterLesion(LES.pending);
   }
@@ -1750,32 +1759,8 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     card.innerHTML = keys.map((k) => { const L = LESIONS[k]; return `<h3><span class="sw" style="background:var(${L.color})"></span>${esc(L.full)}</h3>`
       + (detailed ? `<p><strong>Where:</strong> ${esc(L.where)}</p><p><strong>Size:</strong> ${esc(L.size)}</p><details class="src more"><summary>More: what it is, and prognosis</summary><p>${esc(L.text)}</p><p><strong>Prognosis:</strong> ${esc(L.survival)}</p></details>` : `<p>${esc(L.where.replace(/\.$/, ''))}.</p>`); }).join('') + srcFold(esc(LESIONS[keys[0]].source || LESION_SOURCE));
   }
-  // Insets beside the organ, each a live view of one lesion's architecture, joined by a line to where it arises.
-  const INSETS_BY_MODE = { precursors: [{ key: 'mcn', pos: { right: 16, top: 70 } }, { key: 'panin', pos: { right: 16, bottom: 70 } }, { key: 'ipmn', pos: { left: 16, bottom: 70 } }],
-    pancreatitis: [{ key: 'acute', pos: { right: 16, top: 70 } }, { key: 'chronic', pos: { left: 16, bottom: 70 } }], pda: [{ key: 'pda', pos: { right: 16, bottom: 70 } }] };
-  let INSETS = INSETS_BY_MODE.precursors;
-  // In the Pancreas view, small H&E insets of the real tissue, each opening its atlas entry.
-  const PANCREAS_INSETS = [{ id: 'normal-acini', pos: { right: 16, top: 70 } }, { id: 'normal-islet', pos: { right: 16, bottom: 70 } }, { id: 'normal-intralobular-duct', pos: { left: 16, bottom: 258 } }, { id: 'normal-interlobular-duct', pos: { left: 16, bottom: 70 } }];
-  const INSET_CROP = { panin: '50% 50%', ipmn: '50% 40%', mcn: '50% 30%', acute: '45% 35%', chronic: '30% 70%', pda: '50% 60%' }, INSET_IMG = { panin: 'panin2-hp', ipmn: 'ipmn-lowgrade', mcn: 'mcn-hp', acute: 'acute', chronic: 'chronic-fibrosis', pda: 'pda-hp' };
-  function insetDom() {
-    const box = $('insets'); if (box.dataset.built === MODE) return; box.dataset.built = MODE;
-    if (MODE === 'pancreas') { INSETS = PANCREAS_INSETS;
-      box.innerHTML = '<svg aria-hidden="true"></svg>' + INSETS.map((t) => { const e = AT_BY[t.id], im = e.thumb || (e.images[0] && e.images[0].src); return `<div class="inset" data-atlasinset="${t.id}" style="${Object.entries(t.pos).map(([k, v]) => `${k}:${v}px`).join(';')};background-image:url(${im})" role="button" tabindex="0" aria-label="Open the atlas: ${esc(e.name)}"><b>${esc(e.name)} ›</b></div>`; }).join('');
-      box.querySelectorAll('[data-atlasinset]').forEach((el) => { const go = () => { setMode('atlas'); atlasOpen(el.dataset.atlasinset); }; el.addEventListener('click', go); el.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(); }); });
-      return; }
-    INSETS = INSETS_BY_MODE[MODE] || [];
-    box.innerHTML = '<svg aria-hidden="true"></svg>' + INSETS.map((t) => `<div class="inset" data-inset="${t.key}" style="${Object.entries(t.pos).map(([k, v]) => `${k}:${v}px`).join(';')};background-image:url(${HISTO_IMG[INSET_IMG[t.key]]});background-position:${INSET_CROP[t.key]}" role="button" tabindex="0" aria-label="Open ${LESION_VIEWS[t.key].title}: histology"><b>${LESION_VIEWS[t.key].title} ›</b></div>`).join('');
-    box.querySelectorAll('[data-inset]').forEach((el) => { el.addEventListener('click', () => enterLesion(el.dataset.inset)); el.addEventListener('keydown', (e) => { if (e.key === 'Enter') enterLesion(el.dataset.inset); }); });
-  }
-  function drawInsets(now, show) {
-    const box = $('insets'); show = show && $('showinsets').checked; box.style.display = show ? '' : 'none'; if (!show) return; insetDom();
-    if (MODE === 'pancreas') { box.querySelector('svg').innerHTML = ''; return; }   // atlas insets, no leader lines
-    const st = stage.getBoundingClientRect(), svg = box.querySelector('svg'), lines = [];
-    INSETS.forEach((t) => { const el = box.querySelector(`[data-inset="${t.key}"]`), r = el.getBoundingClientRect(), x = r.left - st.left, y = r.top - st.top, w = r.width, h = r.height;
-      const at = lesionGroup && lesionGroup.getObjectByName(LESION_VIEWS[t.key].at); if (!at) return; const p = groups.organ.userData.inner.localToWorld(at.userData.at.clone()).project(camera);
-      const px = (p.x + 1) / 2 * UI.w, py = (1 - p.y) / 2 * UI.h, ex = Math.max(x, Math.min(x + w, px)), ey = Math.max(y, Math.min(y + h, py)); lines.push(`<line x1="${ex}" y1="${ey}" x2="${px}" y2="${py}"/><circle cx="${px}" cy="${py}" r="5"/>`); });
-    svg.innerHTML = `<g stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${lines.join('')}</g>`;
-  }
+  // The H&E picture that stands for each lesion on the flat tabs.
+  const INSET_IMG = { panin: 'panin2-hp', ipmn: 'ipmn-lowgrade', mcn: 'mcn-hp', acute: 'acute', chronic: 'chronic-fibrosis', pda: 'pda-hp' };
   // ---------- atlas: a gallery of the normal pancreas, pancreatitis, precursors, cancers and their look-alikes. Each entry
   // shows one openly licensed micrograph, what to look for, and folded detail; entries can be compared and quizzed.
   // Data: viewer/src/atlas.json (text in our own words, every entry with its sources; images in viewer/assets/atlas).
@@ -1886,9 +1871,9 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   $('lightbox').addEventListener('click', () => { $('lightbox').hidden = true; });
   function atlasFrame(now) {
     if (lastLevel !== 'atlas') { lastLevel = 'atlas'; UI.levelname.textContent = 'Atlas'; setInfo(INFO.atlas); applyDataFor('atlas', 'atlas'); showMarkers(null); }
-    drawLabels(null, 0); drawInsets(now, false); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.clear();
+    drawLabels(null, 0); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.clear();
   }
-  // The non-3D tabs: a flat 2D schematic of the pancreas with histology insets joined to the region they come from.
+  // The non-3D tabs: figures with their histology beside them.
   const FLAT = ['overview', 'pancreatitis', 'precursors', 'pda'];
   // ---------- Process illustrations: interactive anima figures shipped in dist/figures, opened in an iframe ----------
   const FIG_BASE = 'figures/';
@@ -2002,7 +1987,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   function lesionFrame(now, v) {   // the histology panel covers the view; nothing 3D is drawn behind it
     const V0 = LESION_VIEWS[LES.view], key = 'lesion' + V0.title.replace(/\W/g, '');
     if (key !== lastLevel) { lastLevel = key; UI.levelname.textContent = V0.title + ': histology'; setInfo(INFO[key] || ''); applyDataFor(key, key); showMarkers(null); }
-    drawLabels(null, 0); drawInsets(now, false); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.clear();
+    drawLabels(null, 0); renderer.setViewport(UI.x, 0, UI.w, UI.h); renderer.setScissor(UI.x, 0, UI.w, UI.h); renderer.clear();
   }
 
   // ---------- links to a view: #site=12&view=islet&stain=if opens the page there; the address follows the view

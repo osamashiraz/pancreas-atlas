@@ -1,36 +1,72 @@
 # Human pancreas 3D — from organ to cell
 
-**[Open the interactive viewer →](https://osamashiraz.github.io/pancreas-atlas/)** (runs in the browser; Chrome or Edge recommended)
+**[Open the learning tool →](https://osamashiraz.github.io/pancreas-atlas/)** (runs in the browser; Chrome or Edge recommended)
 
-An explorable 3D model of the human pancreas that you can zoom through continuously: from the whole organ (about 15 cm) opened in place layer by layer through its lobules and duct tree to a core of tissue, then a single acinus, islet or duct, its separated cells, and finally one cell with its organelles — all at true scale, in H&E or cell-type colours, with an optional narrated tour.
+A free, open learning tool that walks from the normal human pancreas, its exocrine and endocrine parts, to its diseases: pancreatitis, the precursor lesions of pancreatic cancer, and pancreatic ductal adenocarcinoma (PDA). Every step is shown three ways: an interactive illustrated figure of the mechanism, real H&E micrographs of what it looks like under the microscope, and an interactive 3D model that zooms from the whole organ down to single cells.
 
-![The HRA reference pancreas with its ducts and vessels](docs/images/organ.jpg)
+![The Atlas: a gallery of the pancreas under the microscope](docs/images/tour-atlas.jpg)
 
-## The idea
+## Why I built this
 
-### Why I built this
+I am a bioinformatician, and I work on pancreatic cancer, much of it with spatial transcriptomics data. To read those data well I wanted a deeper understanding of the biology behind them: the molecular and cancer biology, and the histology and pathology of the pancreas and its diseases.
 
-This project grew out of personal curiosity: I wanted to understand the pancreas better. It is a single organ that holds two very different units: an **exocrine** part that makes digestive enzymes, and an **endocrine** part, the islets, that controls blood sugar. When either one goes wrong, the result can be a debilitating disease: **diabetes** from the endocrine side, and **pancreatitis** and **pancreatic ductal adenocarcinoma** from the exocrine side.
+**H&E is where that understanding starts.** Haematoxylin and eosin were first used together in 1876, about 150 years ago, and H&E is still the standard stain in medicine. Pathologists use it to see what a disease looks like, to diagnose it, and to grade and stage tumours, which inform prognosis.
 
-As a bioinformatician, I am always curious about the biology behind the diseases I study in data. This project gathers some of what I have learned while working on pancreatic cancer research, and I built it to see that biology in three dimensions and to share it with others.
+So I began curating what I learned from papers, textbooks and open resources. I could not find one open resource that gave a simple overview of the whole path, from the normal pancreas with its exocrine and endocrine parts to the diseases of each. So I built one as a learning tool, together with Claude Code and agentic pipelines. Those pipelines collect and check the sources, draw the figures, and have independent "reviewer" agents (cell, molecular, cancer and spatial biology) check the content.
 
-### Seeing the scales together
+It has helped my own understanding of pancreatic cancer, especially when working with spatial transcriptomics datasets. Seeing histology side by side with spatial data is how I connect the two. Clinics today read tissue by H&E. Spatial transcriptomics might one day add to that. Placing them side by side helps me see where H&E is already enough (recognising tissue, lesions, grade and invasion) and where spatial data may add more: cell states and neighbourhoods that look alike on H&E. I share it as a learning resource in case it helps others in the same position: students, trainees, and computational biologists new to the pancreas.
 
-The pancreas is usually taught in pieces: a gross-anatomy drawing in one lecture, an H&E slide in another, a cartoon of an acinar cell in a third. It is hard to hold in one's head how those scales connect — where an islet sits relative to the main duct, how many acini drain into one intercalated duct, what a beta cell looks like next to its capillary.
+## A quick tour
 
-This project puts those scales into one continuous space so a learner can move between them. It is built as a **learning tool** for students, trainees and researchers, and as a **scaffold** for showing where disease begins (see [Next steps](#next-steps)).
+The bar at the top left switches between five pages.
 
-It is also built to be honest about what it knows. Every structure carries one of three labels, and the viewer shows it:
+**Atlas.** This is a gallery of 51 openly licensed micrographs in ten groups: normal pancreas, injury and repair, pancreatitis, cysts, precursor lesions, PDA by grade, its variants, how it spreads, the other tumours it is mistaken for, and mouse models by genotype. Each entry gives a one-line description, two to four numbered "look for" pins placed on the picture, and one line to remember. Folds below hold the features under the microscope, look-alikes, facts and sources with page numbers. Further tools: a **side by side** comparison with a look-alike, a **progression** strip with the genetic changes, a **features table** and a **quiz**. Entries can be linked, e.g. [`#atlas=pda-poor`](https://osamashiraz.github.io/pancreas-atlas/#atlas=pda-poor).
 
-- **source** — drawn by the Human Reference Atlas from the Visible Human Project (organ shape, main ducts, large vessels);
-- **traced** — followed from a published image;
-- **simulated** — placed by a written rule from published measurements (small vessels, lymph nodes, lobules, acini, islets, cells).
+**Pancreas: organ to cell.** The page starts with the organ, its exocrine tissue and its islets. It then shows how the gland secretes: digestive juice into the duodenum, and hormones into the blood. Next come the H&E of each tissue (lobule, acini, ducts, islet). Last, each cell's job sits beside its H&E: enzyme secretion by acinar cells, bicarbonate by duct cells, and glucose control by the islet.
 
-Every number either names its source or is marked *not yet sourced* in the code, and the tests fail if one is missing.
+![Pancreas page: organ, exocrine tissue and islet](docs/images/tour-tab-overview.jpg)
 
-## What you can see
+**Pancreatitis.** It shows how the gland injures itself: trypsin activated inside the acinar cell, in acute pancreatitis. Then it shows how repeated injury becomes chronic pancreatitis: stellate cells, collagen and lost acini. The H&E of normal, acute and chronic follows, with the link to precursors through acinar-to-ductal metaplasia.
 
-### The organ, opened layer by layer
+![Pancreatitis page: the mechanism figure](docs/images/tour-tab-pancreatitis.jpg)
+
+**PDA precursors.** The PanIN → PDA progression model steps from a normal duct through acinar-to-ductal metaplasia and low- and high-grade PanIN to invasive PDA. Under it, a timeline shows the genetic changes (KRAS, CDKN2A, TP53, SMAD4). A KRAS figure shows what the first driver does. The page ends with a comparison of PanIN, IPMN and MCN: where each arises, its histology, and how they differ.
+
+![PDA precursors page: the PanIN to PDA progression model](docs/images/tour-tab-precursors.jpg)
+
+**PDA.** The page opens with the hallmark of PDA, desmoplasia. A slider takes the tissue from an early PanIN among normal acini to invasive glands in dense collagen, with collapsed vessels and T cells held out. Then come grades and histological variants with their H&E, and finally where PDA spreads.
+
+![PDA page: desmoplasia and the tumour microenvironment](docs/images/tour-tab-pda.jpg)
+
+**Interactive 3D model** (the "Interactive 3D model" button on the Pancreas page). You can zoom continuously from the reference organ (about 15 cm, from the Human Reference Atlas) through its lobules and duct tree to a core of tissue, then an acinus, islet or duct, its cells, and one cell with its organelles. Everything is at true scale, in H&E or cell-type colours. **Play the journey** gives a 16-step narrated tour. Use the **seek bar** under it to go back or forward to any step.
+
+| The organ | A step of the narrated journey |
+|---|---|
+| ![3D model: the organ](docs/images/tour-3d-organ.jpg) | ![3D model: the journey inside an acinar cell, with the seek bar](docs/images/tour-3d-journey.jpg) |
+
+### A suggested route
+
+1. **Pancreas**: the organ, then exocrine tissue and islets, then each cell's job beside its H&E.
+2. **Atlas → Normal pancreas**: learn the normal patterns with the pins on.
+3. **Pancreatitis**, then **PDA precursors**, then **PDA**, following the disease from injury to invasion.
+4. Back to the **Atlas** for look-alikes (side by side) and the **quiz** to test yourself.
+5. The **3D model** and its journey, whenever you want to see how the scales fit together.
+
+In every figure, hover over or tap a part to see its name and a short sourced explanation. **Sources & notes** under each figure open the full references.
+
+## What is real, what is drawn
+
+Every structure in the 3D model has one of three labels, and the viewer shows it:
+
+- **source**: drawn by the Human Reference Atlas from the Visible Human Project (organ shape, main ducts, large vessels);
+- **traced**: followed from a published image;
+- **simulated**: placed by a written rule from published measurements (small vessels, lymph nodes, lobules, acini, islets, cells).
+
+Every number either names its source or is marked *not yet sourced* in the code, and the tests fail if one is missing. The illustrated figures are simplified drawings of mechanisms, not to scale. The micrographs are examples chosen to show a feature, not a measure of how common it is.
+
+## More about each part
+
+### The 3D model: the organ, opened layer by layer
 
 The reference pancreas (head, neck, body, tail, uncinate process) with the main and accessory pancreatic ducts, bile duct and ampulla, and the coeliac, splenic, hepatic and superior mesenteric vessels. Thirty tissue sites (ten each in head, body and tail, scattered at random) lie hidden in the gland, each showing its region's tissue (islets in the uncinate process are rich in PP cells): zoom in on any part of the organ and one of the sites nearest the pointer is picked at random and brought to the middle of the view.
 
@@ -55,7 +91,7 @@ The pancreas is two organs in one, and the model shows both:
 |---|---|---|---|
 | ![Acinus](docs/images/acinus.jpg) | ![Islet](docs/images/islet-celltypes.jpg) | ![Acinar cell](docs/images/acinar-cell.jpg) | ![Beta cell](docs/images/beta-cell.jpg) |
 
-### Viewer features
+### 3D model features
 
 - Continuous zoom from organ to organelle, with a scale bar; **Esc** steps back a level.
 - **Layers opened in place**: organ surface → lobules → duct tree → tissue core, each a ring round the next; the view turns to look down the opening until you turn it yourself.
@@ -65,27 +101,14 @@ The pancreas is two organs in one, and the model shows both:
 - **Beta, alpha and delta cells**, each with its own granules (beta ~350 nm with clear halos, alpha ~200 nm and dense, delta ~250 nm); the delta cell reaches its neighbours with long processes.
 - **Secretion in motion** (Motion on): zymogen granules travel to the apex and release enzymes down the duct; duct cells secrete bicarbonate through CFTR and SLC26A6; a beta cell takes up glucose and releases insulin into its capillary; alpha cells release glucagon; delta cells release somatostatin beside their neighbours. The journey narrates each.
 - **Marker genes** for the cell in view or clicked, from the HRA ASCT+B table and the Human Protein Atlas, each linking to its HPA page.
-- **Play the journey**: a 13-step narrated tour in Google's UK English female voice (Chrome; other browsers use a standard UK voice).
+- **Play the journey**: a 16-step narrated tour in Google's UK English female voice (Chrome; other browsers use a standard UK voice). A **seek bar** (◀ step slider ▶) jumps back or forward to any step.
 - Click any cell or structure to name it, isolate it or fade it.
 - A quiet side panel: sources and the less-used controls (voice, speed, split screen, slice apart, comparison) are folded away, closed until opened.
 - **Links to a view**: the address follows what you are looking at, e.g. [`#site=9&view=islet&stain=if`](https://osamashiraz.github.io/pancreas-atlas/#site=9&view=islet&stain=if), so a view can be shared or used in teaching.
 
-### Where pancreatic cancer begins: precursor lesions
+### Histology views
 
-The switch at the top left chooses what to show: **Pancreas** (organ to cell), **Pancreatitis**, **Precursor lesions** and **PDA**. In **Pancreas** the ladder goes from the organ to the tissue, where the two compartments sit side by side, then to the **exocrine** structures (acinus, acinar cell, centroacinar cells, duct) and the **endocrine** islets (islet; beta, alpha and delta cells).
-
-**Precursor lesions** first shows the whole organ with each precursor marked where it arises. Following Figure 1 of Hingorani's *Location, location, location* (Gastroenterology 2007), each is linked by a line to an inset showing it in high-power H&E (the insets can be hidden):
-
-![Precursor lesions on the organ, with insets](docs/images/lesions.jpg)
-
-| Precursor | Size | Where in the gland | Where in the duct tree |
-|---|---|---|---|
-| PanIN | microscopic, usually < 0.5 cm | head and uncinate process | periphery: terminal ductules |
-| Mucinous cystic neoplasm | median 3.5–5 cm | body and tail (> 90%) | periphery; no duct connection |
-| Main-duct IPMN | main duct > 5 mm (≥ 10 mm high-risk) | head | centre: main duct |
-| Branch-duct IPMN | grape-like cysts > 10 mm | head, neck, uncinate | major side branches |
-
-Clicking a lesion or its inset, or zooming into it, opens its **histology**: a drawing in H&E colours of its key architecture, then real H&E micrographs (open-licensed, credited) with the same features numbered alike and explained below, then high-power views of the cells themselves (up to ×400, i.e. a ×40 objective; openly licensed figures from Distler 2014, Chen 2023, Aloraini 2023, Mihoc 2024 and Chekmareva 2025, credited in place), links to more real examples at Johns Hopkins, what sets the lesion apart, and a table comparing PanIN, IPMN and MCN:
+On the disease pages, picking a lesion opens its **histology view**. It starts with a drawing in H&E colours of the lesion's key architecture. Real H&E micrographs follow (open-licensed, credited) with the same features numbered alike, then high-power views of the cells.
 
 | PanIN | IPMN | MCN |
 |---|---|---|
@@ -95,39 +118,6 @@ Clicking a lesion or its inset, or zooming into it, opens its **histology**: a d
 Images: Hackeng et al., *Diagn Pathol* 2016 (CC BY 4.0); Shibata et al., *Clin J Gastroenterol* 2017 (CC BY 4.0); Nephron and Humpath, Wikimedia Commons (CC BY-SA 3.0). See [`viewer/assets/histology/CREDITS.md`](viewer/assets/histology/CREDITS.md).
 
 Each comes with a card on its appearance, grading, genes, who it affects and survival, in our own words, citing Hingorani 2007, Rodriguez et al. 2007, *The Pancreas: An Integrated Textbook* (Beger et al., 4th ed., 2023) and *Robbins and Cotran Pathologic Basis of Disease* (9th ed.). Placement on the organ is simulated by rule; drawn sizes follow the stated sizes.
-
-### Pancreatitis
-
-**Pancreatitis** shows acute and chronic pancreatitis on the organ, each linked to its histology. In a patient they are separate conditions; they are drawn on one organ to compare.
-
-| Organ | Acute | Chronic |
-|---|---|---|
-| ![Pancreatitis on the organ](docs/images/pancreatitis.jpg) | ![Acute pancreatitis](docs/images/acute.jpg) | ![Chronic pancreatitis](docs/images/chronic.jpg) |
-| Acute changes on the body and tail (inflamed fat, chalky fat necroses, haemorrhage); chronic changes in the head (beaded duct, stones) | Oedematous septa with neutrophils, dead acini, fat necrosis with calcium soaps, a rim of neutrophils, haemorrhage | Dense fibrosis with activated stellate cells, atrophic acini, spared islets, a dilated duct with a calcified stone, lymphocytes |
-
-A table compares normal pancreas, acute and chronic pancreatitis (lobules, inflammation, fat, ducts, islets, reversibility, causes), from *Robbins and Cotran* (9th ed., ch. 19) and *The Pancreas* (Beger et al., 4th ed., ch. 7, 17, 41).
-
-### Pancreatic ductal adenocarcinoma
-
-**PDA** shows the tumour in the head, the bile duct and main duct dilated behind it (the double duct sign), enlarged regional nodes and liver metastases, and its histology: irregular malignant glands of atypical cells in dense desmoplastic stroma, invading a nerve and a vein. Cards give location (head 60%, body 15%, tail 5%, diffuse 20%), genes (KRAS, CDKN2A, TP53, SMAD4), resectability and survival; a table compares head, body and tail tumours.
-
-| Organ | Histology |
-|---|---|
-| ![PDA on the organ](docs/images/pda.jpg) | ![PDA histology](docs/images/pda-histology.jpg) |
-
-### Atlas: the pancreas under the microscope
-
-The page opens on the **Atlas**. The **Pancreas** tab shows a flat 2D schematic of the gland (tinted regions, acinar texture, the duct tree and islets; part names appear on hover) with histology insets whose arrows point at the matching drawn pattern, and a **2D / 3D** toggle into the interactive model. The disease tabs (Pancreatitis, PDA precursors, PDA) use the same 2D schematic with their lesion insets. The **Atlas** mode is a gallery for learning and teaching: 50 entries in ten groups (normal pancreas; injury and repair; pancreatitis; cysts; precursor lesions; ductal adenocarcinoma by grade; its variants; how it spreads; the other tumours it is mistaken for; and mouse models by genotype). Each entry is simple at first glance and opens up on request:
-
-- one openly licensed micrograph (click to enlarge), a one-line description, two to four numbered things to look for, each pinned on the picture where it can be seen (pins can be switched off), and one line to remember;
-- folds for the features under the microscope (architecture, cells, nuclei, mitoses, mucin, stroma), look-alikes and how to tell them apart, where/size/who/outlook, and sources with page numbers;
-- **side by side**: any entry beside one of its look-alikes, image to image and feature to feature;
-- **progression**: normal duct → acinar-to-ductal metaplasia → low-grade PanIN → high-grade PanIN → invasive carcinoma on one strip, with the genetic changes (telomere shortening, KRAS, CDKN2A, TP53, SMAD4) drawn beneath as bars, and a note on what is known only from mice;
-- **features table**: every entry by the same six features;
-- **quiz**: an image and four choices, then the line to remember;
-- links such as [`#atlas=pda-poor`](https://osamashiraz.github.io/pancreas-atlas/#atlas=pda-poor), and from entries into the 3D views.
-
-The text is in our own words from page-referenced notes on Robbins and Cotran (9th ed.), Beger et al. (4th ed.), Hruban 2001, Basturk 2015, Kardon 2001, Kleeff 2016 and Gorelick and Williams 2021 (`docs/book-notes/atlas-facts.json`). Images come from Wikimedia Commons and open-access papers (CC BY, CC BY-SA, CC0 or public domain), each credited under the picture and in `viewer/assets/atlas/CREDITS.md`. The **mouse models** group has one entry per genotype (controls, caerulein pancreatitis, KC, KPC, KPT, Kras with one Trp53 copy deleted, KPIC, KIC, KDC), written from and illustrated by open-access papers, with each genotype given as its paper states it. A **Mouse models vs human disease** entry opens the group, drawn from the Discussion sections of the founding papers (Hingorani 2003, 2005; Izeradjene 2007), read in full from the lab-publications PDFs; their figures are under copyright, so the pictures come from later CC BY papers that use the same models. The KPC images are small (366 px) and KDC has no image; the normal-pancreas entries also draw on a Human Protein Atlas whole-slide image (CC BY 4.0). Seven entries have no image because no suitable openly licensed micrograph was found (centroacinar cells, reactive duct, squamous metaplasia, acute interstitial pancreatitis, cancerization of ducts, neuroendocrine carcinoma, KDC); several others are small or carry the source figure's arrows, as their captions say. Textbook and journal figures under copyright are not reproduced.
 
 ### The organs round the pancreas
 
@@ -160,6 +150,7 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 
 - **Organ**: meshes extracted unchanged from the HRA united body models; small arteries (gastroduodenal, pancreaticoduodenal arcades, dorsal/great/caudal pancreatic) routed by shortest path around drawn structures; lymph nodes placed at the Japan Pancreas Society stations (checked against its eighth edition, 2024; Gray's Anatomy, cited for vessel anatomy, is still to be checked).
 - **Tissue**: deterministic builders (Python, and a TypeScript generator that also runs in the browser) grow a duct tree, bud acini on their own intercalated ducts, route capillaries so every acinus is within reach, add stroma and one islet, then let cells grow until they meet a neighbour. Tests check the rules: no overlapping acini, one duct per acinus, packing above 45%, islet composition and size.
+- **Figures**: interactive isometric SVG figures built with the anima figure kit, one source script per figure, each with a sources block; every figure is checked by an automatic layout audit.
 - **Viewer**: a single self-contained HTML page (three.js) with the models embedded, so it can be hosted anywhere static. The layered openings follow MouseBio_3D's zoom-unfold: each opening grows with the zoom to nearly half the height of the view, outer layers stay as rings, and vessels and ducts of the organ are left uncut.
 
 ## Repository layout
@@ -168,6 +159,7 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 |---|---|
 | `dist/pancreas-organ-to-cell.html` | The built viewer (published to GitHub Pages) |
 | `dist/atlas/` | The atlas images, loaded by the page only when the atlas is opened |
+| `dist/figures/` | The interactive illustrated figures, embedded in the pages |
 | `viewer/` | Viewer sources (`template.html`, `src/app.js`, `src/atlas.json`, `src/generator.js`), images (`assets/`), build script, tests (`test/smoke.py`, `test/atlas_check.py`, `test/profile.py`), earlier versions in `legacy/` |
 | `repo/` | Model data and the code that builds and tests it: inventory, generators, loader, tests, Python builders |
 | `docs/` | Specification, backlog, change history, sources, README images |
@@ -186,15 +178,17 @@ python3 ../pancreas-atlas/viewer/build_viewer.py . ../pancreas-atlas/dist/pancre
 
 Python builders need `numpy` and `scipy`; the smoke test needs `playwright`. Pushing a new `dist/` to `main` republishes the GitHub Pages site.
 
-## Next steps
+## Feedback, collaboration and contributions
 
-1. **Nearby organs** — extend from the pancreas to its neighbours using the same HRA body models: the full duodenum and stomach, spleen, liver and biliary tree with the gallbladder, left kidney and adrenal, and the coeliac and mesenteric vessels and nerves that tie them together. This is where most surgical and imaging anatomy of the pancreas lives.
-2. **Tumours** — show where pancreatic cancers arise by region (head, body, tail) and by cell of origin (ductal adenocarcinoma, neuroendocrine tumours, acinar cell carcinoma), and how they relate to the bile duct, vessels and lymph node stations that matter for staging and resectability.
-3. **Precursor lesions** — PanIN (pancreatic intraepithelial neoplasia) in small ducts, IPMN (intraductal papillary mucinous neoplasm) in the main or branch ducts, and mucinous cystic neoplasms, placed in the duct tree at the scale where they occur.
-4. **Pancreatitis and fibrosis** — acute pancreatitis (acinar injury, oedema, inflammation) and chronic pancreatitis (acinar loss, activated stellate cells, fibrosis, duct changes), as alternative states of the same tissue.
-5. Also planned: diabetes states (beta-cell loss) and overlay of single-cell and spatial data. See [`docs/BACKLOG.md`](docs/BACKLOG.md).
+This work is evolving. Corrections, suggestions and contributions are very welcome: better or openly licensed images, errors in the biology, new topics (for example diabetes, or overlays of spatial data), or ideas for teaching with it. If you would like to contribute or collaborate, email me at **osamashirazshah@gmail.com**, or open an issue on this repository.
 
-Disease content will follow the same rule as the rest of the model: each lesion's location, size and frequency will cite its source, and anything placed by rule will be labelled simulated.
+## Disclaimer
+
+- **For education and research only. Not for medical use.** It is not a diagnostic tool, it gives no medical advice, and it is no substitute for a pathology textbook, a pathologist or a clinician.
+- **It reflects my understanding** from what I have read and learned. I have tried to source and check every statement, but errors are possible. Please tell me if you find one.
+- **Images are limited to open licences** (CC BY, CC BY-SA, CC0, public domain), each credited. Some entries therefore have small images, images with the source figure's arrows, or no image yet. Textbook and journal figures under copyright are not reproduced.
+- The page text is in my own words, paraphrased from the cited sources.
+- The 3D tissue and cells are simulated from published descriptions. The illustrated figures are simplified diagrams. Neither is a measurement of a patient.
 
 ## Limitations
 
