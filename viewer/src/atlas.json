@@ -481,7 +481,7 @@
    "remember": "A pale island of small uniform cells among dark acini is an islet.",
    "features": {
     "architecture": "Small islets lie scattered among acini; larger ones lie along the main and interlobular ducts.",
-    "cells": "Smaller and paler than acinar cells. Beta cells 75–80%, alpha about 15%, delta about 5%; alpha and delta cells sit mainly at the edges of beta-cell groups."
+    "cells": "Smaller and paler than acinar cells. In human islets the cell types are intermixed: beta cells about half, alpha 33–46%, delta 8–12%, with few PP and epsilon cells. Beta-rich islets (75–80% beta) are typical of the dorsal part of the gland and of rodents."
    },
    "facts": {
     "size": "About 70% are 50–250 µm across, averaging 100–150 µm.",
@@ -499,7 +499,8 @@
    },
    "sources": [
     "Gorelick and Williams 2021, ch. 1 (Longnecker), p. 11–13",
-    "Robbins and Cotran 9th ed., ch. 24, p. 1121"
+    "Robbins and Cotran 9th ed., ch. 24, p. 1121",
+    "Cabrera et al. 2006, PNAS 103:2334 (doi:10.1073/pnas.0510790103)"
    ],
    "thumb": "atlas/t-normal-islet-1.jpg"
   },
@@ -820,13 +821,13 @@
    "features": {
     "architecture": "Fibrosis, atrophy and dropout of acini, variable duct dilation; chronic inflammation round lobules and ducts.",
     "cells": "Duct lining atrophic, hyperplastic or squamous. Islets relatively spared, lost in advanced disease.",
-    "stroma": "Collagen laid down by stellate cells driven by TGF-beta and PDGF, the same cells active in cancer."
+    "stroma": "Collagen laid down by stellate cells, driven by TGF-beta and PDGF in cell culture; the same cells are active in cancer."
    },
    "facts": {
     "who": "Alcohol is by far the commonest cause; mostly middle-aged men; up to 25% have a genetic basis.",
     "gross": "Hard, shrunken gland with an irregular outline, dilated ducts and calcified concretions; duct stones in about half.",
     "molecular": "Inherited risk through PRSS1, SPINK1, CFTR, CASR, CTRC and CPA1.",
-    "outlook": "Mortality 50% at 20–25 years; diabetes in 70%; pseudocysts in 10–40%; cancer risk about 12-fold."
+    "outlook": "Mortality 50% at 20–25 years; diabetes is common in long-standing disease; pseudocysts in about 10%. Pancreatic cancer risk about 12-fold (pooled), about 69-fold in hereditary pancreatitis (25–40% lifetime risk by age 70)."
    },
    "mimics": [
     {
@@ -848,7 +849,8 @@
     "Beger et al. 2023, ch. 52, p. 424–426",
     "Beger et al. 2023, ch. 10, p. 99",
     "Beger et al. 2023, ch. 61, p. 481",
-    "Beger et al. 2023, ch. 125, p. 958"
+    "Beger et al. 2023, ch. 125, p. 958",
+    "Robbins and Cotran 9th ed., ch. 19, p. 909 (hereditary pancreatitis risk)"
    ]
   },
   {
@@ -1130,7 +1132,7 @@
     "Nuclei small and basal, or crowded and stacked in former PanIN-2",
     "Flat, or folded into small papillae"
    ],
-   "remember": "Mucin in a small duct means PanIN; grade it by the nuclei.",
+   "remember": "A small duct lined by tall mucinous cells with bland basal nuclei is PanIN; grade it by the nuclei.",
    "features": {
     "architecture": "Flat (former 1A), or papillary, micropapillary or basally pseudostratified (1B and 2).",
     "cells": "Tall columnar, gastric-foveolar in type.",
@@ -1142,7 +1144,7 @@
     "where": "Small ducts, more often in the head than the tail.",
     "size": "Microscopic, usually under 0.5 cm; invisible on imaging.",
     "who": "In 82% of pancreata with ductal adenocarcinoma, 60% with chronic pancreatitis and 16% of normal ones; sexes equal.",
-    "molecular": "KRAS mutated in over 90%; telomere shortening almost universal, even in PanIN-1A; CDKN2A loss follows.",
+    "molecular": "KRAS mutation is common from the lowest grade; how common depends on the assay (older assays about 36–44% of low-grade lesions, sensitive sequencing over 90%). Telomere shortening is almost universal, even in former PanIN-1A; CDKN2A loss follows.",
     "outlook": "Common and of no proven clinical significance; at a resection margin it does not alter survival."
    },
    "mimics": [
@@ -1170,7 +1172,8 @@
    "sources": [
     "Hruban et al. 2001, p. 579–581",
     "Beger et al. 2023, ch. 126, p. 969–971",
-    "Basturk et al. 2015, p. 1733–1735"
+    "Basturk et al. 2015, p. 1733–1735",
+    "Koorstra et al. 2008, Langenbecks Arch Surg 393:561 (review)"
    ]
   },
   {
@@ -1331,8 +1334,8 @@
     "size": "Usually 1 cm or more. Main duct over 5 mm; branch-duct cysts over 10 mm.",
     "who": "Usually found in the mid-60s; main-duct type more often in men.",
     "gross": "Main duct diffusely dilated with long finger-like papillae and thick mucin; a gaping papilla may extrude mucus.",
-    "molecular": "KRAS and GNAS each mutated in 50–80%, RNF43 in 14–75%; TP53 in high grade; SMAD4 usually only with invasion.",
-    "outlook": "Invasive carcinoma in 43.6% of main-duct and 16.6% of branch-duct lesions. Five-year survival after resection 94% for high grade, 31% once invasive."
+    "molecular": "KRAS and GNAS each mutated in 50–80% (GNAS mostly in the intestinal type); RNF43 in 14–75% depending on type; TP53, CDKN2A and SMAD4 changes appear in high-grade and invasive lesions.",
+    "outlook": "Invasive carcinoma in 43.6% of main-duct and 16.6% of branch-duct lesions (pooled series). Five-year survival after resection: 94% with high-grade dysplasia, 31% once invasive; invasion of colloid type does better than tubular type."
    },
    "mimics": [
     {
@@ -1795,8 +1798,8 @@
    "remember": "The stroma can so outweigh the glands that a small biopsy misses the cancer.",
    "features": {
     "architecture": "Abundant dense collagen round the glands, which may be few.",
-    "cells": "Activated stellate cells (cancer-associated fibroblasts) make the collagen; immune cells, vessels and nerves lie within it.",
-    "stroma": "Poorly vascularised and under high pressure, which may hinder chemotherapy."
+    "cells": "Cancer-associated fibroblasts make the collagen; many come from activated stellate cells, though they have other origins too. Immune cells, vessels and nerves lie within it.",
+    "stroma": "Poorly vascularised and under high pressure, which may hinder drug delivery (shown mainly in mice). It is not simply tumour-promoting: removing it in mice made tumours more aggressive."
    },
    "facts": {
     "gross": "Accounts for the firm, sclerotic feel of the tumour.",
@@ -1823,7 +1826,9 @@
    "sources": [
     "Kleeff et al. 2016, p. 5, 11",
     "Beger et al. 2023, ch. 125, p. 958, 964",
-    "Beger et al. 2023, ch. 123, p. 942–943"
+    "Beger et al. 2023, ch. 123, p. 942–943",
+    "Özdemir et al. 2014, Cancer Cell 25:719 (PMID 24856586)",
+    "Rhim et al. 2014, Cancer Cell 25:735 (PMID 24856585)"
    ]
   },
   {
@@ -2349,7 +2354,7 @@
     "architecture": "Cells flatten and grow along the endothelial surface rather than forming a tumour thrombus."
    },
    "facts": {
-    "who": "Practically all ductal adenocarcinomas; lymphatic and large-vessel invasion are common.",
+    "who": "Common in ductal adenocarcinoma (Beger describes it in practically all cases); reported rates of lymphovascular invasion vary with how it is defined. Perineural invasion is the more constant finding.",
     "outlook": "Leads to widespread dissemination, especially to the liver."
    },
    "mimics": [
@@ -3393,7 +3398,7 @@
    ],
    "id": "mouse-kpic",
    "name": "KPIC",
-   "aka": "LSL-KrasG12D; LSL-Trp53R172H/+; Ink4a flox/+; Ptf1a (p48)-Cre",
+   "aka": "LSL-KrasG12D; LSL-Trp53R172H/+; Ink4a/Arf flox/+; Ptf1a (p48)-Cre",
    "line": "KPC with one Ink4a copy also removed: hard tumours by 7 weeks, stroma-rich and locally invasive.",
    "glance": [
     "Irregular glands with open lumina",
@@ -3411,7 +3416,7 @@
    "mimics": [
     {
      "id": "mouse-kic",
-     "tell": "KIC has no Trp53 mutation but loses both Ink4a copies, and is faster."
+     "tell": "KIC has no Trp53 mutation but loses both Ink4a/Arf copies, and is faster."
     },
     {
      "id": "mouse-kpc",
@@ -3451,13 +3456,13 @@
    ],
    "id": "mouse-kic",
    "name": "KIC",
-   "aka": "Ptf1a (p48)-Cre; LSL-KrasG12D; Ink4a flox/flox",
+   "aka": "Ptf1a (p48)-Cre; LSL-KrasG12D; Ink4a/Arf flox/flox",
    "line": "Mutant Kras with both Ink4a copies removed: the fastest of these models, tumours well differentiated and stroma-rich.",
    "glance": [
     "Irregular glands with open lumina",
     "Dense pink (desmoplastic) stroma between them"
    ],
-   "remember": "No Trp53 change at all: losing Ink4a is enough to turn Kras-driven lesions into carcinoma within two months.",
+   "remember": "No Trp53 mutation, but the floxed Ink4a/Arf locus also removes Arf, which weakens p53 signalling; Kras-driven lesions become carcinoma within about two months.",
    "features": {
     "architecture": "Well-differentiated carcinoma: tumour cells as ducts in dense stroma."
    },
@@ -3481,7 +3486,7 @@
    "images": [],
    "id": "mouse-kdc",
    "name": "KDC",
-   "aka": "KrasG12D with Smad4 (Dpc4) loss; also written KSC",
+   "aka": "KrasG12D with Smad4 (Dpc4) loss: KD/KDD (Izeradjene 2007) and KSC (Hurwitz 2023)",
    "line": "Mutant Kras with Smad4 loss gives cystic mucinous tumours instead of PanIN, and slower, less metastatic cancer.",
    "glance": [
     "Large cystic spaces, not small ducts",
@@ -3494,9 +3499,8 @@
     "mucin": "Abundant; Alcian blue and Muc5AC positive."
    },
    "facts": {
-    "who": "Pdx1-Cre; LSL-KrasG12D with Smad4 flox (Hurwitz \"KSC\"); Izeradjene 2007 used Smad4/Dpc4 haploinsufficiency.",
-    "outlook": "Slower than KC and KPC; 90% of Hurwitz KSC mice had no cancer or death to about 4 months, and no metastases were seen even in terminal cancer.",
-    "molecular": "In Izeradjene 2007, progression came with loss of the second Dpc4 copy and mutation of p53 or p16."
+    "who": "Two different models. Izeradjene 2007: LSL-KrasG12D with one floxed Dpc4 copy (KD) or both (KDD), driven by Ptf1a (p48)-Cre. Hurwitz 2023: Pdx1-Cre; LSL-KrasG12D; Smad4 flox/flox (KSC).",
+    "outlook": "Izeradjene: median survival about 15 months (KD) and 8 months (KDD), longer than KPC; progression came with loss of the second Dpc4 copy and p53 or p16 mutation. Hurwitz KSC: 90% had no cancer or death to about 4 months, and no metastases were seen."
    },
    "mimics": [
     {
@@ -3509,7 +3513,7 @@
     }
    ],
    "sources": [
-    "Izeradjene et al. 2007, abstract (Cancer Cell 11:229-43)",
+    "Izeradjene et al. 2007, Cancer Cell 11:229-43 (full text: Results and fig. 1)",
     "Hurwitz et al. 2023, Introduction and fig. 4"
    ]
   }

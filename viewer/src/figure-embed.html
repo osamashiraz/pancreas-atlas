@@ -1,0 +1,71 @@
+<!-- Injected by build_viewer.py into each process figure copied to dist/figures/ (before </body>). -->
+<style>
+.iso-plate-corner[data-corner="fig"]{display:none!important}
+.iso-page{margin:10px auto 18px!important}
+/* one type family across the app and its figures */
+.iso{--anatomy-mono:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+/* keep the drawing small enough that the figure and its controls fit on one screen */
+.iso-svg{max-height:540px}
+.src-fold{margin:18px auto 0;max-width:62em}
+.src-fold>summary{cursor:pointer;color:var(--anatomy-muted,#888);font:600 13px var(--anatomy-mono,ui-monospace,monospace);padding:6px 0;list-style:none}
+.src-fold>summary::-webkit-details-marker{display:none}
+.src-fold>summary::before{content:"\25b8 "}.src-fold[open]>summary::before{content:"\25be "}
+.src-fold .iso-caption{display:block;margin:0 0 10px;color:var(--anatomy-muted,#888);font-size:13px;line-height:1.55}
+.fig-tip{position:fixed;z-index:50;pointer-events:none;max-width:260px;padding:4px 9px;border-radius:6px;background:var(--anatomy-strong,#18181a);color:var(--anatomy-card,#fbfbfa);font:600 12.5px/1.35 system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.fig-tip[hidden]{display:none}
+</style>
+<script>
+addEventListener("DOMContentLoaded", function () {
+  // 1. Sources, plus the caption under the figure (scale notes, phone hints, "educational only"), go into one closed dropdown.
+  var fold = document.createElement("details"); fold.className = "src-fold";
+  var sum = document.createElement("summary"); sum.textContent = "Sources & notes"; fold.appendChild(sum);
+  var src = document.querySelector(".bio-sources");
+  if (src) src.parentNode.insertBefore(fold, src); else document.querySelector("main, body").appendChild(fold);
+  document.querySelectorAll(".iso-caption").forEach(function (c) {
+    var leg = c.closest(".iso-legend"); fold.appendChild(c);
+    if (leg && !leg.textContent.trim()) leg.remove();
+  });
+  if (src) fold.appendChild(src);
+  // 2. Ordered lists whose items already carry "1." etc. in their text: drop the list's own numbers.
+  document.querySelectorAll("ol").forEach(function (ol) {
+    var li = ol.querySelector("li"); if (li && /^\s*\d+[.)]\s/.test(li.textContent)) ol.style.listStyle = "none";
+  });
+  // 3. Name the part under the pointer, next to the pointer (the long explanation still goes to the info line).
+  var tip = document.createElement("div"); tip.className = "fig-tip"; tip.hidden = true; document.body.appendChild(tip);
+  var nameOf = function (el) {
+    var n = el.getAttribute("data-name"); if (n) return n;
+    var t = (el.getAttribute("data-info") || "").trim(); if (!t) return "";
+    var cut = t.search(/[:.(]/); var s = cut > 0 && cut < 70 ? t.slice(0, cut) : t.split(/\s+/).slice(0, 8).join(" ") + "…";
+    return s.trim();
+  };
+  var lastHot = null;
+  var forward = function (hot) {   // the figure's own hover handler can miss parts covered by moving particles
+    if (hot === lastHot) return;
+    if (lastHot) lastHot.dispatchEvent(new PointerEvent("pointerleave"));
+    if (hot) hot.dispatchEvent(new PointerEvent("pointerenter"));
+    lastHot = hot;
+  };
+  addEventListener("pointermove", function (e) {
+    var hit = null, els = document.elementsFromPoint(e.clientX, e.clientY);
+    for (var i = 0; i < els.length && !hit; i++) hit = els[i].closest && els[i].closest("[data-name],[data-info]");
+    if (hit && !hit.closest("svg")) hit = null;
+    forward(hit && hit.classList.contains("hot") ? hit : null);
+    var name = hit ? nameOf(hit) : "";
+    if (!name) { tip.hidden = true; return; }
+    tip.textContent = name; tip.hidden = false;
+    var x = e.clientX + 14, y = e.clientY + 16, w = tip.offsetWidth, h = tip.offsetHeight;
+    if (x + w > innerWidth - 6) x = e.clientX - w - 12; if (y + h > innerHeight - 6) y = e.clientY - h - 12;
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }, { passive: true });
+  document.documentElement.addEventListener("pointerleave", function () { tip.hidden = true; forward(null); });
+  // 4. Tell the app how tall this figure is, so its card shows it whole (works on file:// and on the site).
+  if (parent !== window) {
+    // measure the content box, not the viewport (a page min-height of 100vh would otherwise grow with the iframe)
+    var box = document.querySelector(".iso-page") || document.body, last = 0;
+    var post = function () { var h = Math.ceil(box.getBoundingClientRect().bottom + 16);
+      if (Math.abs(h - last) > 2) { last = h; parent.postMessage({ figH: h }, "*"); } };
+    post(); new ResizeObserver(post).observe(document.body);
+    document.addEventListener("toggle", post, true);
+  }
+});
+</script>

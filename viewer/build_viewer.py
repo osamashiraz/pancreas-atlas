@@ -46,6 +46,31 @@ def main():
     dst = out.parent / 'atlas'; dst.mkdir(exist_ok=True); src = HERE / 'assets' / 'atlas'
     for old in dst.glob('*.jpg'): old.unlink()
     for f in sorted(src.glob('*.jpg')): shutil.copyfile(f, dst / f.name)
+    # Interactive process figures (standalone anima pages) copied beside the page; opened in an iframe on demand.
+    figs_dst = out.parent / 'figures'; figs_dst.mkdir(exist_ok=True); figsrc = HERE.parent / 'figures'
+    FIGS = {
+        'pancreas-overview': 'pancreas-overview-anima/pancreas-overview-light.html',
+        'pancreas-secretion': 'pancreas-secretion/pancreas-secretion-light.html',
+        'acinar-cell': 'acinar-cell-anima/acinar-cell-light.html',
+        'duct-duodenum-simple': 'duct-duodenum-simple-anima/duct-duodenum-simple-light.html',
+        'islet-glucose-loop': 'islet-glucose-loop-anima/islet-glucose-loop-light.html',
+        'beta-cell-steps': 'beta-cell-steps-anima/beta-cell-steps-light.html',
+        'panin-pda-progression': 'PanIN-PDA progression model/panin-pda-progression.html',
+        'kras-signaling-pda': 'kras-signaling-pda-anima/kras-signaling-pda.html',
+        'pda-tumor-microenvironment': 'pda-tumor-microenvironment-anima/pda-tumor-microenvironment.html',
+        'pda-metastasis-spread': 'pda-metastasis-spread-anima/pda-metastasis-spread.html',
+        'pancreatitis-mechanism': 'pancreatitis-mechanism-anima/pancreatitis-mechanism.html',
+    }
+    for old in figs_dst.glob('*.html'): old.unlink()
+    # When embedded in the app (viewer/src/figure-embed.html): hide the "Fig n" label, fold the caption and Sources into a
+    # closed dropdown, fix doubled list numbers, name hovered parts beside the pointer, and cap the drawing's height.
+    inject = (HERE / 'src' / 'figure-embed.html').read_text()
+    for fid, rel in FIGS.items():
+        srcf = figsrc / rel
+        if srcf.exists():
+            html = srcf.read_text().replace('</body>', inject + '</body>')
+            (figs_dst / (fid + '.html')).write_text(html)
+        else: print(f'  (process figure missing, skipped: {rel})')
     print(f'{out}: {len(t) / 1e6:.2f} MB')
     if len(t) > 16e6:
         raise SystemExit('Too large to publish as a single page (16 MB limit).')

@@ -887,7 +887,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     if (STAGE.mode === 'tissue') branch = b.dataset.branch; else flyTo(stopFor(lv, b.dataset.branch), b.dataset.branch, STAGE.mode); }));
   $('reset').addEventListener('click', () => { if (LES.view) { $('histopanel').scrollTop = 0; return; } const lv = levelAt(camera.position.distanceTo(controls.target)); flyTo(stopFor(lv) || STOPS.organ, undefined, MODE_OF[lv]); });
   // Escape steps back one stage.
-  window.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!$('lightbox').hidden) { $('lightbox').hidden = true; return; } if (MODE === 'atlas') { if (AT.pair) atlasOpen(AT.entry); else if (AT.entry || AT.view !== 'grid') { AT.entry = null; AT.view = 'grid'; renderAtlas(); hashNow(); } return; } if (LES.view) { exitLesion(); return; } const lv = levelAt(camera.position.distanceTo(controls.target));
+  window.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!$('figbox').hidden) { closeFigure(); return; } if (!$('lightbox').hidden) { $('lightbox').hidden = true; return; } if (MODE === 'atlas') { if (AT.pair) atlasOpen(AT.entry); else if (AT.entry || AT.view !== 'grid') { AT.entry = null; AT.view = 'grid'; renderAtlas(); hashNow(); } return; } if (LES.view) { exitLesion(); return; } const lv = levelAt(camera.position.distanceTo(controls.target));
     const up = { cell: 'cells', cells: 'detail', detail: 'tissue', tissue: 'gross', gross: 'organ' }[lv]; if (up) flyTo(stopFor(up), undefined, MODE_OF[up]); });
   $('surround').addEventListener('change', (e) => { surroundings = e.target.checked; });
   document.querySelectorAll('[data-stain]').forEach((b) => b.addEventListener('click', () => { stain = b.dataset.stain; setTimeout(hashNow);
@@ -1235,7 +1235,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   const LESIONS = {
     panin: { name: 'PanIN', full: 'Pancreatic intraepithelial neoplasia (PanIN)', color: '--panin',
       where: 'Small ducts at the periphery (terminal ductules); progresses to cancer most readily in the head and uncinate process (Hingorani 2007). Found more often in the head than the tail (Beger 4th ed., ch. 126).', size: 'Microscopic, usually under 0.5 cm; invisible to the eye and on imaging (the organ markers are drawn far larger).',
-      text: 'The commonest precursor of ductal adenocarcinoma. Its cells are cuboidal to columnar with apical mucin, flat or micropapillary. Graded today in two tiers: low grade (formerly PanIN-1A, 1B and 2) and high grade (formerly PanIN-3: marked atypia, loss of polarity, budding), the latter found almost only beside invasive cancer. PanIN is present in 82% of pancreata with cancer, 60% with chronic pancreatitis and 16% of normal pancreata, more with age. KRAS is mutated in over 90% even at low grade and telomeres shorten first; CDKN2A follows, TP53 and SMAD4 come late (Beger 4th ed., ch. 126; Robbins 9th ed., ch. 19).',
+      text: 'The commonest precursor of ductal adenocarcinoma. Its cells are cuboidal to columnar with apical mucin, flat or micropapillary. Graded today in two tiers: low grade (formerly PanIN-1A, 1B and 2) and high grade (formerly PanIN-3: marked atypia, loss of polarity, budding), the latter found almost only beside invasive cancer. PanIN is present in 82% of pancreata with cancer, 60% with chronic pancreatitis and 16% of normal pancreata, more with age. KRAS mutation is common from the lowest grade (about 36–44% by older assays, over 90% by sensitive sequencing) and telomeres shorten first; CDKN2A follows, TP53 and SMAD4 come late (Beger 4th ed., ch. 126; Robbins 9th ed., ch. 19).',
       survival: 'Invasive cancer from PanIN, after resection: 15–20% alive at 5 years, under 2% at 10 years (Hingorani 2007).' },
     mcn: { name: 'MCN', full: 'Mucinous cystic neoplasm (MCN)', color: '--mcn',
       where: 'Over 90% in the body or tail, at the periphery; no connection with the ducts (Hingorani 2007; Beger 4th ed., ch. 81 and 126).', size: 'Median 3.5–5 cm on imaging (range 0.5–20 cm); drawn 5 cm (Beger 4th ed., ch. 126).',
@@ -1243,15 +1243,15 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
       survival: 'With invasive cancer, after resection: 40–60% alive at 5 years (Hingorani 2007); disease-specific 5-year survival of resected MCN 57–80% (Beger 4th ed., ch. 126).' },
     mipmn: { name: 'Main-duct IPMN', full: 'Intraductal papillary mucinous neoplasm of the main duct', color: '--ipmn',
       where: 'Usually the head and uncinate process; the main duct, dilated (Hingorani 2007; Beger 4th ed., ch. 126).', size: 'Main duct dilated beyond 5 mm; 5–9 mm is a worrisome feature, 10 mm or more a high-risk sign (Beger 4th ed., ch. 84 and 86). Drawn at 10 mm.',
-      text: 'Long finger-like papillae of mucin-making cells grow along the inside of the main duct, which fills with thick mucin; the papilla of the duodenum may gape and extrude mucus. Papillae can block the duct and cause pancreatitis. Seventh and eighth decades, slightly more in men. Invasive carcinoma in 43.6% of main-duct IPMNs in pooled series. Often intestinal type (MUC2, CDX2), which gives colloid carcinoma. KRAS and GNAS are each mutated in 50–80% (Beger 4th ed., ch. 125 and 126; Hingorani 2007).',
-      survival: 'With invasive cancer, after resection: about 60% at 5 years and at least 40% at 10 years (Hingorani 2007).' },
+      text: 'Long finger-like papillae of mucin-making cells grow along the inside of the main duct, which fills with thick mucin; the papilla of the duodenum may gape and extrude mucus. Papillae can block the duct and cause pancreatitis. Seventh and eighth decades, slightly more in men. Invasive carcinoma in 43.6% of main-duct IPMNs in pooled series. Often intestinal type (MUC2, CDX2), which gives colloid carcinoma. KRAS and GNAS are each mutated in 50–80% (Beger 4th ed., ch. 125 and 126).',
+      survival: 'With invasive cancer, after resection: about 31% at 5 years in pooled series (Beger 4th ed.); single-centre series report up to about 60% (Hingorani 2007). Colloid-type invasion does better than tubular.' },
     bipmn: { name: 'Branch-duct IPMN', full: 'Intraductal papillary mucinous neoplasm of a branch duct', color: '--ipmn',
       where: 'Head or neck and uncinate process; a major side branch, next to a main duct that is not dilated (Beger 4th ed., ch. 81 and 86; Rodriguez et al. 2007).', size: 'Grape-like cysts over 10 mm that open into the duct; a cyst over 3 cm is a worrisome feature (Beger 4th ed., ch. 86).',
       text: 'A cluster of dilated side branches, like grapes, that still communicate with the main duct, which separates it from MCN. Mostly gastric type: one layer of columnar cells with basal nuclei and abundant mucin, usually low grade. Less aggressive than main-duct IPMN: invasive carcinoma in 16.6% in pooled series, 11% in Rodriguez et al. 2007. Small cysts without mural nodules or a dilated main duct may be watched (Beger 4th ed., ch. 126; Rodriguez et al. 2007).',
-      survival: 'With invasive cancer, after resection: about 63% at 5 years (Hingorani 2007).' },
+      survival: 'With invasive cancer, after resection: about 31% at 5 years in pooled series (Beger 4th ed.); single-centre series report up to about 63% (Hingorani 2007).' },
     pda: { name: 'Ductal adenocarcinoma', full: 'Pancreatic ductal adenocarcinoma (PDA)', color: '--pda',
       where: 'Head about 60%, body 15%, tail 5%, diffuse 20% (Robbins 9th ed.). Head tumours block the bile duct; body and tail tumours are silent, larger and more often spread when found (Beger 4th ed., ch. 137).', size: 'A hard, grey-white, ill-defined mass (drawn about 3 cm; size not sourced).',
-      text: 'Malignant glands, poorly formed and lined by pleomorphic cuboidal to columnar cells, infiltrate an intense desmoplastic stroma laid down by activated stellate cells. Invasion along nerves is found in practically every case and tracks with pain; vessels are often invaded. Upstream of the tumour the ducts dilate and the gland atrophies. Genes: KRAS over 90%, CDKN2A about 90–95%, TP53 about 75%, SMAD4 about 55%. At diagnosis 15–20% are resectable, 30–40% locally advanced and 40–50% have spread, chiefly to the liver and lungs (Robbins 9th ed., ch. 19; Beger 4th ed., ch. 119, 125, 130, 134).',
+      text: 'Malignant glands, poorly formed and lined by pleomorphic cuboidal to columnar cells, infiltrate an intense desmoplastic stroma laid down by activated stellate cells. Invasion along nerves is found in practically every case and tracks with pain; vessels are often invaded. Upstream of the tumour the ducts dilate and the gland atrophies. Genes: KRAS about 90–95%, CDKN2A about 90–95% (inactivated), TP53 about 70–75%, SMAD4 about 55%. At diagnosis 15–20% are resectable, 30–40% locally advanced and 40–50% have spread, chiefly to the liver and lungs (Robbins 9th ed., ch. 19; Beger 4th ed., ch. 119, 125, 130, 134).',
       survival: 'Five-year survival about 10% overall (39% localized, 13% regional, 3% distant); 15–25% after resection (Beger 4th ed.); older data under 5% (Robbins 9th ed.).',
       source: 'Robbins 9th ed. ch. 19 (pp. 892-894); Beger 4th ed. ch. 119, 125, 128, 130, 134, 137; Hingorani 2007. Text in our own words. Placement and sizes on the organ are simulated, by rule.' },
     pdaSpread: { name: 'Spread', full: 'Where PDA spreads', color: '--pda', where: 'Upstream ducts, bile duct, regional lymph nodes, liver', size: 'Illustrative', text: '', survival: '' },
@@ -1263,7 +1263,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     chronic: { name: 'Chronic pancreatitis', full: 'Chronic pancreatitis', color: '--chronic',
       where: 'The whole gland, often worst in the head; drawn in the head.', size: 'Gland firm and shrunken, with a dilated, strictured duct and stones in about half (Beger 4th ed., ch. 41).',
       text: 'Repeated injury leads to fibrosis and loss of acini. Activated stellate cells (4–7% of the gland’s cells) lay down collagen. Ducts dilate behind strictures and fill with protein plugs that calcify into stones; islets are spared at first and gather together, then are lost, so 70% develop diabetes. Long-term alcohol is the commonest cause; up to a quarter are genetic (PRSS1, SPINK1, CFTR, CTRC) (Robbins 9th ed., ch. 19; Beger 4th ed., ch. 7, 41).',
-      survival: 'Mortality about 50% at 20–25 years; pancreatic cancer risk about 12-fold, and 69-fold in hereditary pancreatitis (Robbins 9th ed.; Beger 4th ed., ch. 47).',
+      survival: 'Mortality about 50% at 20–25 years; pancreatic cancer risk about 12-fold (pooled), about 69-fold in hereditary pancreatitis, a 25–40% lifetime risk by age 70 (Beger 2023, ch. 61, p. 481; Robbins 9th ed., p. 909).',
       source: 'Robbins 9th ed. ch. 19 (pp. 886-889); Beger 4th ed. ch. 7, 41, 47. Text in our own words. Placement on the organ is simulated, by rule.' },
   };
   const LESION_SOURCE = 'Hingorani SR. Gastroenterology 2007;133:345-50, doi:10.1053/j.gastro.2007.05.059. Rodriguez JR et al. Gastroenterology 2007;133:72-9, doi:10.1053/j.gastro.2007.05.010. Beger HG et al., eds. The Pancreas: An Integrated Textbook, 4th ed. Wiley 2023 (ch. 81, 84, 86, 125, 126). Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease, 9th ed. 2015 (ch. 19). Text in our own words. Placement on the HRA organ is simulated, by rule; drawn sizes follow the sizes stated.';
@@ -1393,7 +1393,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
         marks: [[0.052, 0.4375, 'Normal duct: low cuboidal cells'], [0.295, 0.63, 'Tall columnar cells, basal nuclei'], [0.295, 0.265, 'Pale apical mucin'], [0.565, 0.4375, 'Micropapillary folds'], [0.7, 0.62, 'Papillae; crowded, stratified nuclei'], [0.9, 0.4375, 'Budding, loss of polarity, marked atypia'], [0.165, 0.81, 'KRAS and telomere shortening first'], [0.373, 0.63, 'Lobular atrophy: small acini, fat, fibrosis, islet cells']] },
       figures: [{ img: 'panin', w: 974, h: 344, credit: 'Hackeng WM, Hruban RH, Offerhaus GJ, Brosens LA. Diagn Pathol 2016;11:47, doi:10.1186/s13000-016-0497-z (CC BY 4.0); arranged by M. Häggström, via Wikimedia Commons.',
         marks: [[0.105, 0.50, 'Normal duct: low cuboidal cells', 1], [0.215, 0.62, 'Tall columnar cells', -1], [0.395, 0.34, 'Pale apical mucin', 1], [0.46, 0.63, 'Micropapillary folds', 1], [0.6, 0.47, 'Papillae; crowded, stratified nuclei', 1], [0.88, 0.16, 'Budding, loss of polarity, marked atypia', -1], [0.33, 0.88, 'KRAS and telomere shortening first', 1]] }],
-      key: ['Normal duct: a single layer of low cuboidal cells with little mucin.', 'PanIN-1A (low grade): flat, tall columnar cells with small, round nuclei at the base.', 'Abundant pale mucin fills the top of each cell (gastric-foveolar type).', 'PanIN-1B (low grade): the lining folds into micropapillae; nuclei still basal.', 'PanIN-2 (now low grade): more complex papillae; nuclei crowded, enlarged, darker and stratified, beginning to lose polarity; mitoses rare.', 'PanIN-3 (high grade, carcinoma in situ): widespread loss of polarity, marked atypia, frequent mitoses, cells budding into the lumen, yet still within the basement membrane; found almost only beside invasive cancer.', 'Genetic progression: telomere shortening and KRAS in over 90% from the start; CDKN2A (p16) loss, then TP53 and SMAD4 late.', 'Drawing only: lobular atrophy round each PanIN, even low grade. Acini shrink and drop out, islets gather, and fibrosis and fat take their place, while neighbouring lobules stay normal (Brune et al. 2006).'],
+      key: ['Normal duct: a single layer of low cuboidal cells with little mucin.', 'PanIN-1A (low grade): flat, tall columnar cells with small, round nuclei at the base.', 'Abundant pale mucin fills the top of each cell (gastric-foveolar type).', 'PanIN-1B (low grade): the lining folds into micropapillae; nuclei still basal.', 'PanIN-2 (now low grade): more complex papillae; nuclei crowded, enlarged, darker and stratified, beginning to lose polarity; mitoses rare.', 'PanIN-3 (high grade, carcinoma in situ): widespread loss of polarity, marked atypia, frequent mitoses, cells budding into the lumen, yet still within the basement membrane; found almost only beside invasive cancer.', 'Genetic progression: telomere shortening and KRAS early; CDKN2A (p16) loss, then TP53 and SMAD4 late (SMAD4 lost in about a third of high-grade PanIN, most often at invasion).', 'Drawing only: lobular atrophy round each PanIN, even low grade. Acini shrink and drop out, islets gather, and fibrosis and fat take their place, while neighbouring lobules stay normal (Brune et al. 2006).'],
       unique: ['Microscopic: under 0.5 cm, invisible to the eye and to imaging, unlike IPMN and MCN.', 'In small peripheral ducts, not the main duct; no cyst.', 'No ovarian-type stroma; ordinary periductal stroma.', 'The commonest route to ductal adenocarcinoma (PanIN → PDA).'],
       chart: { title: 'Progression in numbers', cols: ['Normal duct', 'PanIN-1A', 'PanIN-1B', 'PanIN-2', 'PanIN-3', 'Invasive cancer'],
         rows: [{ label: 'Dividing cells (Ki-67 index)', unit: '%', vals: [0.41, 0.69, 2.33, 14.08, 22.01, 36.99], src: 'Klein et al. 2002 (76 PanINs, 41 patients)' },
@@ -1719,6 +1719,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
       + `<h3>${esc(cmp.title)}</h3><div class="tablewrap"><table><thead><tr><th></th>${cmp.cols.map((c, i) => `<th${i + 1 === col ? ' class="on"' : ''}>${esc(c)}</th>`).join('')}</tr></thead><tbody>`
       + cmp.rows.map((r) => `<tr><th>${esc(r[0])}</th>${r.slice(1).map((c, i) => `<td${i + 1 === col ? ' class="on"' : ''}>${esc(c)}</td>`).join('')}</tr>`).join('') + '</tbody></table></div>'
       + srcFold(`${esc(Hd.sources)} Comparison: ${esc(cmp.src)} Text in our own words. Images keep their own licences.`);
+    box.insertAdjacentHTML('beforeend', mechRow(figsForLesion(key), 'How it works'));
     box.querySelector('.hclose').addEventListener('click', () => exitLesion()); box.scrollTop = 0;
   }
   function setMode(m) {
@@ -1827,7 +1828,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
       + atFold('Look-alikes, and how to tell them apart', mim ? `<ul class="mim">${mim}</ul>` : '')
       + atFold('Where, size, who and outlook', atRows(e, AT_FACTS, 'facts'))
       + atFold('Sources', `<p class="src">${e.sources.map(esc).join('; ')}. Text in our own words.</p>`)
-      + (see ? `<p class="chips">${see}</p>` : '') + '</div></div>';
+      + (see ? `<p class="chips">${see}</p>` : '') + mechRow(figsForGroup(e.group), 'How it works') + '</div></div>';
   }
   function atPair(a, b) {
     const col = (e) => { const im = atImg(e); return `<div><h3>${esc(e.name)}</h3>${im ? `<img src="${atSrc(im)}" alt="${esc(e.name)}" data-zoom="${esc(atCredit(im))}">` : ''}<p class="src">${im ? esc(atCredit(im)) : ''}</p></div>`; };
@@ -1889,118 +1890,110 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   }
   // The non-3D tabs: a flat 2D schematic of the pancreas with histology insets joined to the region they come from.
   const FLAT = ['overview', 'pancreatitis', 'precursors', 'pda'];
+  // ---------- Process illustrations: interactive anima figures shipped in dist/figures, opened in an iframe ----------
+  const FIG_BASE = 'figures/';
+  const FIGURES = [
+    { id: 'pancreas-overview', title: 'Pancreas: organ to cell', blurb: 'Zoom from the whole gland to acini, ducts and an islet.', group: 'phys', tabs: ['overview'], groups: ['normal'] },
+    { id: 'pancreas-secretion', title: 'Exocrine and islet secretion', blurb: 'Enzymes and bicarbonate from acini and ducts; hormones from the islet.', group: 'phys', tabs: ['overview'], groups: ['normal'] },
+    { id: 'acinar-cell', title: 'Acinar cell: making and releasing enzymes', blurb: 'CCK / ACh trigger zymogen-granule secretion.', group: 'phys', tabs: ['overview'], groups: ['normal'] },
+    { id: 'duct-duodenum-simple', title: 'Duct: bicarbonate to the duodenum', blurb: 'Secretin opens CFTR; HCO₃⁻ and water flush the enzymes out.', group: 'phys', tabs: ['overview'], groups: ['normal'] },
+    { id: 'islet-glucose-loop', title: 'Islet: glucose to insulin / glucagon', blurb: 'How the islet senses glucose and responds.', group: 'phys', tabs: ['overview'], groups: ['normal'] },
+    { id: 'beta-cell-steps', title: 'Beta cell: insulin secretion', blurb: 'Glucose sensing through to insulin release.', group: 'phys', tabs: ['overview'], groups: ['normal'] },
+    { id: 'panin-pda-progression', title: 'PanIN → PDA progression', blurb: 'Normal → ADM → PanIN → invasive cancer, with the driver genes.', group: 'dis', tabs: ['precursors'], groups: ['precursors', 'repair'], lesions: ['panin', 'ipmn', 'mcn'] },
+    { id: 'kras-signaling-pda', title: 'KRAS: the PDA driver', blurb: 'The GDP/GTP switch stuck ON, and its two effector arms.', group: 'dis', tabs: ['pda'], groups: ['pda', 'variants'], lesions: ['pda'] },
+    { id: 'pda-tumor-microenvironment', title: 'PDA tumour microenvironment', blurb: 'Desmoplastic stroma, CAFs and immune exclusion as the lesion grows.', group: 'dis', tabs: ['pda'], groups: ['pda', 'variants'], lesions: ['pda'] },
+    { id: 'pda-metastasis-spread', title: 'Where PDA spreads', blurb: 'Liver first, then peritoneum, lung and nodes.', group: 'dis', tabs: ['pda'], groups: ['spread', 'pda'], lesions: ['pda'] },
+    { id: 'pancreatitis-mechanism', title: 'Pancreatitis mechanism', blurb: 'Premature trypsin activation → injury → fibrosis → cancer risk.', group: 'dis', tabs: ['pancreatitis'], groups: ['pancreatitis', 'repair'], lesions: ['acute', 'chronic'] },
+  ];
+  const figsForGroup = (g) => FIGURES.filter((f) => f.groups && f.groups.includes(g));
+  const figsForLesion = (k) => FIGURES.filter((f) => f.lesions && f.lesions.includes(k));
+  const mechRow = (figs, label) => figs.length ? `<div class="mechrow"><span class="mechlbl">${label}:</span>${figs.map((f) => `<button type="button" class="mechbtn" data-fig="${f.id}" title="${esc(f.blurb)}">${esc(f.title)} ▸</button>`).join('')}</div>` : '';
+  function openFigure(id) { const f = FIGURES.find((x) => x.id === id); if (!f) return; const fb = $('figbox'); fb.querySelector('iframe').src = FIG_BASE + id + '.html'; fb.querySelector('.figtitle').textContent = f.title; fb.hidden = false; }
+  function closeFigure() { const fb = $('figbox'); if (fb.hidden) return; fb.hidden = true; fb.querySelector('iframe').src = 'about:blank'; }
+  document.addEventListener('click', (ev) => { const b = ev.target.closest('[data-fig]'); if (b) { ev.preventDefault(); openFigure(b.dataset.fig); } });
+  addEventListener('message', (ev) => { const h = ev.data && ev.data.figH; if (!h) return;
+    document.querySelectorAll('.figembed iframe').forEach((f) => { if (f.contentWindow === ev.source) f.style.height = Math.ceil(h) + 'px'; }); });
+  $('figbox').addEventListener('click', (ev) => { if (ev.target.closest('iframe')) return; closeFigure(); });
   const FLAT_HEAD = { overview: ['The pancreas', 'The gland and its building blocks. Pick a structure to see its histology; for the interactive model use the 3D tab.'],
     pancreatitis: ['Pancreatitis', 'Inflammation of the gland. Pick acute or chronic for the histology.'],
     precursors: ['Precursors of pancreatic cancer', 'The lesions that can precede ductal adenocarcinoma, where each arises. Pick one for its histology.'],
     pda: ['Pancreatic ductal adenocarcinoma', 'The common pancreatic cancer and how it spreads. Pick one for its histology.'] };
-  const SLOT = { TL: [18, 92], TR: [786, 92], ML: [18, 246], MR: [786, 246], BL: [18, 446], BR: [786, 446] };
-  const FLAT_INSETS = {
-    overview: [{ t: 'entry', id: 'normal-acini', label: 'Acini', slot: 'TL', a: 'aciniBody' }, { t: 'entry', id: 'normal-lobule', label: 'Lobule', slot: 'ML', box: 'lobule' },
-      { t: 'entry', id: 'normal-interlobular-duct', label: 'Large duct', slot: 'BL', a: 'mainDuctHead' }, { t: 'entry', id: 'normal-islet', label: 'Islet', slot: 'TR', a: 'isletTail' },
-      { t: 'entry', id: 'normal-intralobular-duct', label: 'Small duct', slot: 'BR', a: 'branchBody' }],
-    pancreatitis: [{ t: 'lesion', id: 'acute', label: 'Acute', slot: 'TR', box: 'bodyTail' }, { t: 'lesion', id: 'chronic', label: 'Chronic', slot: 'BL', box: 'head' }],
-    precursors: [{ t: 'lesion', id: 'ipmn', label: 'IPMN', slot: 'TL', a: 'mainDuct' }, { t: 'lesion', id: 'panin', label: 'PanIN', slot: 'BL', a: 'smallDuctHead' }, { t: 'lesion', id: 'mcn', label: 'MCN', slot: 'TR', box: 'tail' }],
-    pda: [{ t: 'entry', id: 'perineural-invasion', label: 'Perineural invasion', slot: 'TL', a: 'neck' }, { t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', box: 'head' }, { t: 'entry', id: 'liver-metastasis', label: 'Liver metastasis', slot: 'TR', a: 'tail' }] };
-  const REGION_BOX = { head: [196, 356, 198, 168], body: [430, 258, 206, 120], bodyTail: [430, 150, 430, 220], tail: [600, 150, 260, 150], whole: [196, 150, 664, 374], lobule: [456, 298, 92, 72] };
-  let PDA_SUB = 'spread';
-  const PDA_ALL_INSETS = [{ t: 'lesion', id: 'pda', label: 'Ductal adenocarcinoma', slot: 'BL', box: 'head' }, { t: 'entry', id: 'pancreatoblastoma', label: 'Pancreatoblastoma', slot: 'TL', a: 'neck' }, { t: 'entry', id: 'acinar-cell-carcinoma', label: 'Acinar cell carcinoma', slot: 'ML', a: 'body' }, { t: 'entry', id: 'pannet', label: 'Neuroendocrine tumour', slot: 'TR', box: 'whole' }, { t: 'entry', id: 'solid-pseudopapillary', label: 'Solid pseudopapillary', slot: 'BR', box: 'tail' }];
-  // Types of pancreatic cancer compared, for the bottom-of-page table (locations/frequencies from anatomy-spread-facts.json).
-  const CANCER_COMPARE = [
-    { id: 'pda', name: 'Ductal adenocarcinoma', where: 'Head ~60%, body 15%, tail 5%, diffuse 20%', freq: 'The great majority (~75–80% of resected neoplasms)' },
-    { id: 'pannet', name: 'Neuroendocrine tumour', where: 'Anywhere in the gland', freq: '~2% of pancreatic tumours (15–20% of resected series)' },
-    { id: 'acinar-cell-carcinoma', name: 'Acinar cell carcinoma', where: 'Anywhere; often large', freq: '1–2%' },
-    { id: 'solid-pseudopapillary', name: 'Solid pseudopapillary neoplasm', where: 'Body and tail (any part); young women', freq: '~2%' },
-    { id: 'pancreatoblastoma', name: 'Pancreatoblastoma', where: 'Any part; mainly in childhood', freq: '~0.5%' }];
-  function flatImg(it) { if (it.t === 'entry') { const e = AT_BY[it.id]; return e && (e.thumb || (e.images[0] && e.images[0].src)); } return HISTO_IMG[INSET_IMG[it.id]]; }
-  // A flat schematic of the gland, generated once: regional colours, acinar texture, the duct tree (main, interlobular,
-  // terminal), scattered islets; parts carry data-label for hover. A holds coordinates of named patterns for the inset arrows.
-  const DUCTCOL = { main: '#1f8f99', inter: '#3cb0ba', term: '#86d0d7' }, ISLETCOL = { f: '#d7b6e0', s: '#9c6fb0' }, VESSELCOL = '#cf5b63', PANC2D_COL = { acini: '#e9bc90' };
-  const PANC2D = (function build2D() {
-    let s = 20250214; const R = () => { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; };
-    const P = [[335, 438], [430, 382], [560, 252], [705, 150]];
-    const cub = (t) => { const u = 1 - t; return [u * u * u * P[0][0] + 3 * u * u * t * P[1][0] + 3 * u * t * t * P[2][0] + t * t * t * P[3][0], u * u * u * P[0][1] + 3 * u * u * t * P[1][1] + 3 * u * t * t * P[2][1] + t * t * t * P[3][1]]; };
-    const der = (t) => { const a = cub(Math.max(0, t - 0.001)), b = cub(Math.min(1, t + 0.001)), dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1; return [dx / L, dy / L]; };
-    const wAt = (t) => 96 * (1 - t) + 42 * t;
-    const flank = (t, up, f) => { const p = cub(t), d = der(t); let n = [-d[1], d[0]]; if ((up && n[1] > 0) || (!up && n[1] < 0)) n = [-n[0], -n[1]]; const a = wAt(t) * (f || 0.34); return [p[0] + n[0] * a, p[1] + n[1] * a]; };
-    const COL = { head: '#e0a877', uncinate: '#d59a66', neck: '#e9bc90', body: '#efcaa2', tail: '#f5d9bb' }, reg = (t) => t < 0.22 ? 'neck' : t < 0.6 ? 'body' : 'tail', cap = (r) => r[0].toUpperCase() + r.slice(1);
-    const g = [], A = { head: [300, 434], uncinate: [300, 500], neck: cub(0.14), body: cub(0.48), tail: cub(0.84), mainDuct: cub(0.5), mainDuctHead: cub(0.1), branchBody: flank(0.5, false, 0.3), smallDuctHead: flank(0.2, true, 0.3), lobuleBody: flank(0.36, true), aciniBody: flank(0.55, true) };
-    g.push('<path d="M262 318 q-120 12 -120 118 q0 118 122 128" fill="none" stroke="#d9b48a" stroke-width="26" stroke-linecap="round" opacity=".55"/>');
-    g.push(`<ellipse cx="300" cy="434" rx="86" ry="80" fill="${COL.head}" class="rpart" data-label="Head"/>`);
-    g.push(`<path d="M266 500 q-16 40 26 54 q36 11 52 -20 z" fill="${COL.uncinate}" class="rpart" data-label="Uncinate process"/>`);
-    const N = 20, blobs = [];
-    for (let i = 0; i <= N; i++) { const t = 0.05 + i / N * 0.95, p = cub(t), d = der(t), w = wAt(t), cx = p[0] + (R() - 0.5) * 7, cy = p[1] + (R() - 0.5) * 7, ang = Math.atan2(d[1], d[0]) * 180 / Math.PI;
-      g.push(`<ellipse cx="${cx.toFixed(0)}" cy="${cy.toFixed(0)}" rx="${(w * 0.6).toFixed(0)}" ry="${(w * 0.5).toFixed(0)}" transform="rotate(${ang.toFixed(0)} ${cx.toFixed(0)} ${cy.toFixed(0)})" fill="${COL[reg(t)]}" class="rpart" data-label="${cap(reg(t))}"/>`); blobs.push([cx, cy, w]); }
-    let stip = ''; blobs.forEach(([cx, cy, w]) => { for (let k = 0; k < 7; k++) { const a = R() * 6.28, rr = R() * 0.8, x = cx + Math.cos(a) * w * 0.55 * rr, y = cy + Math.sin(a) * w * 0.45 * rr; stip += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(1.4 + R() * 1.1).toFixed(1)}" fill="rgba(150,80,40,.18)"/>`; } });
-    g.push(`<g pointer-events="none">${stip}</g>`);
-    g.push(`<path d="M300 434 q-36 2 -62 -6" fill="none" stroke="${DUCTCOL.main}" stroke-width="5" stroke-linecap="round" class="rpart" data-label="Main pancreatic duct"/>`);
-    let dp = 'M300 434 '; for (let t = 0; t <= 1.001; t += 0.05) { const p = cub(t); dp += `L${p[0].toFixed(0)} ${p[1].toFixed(0)} `; }
-    const br = [], tm = [];
-    [0.2, 0.36, 0.52, 0.68, 0.84].forEach((t, i) => { const p = cub(t), d = der(t); let n = [-d[1], d[0]]; if (i % 2) n = [-n[0], -n[1]]; const w = wAt(t), ex = p[0] + n[0] * w * 0.3, ey = p[1] + n[1] * w * 0.3;
-      br.push(`<line x1="${p[0].toFixed(0)}" y1="${p[1].toFixed(0)}" x2="${ex.toFixed(0)}" y2="${ey.toFixed(0)}" stroke="${DUCTCOL.inter}" stroke-width="3" stroke-linecap="round" class="rpart" data-label="Interlobular duct"/>`);
-      for (let j = -1; j <= 1; j++) { const tx = ex + n[0] * 7 - n[1] * j * 7, ty = ey + n[1] * 7 + n[0] * j * 7; tm.push(`<line x1="${ex.toFixed(0)}" y1="${ey.toFixed(0)}" x2="${tx.toFixed(0)}" y2="${ty.toFixed(0)}" stroke="${DUCTCOL.term}" stroke-width="1.7" stroke-linecap="round" class="rpart" data-label="Terminal (intercalated) duct"/>`); } });
-    g.push(`<path d="${dp}" fill="none" stroke="${DUCTCOL.main}" stroke-width="6" stroke-linecap="round" class="rpart" data-label="Main pancreatic duct (large duct)"/>`);
-    g.push('<g>' + br.join('') + tm.join('') + '</g>');
-    let isl = '', ves = ''; const islets = [];
-    for (let i = 0; i < 11; i++) { const t = 0.12 + R() * 0.82, p = cub(t), d = der(t), off = (R() - 0.5) * wAt(t) * 0.46, x = p[0] - d[1] * off, y = p[1] + d[0] * off, r = 4.5 + R() * 2.8;
-      isl += `<ellipse cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" rx="${(r * 1.15).toFixed(1)}" ry="${r.toFixed(1)}" fill="${ISLETCOL.f}" stroke="${ISLETCOL.s}" stroke-width="1" class="rpart" data-label="Islet of Langerhans"/>`; islets.push([x, y, t]); }
-    islets.forEach(([x, y], k) => { if (k % 4 === 1) ves += `<line x1="${(x - 11).toFixed(0)}" y1="${(y + 9).toFixed(0)}" x2="${(x + 12).toFixed(0)}" y2="${(y + 4).toFixed(0)}" stroke="${VESSELCOL}" stroke-width="2.4" stroke-linecap="round" class="rpart" data-label="Vessel (arteriole / venule)"/>`; });
-    g.push('<g>' + ves + '</g><g>' + isl + '</g>');
-    const it = islets.filter((i) => i[2] > 0.62).sort((a, b) => b[2] - a[2])[0] || islets[0]; A.isletTail = [it[0], it[1]];
-    return { svg: g.join(''), A };
-  })();
-  const flatInset = (it) => { const [bx, by] = SLOT[it.slot], img = flatImg(it), tgt = it.t === 'entry' ? `data-flat-entry="${it.id}"` : `data-flat-lesion="${it.id}"`;
-    return `<g class="finset" ${tgt} role="button" tabindex="0" aria-label="${esc(it.label)}: histology">${img ? `<image x="${bx}" y="${by}" width="196" height="132" preserveAspectRatio="xMidYMid slice" href="${img}"/>` : `<rect x="${bx}" y="${by}" width="196" height="132" fill="var(--panel)"/><text x="${bx + 98}" y="${by + 66}" class="orglbl" text-anchor="middle">drawing</text>`}<rect x="${bx}" y="${by}" width="196" height="132" rx="8" fill="none" stroke="var(--accent)" stroke-width="2.5"/><rect x="${bx}" y="${by + 108}" width="196" height="24" fill="rgba(247,240,244,.9)"/><text x="${bx + 10}" y="${by + 125}" class="flabel">${esc(it.label)} ›</text></g>`; };
-  function boardSVG(list) { const insets = list.map((it) => { const r = it.box && REGION_BOX[it.box]; return Object.assign({}, it, { at: r ? [r[0] + r[2] / 2, r[1] + r[3] / 2] : (PANC2D.A[it.a] || [500, 300]), r }); });
-    const line = (it) => { const [bx, by] = SLOT[it.slot]; return `<line x1="${bx + 98}" y1="${by + 66}" x2="${it.at[0]}" y2="${it.at[1]}"/>` + (it.r ? `<rect x="${it.r[0]}" y="${it.r[1]}" width="${it.r[2]}" height="${it.r[3]}" rx="10" fill="none" stroke-dasharray="7 5"/>` : `<circle cx="${it.at[0]}" cy="${it.at[1]}" r="6"/>`); };
-    return '<svg viewBox="0 0 1000 620" class="flatsvg" role="img" aria-label="Schematic of the pancreas with histology insets">' + PANC2D.svg
-      + `<g class="leaders" stroke="var(--accent)" stroke-width="2" fill="var(--accent)">${insets.map(line).join('')}</g>` + insets.map(flatInset).join('') + '</svg>'; }
-  const ORG_LEGEND = `<div class="orglegend"><span><i style="background:${PANC2D_COL.acini}"></i>Acini (parenchyma)</span><span><i style="background:${DUCTCOL.main}"></i>Ducts <small>(main, interlobular, terminal — darker to lighter)</small></span><span><i style="background:${ISLETCOL.f};border-color:${ISLETCOL.s}"></i>Islets</span><span><i style="background:${VESSELCOL}"></i>Vessels</span></div>`;
-  // A simple body schematic for where PDA spreads: lungs, liver, stomach, pancreas (with the tumour), peritoneum, nodes.
-  function bodyMetSVG() {
-    const dot = (x, y, lab, id) => `<g class="rpart${id ? ' finset' : ''}"${id ? ` data-flat-entry="${id}" role="button" tabindex="0"` : ''} data-label="${lab}"><circle cx="${x}" cy="${y}" r="7" fill="#7a1f2b" stroke="#fff" stroke-width="1.5"/></g>`;
-    return '<svg viewBox="0 0 300 440" class="bodysvg" role="img" aria-label="Where pancreatic cancer spreads">'
-      + '<path d="M150 20 a26 26 0 1 0 0.1 0 Z" fill="#e8d3c2"/><path d="M110 70 q40 -16 80 0 l18 150 q-58 26 -116 0 Z" fill="#edd9c9"/>'   // head, torso
-      + '<path d="M96 96 q-26 6 -30 60 l34 6 Z" fill="#edd9c9"/><path d="M204 96 q26 6 30 60 l-34 6 Z" fill="#edd9c9"/>'   // arms
-      + '<ellipse cx="128" cy="120" rx="26" ry="34" fill="#f0c3c9" class="rpart" data-label="Lung"/><ellipse cx="172" cy="120" rx="26" ry="34" fill="#f0c3c9" class="rpart" data-label="Lung"/>'
-      + '<path d="M112 168 q44 -12 78 0 q6 44 -39 46 q-45 -2 -39 -46 Z" fill="#9e5b4e" class="rpart" data-label="Liver"/>'
-      + '<path d="M150 178 q34 -4 40 22 q-6 22 -40 18 q-30 -4 -34 -20 q4 -18 34 -20 Z" fill="#e3a3ab" class="rpart" data-label="Stomach"/>'
-      + '<path d="M96 214 q60 14 112 -2" fill="none" stroke="#e8b84e" stroke-width="12" stroke-linecap="round" class="rpart" data-label="Pancreas"/>'
-      + '<circle cx="104" cy="214" r="9" fill="#6b4a3a" stroke="#fff" stroke-width="1.5" class="rpart" data-label="Pancreatic cancer (usually the head)"/>'
-      + dot(150, 182, 'Liver metastases (the commonest distant site)', 'liver-metastasis') + dot(170, 184, 'Liver metastases', '') + dot(134, 186, 'Liver metastases', '')
-      + dot(128, 118, 'Lung metastases', '') + dot(132, 250, 'Peritoneal spread', '') + dot(168, 256, 'Peritoneal spread', '') + dot(150, 236, 'Peritoneal spread', '')
-      + dot(120, 206, 'Regional lymph nodes', '') + dot(186, 206, 'Regional lymph nodes', '')
-      + '<text x="150" y="300" class="orglbl" text-anchor="middle">Liver · peritoneum · lung · nodes</text></svg>'; }
+  // ---------- structured flat pages: embedded figures + histology + comparisons ----------
+  const entryImg = (e) => { if (!e) return ''; if (e.thumb) return e.thumb; const im = e.images && e.images[0]; return im ? atSrc(im) : ''; };
+  const groupEntryIds = (gk) => ATLAS_DATA.entries.filter((e) => e.group === gk).map((e) => e.id);
+  const embedFig = (id, h) => `<div class="figembed"><iframe src="${FIG_BASE}${id}.html" style="height:${h || 580}px" loading="lazy" title="${esc(((FIGURES.find((f) => f.id === id)) || {}).title || id)}"></iframe></div>`;
+  const secHd = (t, sub) => `<h3 class="sechd">${esc(t)}${sub ? `<small>${esc(sub)}</small>` : ''}</h3>`;
+  const histoCards = (ids) => `<div class="hcardrow">${ids.filter((id) => AT_BY[id]).map((id) => { const e = AT_BY[id], img = entryImg(e); return `<button type="button" class="hcard" data-flat-entry="${id}">${img ? `<img src="${img}" alt=""/>` : '<span class="noimg">no image yet</span>'}<span>${esc(e.name)} &#8250;</span></button>`; }).join('')}</div>`;
+  const oneRow = (...rows) => `<div class="hcardrow">${rows.map((r) => r.replace(/^<div class="hcardrow">/, '').replace(/<\/div>$/, '')).join('')}</div>`;   // several card rows as one
+  const LES_NAME = { acute: 'Acute pancreatitis', chronic: 'Chronic pancreatitis', panin: 'PanIN', ipmn: 'IPMN', mcn: 'MCN', pda: 'Ductal adenocarcinoma' };
+  const lesionCards = (ids) => `<div class="hcardrow">${ids.map((id) => { const img = HISTO_IMG[INSET_IMG[id]]; return `<button type="button" class="hcard" data-flat-lesion="${id}">${img ? `<img src="${img}" alt=""/>` : '<span class="noimg">drawing</span>'}<span>${esc(LES_NAME[id] || (LESION_VIEWS[id] && LESION_VIEWS[id].title) || id)} &#8250;</span></button>`; }).join('')}</div>`;
+  const cellRow = (figId, entryId, title, note) => { const e = AT_BY[entryId], img = e && entryImg(e);
+    return `<div class="cellrow"><div class="cellfig"><h4>${esc(title)}</h4><p class="mk">${esc(note)}</p><button type="button" class="mechbtn" data-fig="${figId}">Open the mechanism &#9656;</button></div>`
+      + `<div class="cellhe">${img ? `<button type="button" class="hecard" data-flat-entry="${entryId}"><img src="${img}" alt=""/><span>H&amp;E: ${esc(e.name)} &#8250;</span></button>` : ''}</div></div>`; };
+  const DRIVER_CHIPS = [['KRAS', 'gain of function; earliest, near-universal', '~90-95%', 'kras-signaling-pda'], ['CDKN2A', 'p16 loss (deletion, mutation or methylation); intermediate grade', '~90-95%', null], ['TP53', 'loss; late (high grade)', '~70-75%', null], ['SMAD4', 'loss; late (a third of high-grade PanIN), most often at invasion', '~55%', null]];
+  const driverChips = () => `<div class="chiprow"><span class="chiplbl">Key drivers (% of PDA):</span>${DRIVER_CHIPS.map(([gene, role, freq, fig]) => fig ? `<button type="button" class="gchip" data-fig="${fig}" title="${esc(role)}">${gene} <small>${freq}</small></button>` : `<span class="gchip" title="${esc(role)}">${gene} <small>${freq}</small></span>`).join('')}</div>`;
+  const PRECURSOR_MAP = { cols: ['PanIN', 'IPMN', 'MCN'], rows: [
+    ['Nature', 'Microscopic (<5 mm), non-cystic', 'Cystic, macroscopic', 'Cystic, macroscopic'],
+    ['Duct link', 'In small ducts', 'Communicates with the duct', 'Does not communicate'],
+    ['Who / where', 'Common with age; more in the head', 'Main- or branch-duct; older, both sexes', 'Women; body/tail; ovarian-type stroma'],
+    ['Drivers', 'KRAS early; CDKN2A/TP53/SMAD4 later', 'KRAS + GNAS, RNF43; TP53, CDKN2A, SMAD4 when high grade', 'KRAS; CDKN2A/TP53/SMAD4 later'],
+    ['Grading', 'Low vs high-grade dysplasia', 'Low vs high-grade dysplasia', 'Low vs high-grade dysplasia'] ] };
+  const precursorMap = () => `<div class="tablewrap"><table class="cmptable"><thead><tr><th></th>${PRECURSOR_MAP.cols.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${PRECURSOR_MAP.rows.map((r) => `<tr><th>${esc(r[0])}</th>${r.slice(1).map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const caveats = (items) => `<details class="caveats"><summary>What this does <em>not</em> mean</summary><ul>${items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></details>`;
+  const callout = (html, gotab, label) => `<div class="xbridge"><p>${html}${gotab ? ` <button type="button" class="linkish" data-gotab="${gotab}">${esc(label)} &#9656;</button>` : ''}</p></div>`;
+
   function renderFlat() {
     const box = $('overviewpanel'), on = FLAT.includes(MODE); box.hidden = !on; if (!on) return;
     const head = FLAT_HEAD[MODE];
-    const hov = '<div class="orghover" hidden></div>';
-    if (MODE === 'pda') {
-      const tg = `<div class="dimtoggle"><button type="button" class="abtn${PDA_SUB === 'spread' ? ' primary' : ''}" data-pdasub="spread">This cancer</button><button type="button" class="abtn${PDA_SUB === 'all' ? ' primary' : ''}" data-pdasub="all">All pancreatic cancers</button></div>`;
-      if (PDA_SUB === 'all') {
-        const rows = CANCER_COMPARE.map((c) => `<tr><th><button type="button" class="linkish" data-flat-entry="${c.id}">${esc(c.name)}</button></th><td>${esc(c.where)}</td><td>${esc(c.freq)}</td></tr>`).join('');
-        box.innerHTML = `<div class="abar"><h2>Pancreatic cancers by where they arise</h2>${tg}</div><p class="intro">Ductal adenocarcinoma is by far the commonest; the others are rarer and sit in characteristic places. Pick one for its histology. Hover the drawing to name each part.</p>`
-          + `<div class="flatwrap">${hov}${boardSVG(PDA_ALL_INSETS)}</div>${ORG_LEGEND}`
-          + `<h3 class="cmphd">Types compared</h3><div class="tablewrap"><table class="cmptable"><thead><tr><th>Tumour</th><th>Where it arises</th><th>How common</th></tr></thead><tbody>${rows}</tbody></table></div>`
-          + `<p class="orgnote"><b>In short:</b> ductal adenocarcinoma dwarfs the rest (about three-quarters of resected pancreatic neoplasms); neuroendocrine tumours come next (15–20% of surgical series, ~2% overall); acinar cell carcinoma, solid pseudopapillary neoplasm and pancreatoblastoma are each about 2% or less. <span class="src">Kleeff et al. 2016; Robbins and Cotran 9th ed., ch. 19 and 24; Beger et al. 2023, ch. 80, 98, 125.</span></p>`;
-      } else {
-        box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2>${tg}</div><p class="intro">${esc(head[1])} It spreads along nerves and vessels and then to distant organs.</p>`
-          + `<div class="pdarow"><div class="pdacol"><h3>In the pancreas</h3><div class="flatwrap">${hov}${boardSVG(FLAT_INSETS.pda)}</div></div>`
-          + `<div class="pdacol pdabody"><h3>Where it spreads</h3>${bodyMetSVG()}<p class="orgnote">Nearly every tumour invades nerves and vessels; distant spread is mainly to the liver, then the peritoneum and lungs, with regional nodes. Click the liver for the histology. <span class="src">Robbins and Cotran 9th ed., ch. 19; Beger et al. 2023, ch. 125, 133; Kleeff et al. 2016.</span></p></div></div>`;
-      }
+    let body;
+    if (MODE === 'overview') {
+      body = `<div class="abar"><h2>${esc(head[0])} &mdash; organ to cell</h2><div class="dimtoggle"><button type="button" class="abtn" data-dim="3d">Interactive 3D model &#9656;</button></div></div>`
+        + `<p class="intro">The whole gland, its two kinds of tissue, and the cells and what they do &mdash; each beside its H&amp;E.</p>`
+        + embedFig('pancreas-overview', 780)
+        + secHd('Exocrine tissue and islets', 'Almost all of the gland makes digestive juice; islets, about 1–2% of it, make hormones.')
+        + embedFig('pancreas-secretion', 700)
+        + secHd('Tissue histology', 'Click a picture for its features and look-alikes.')
+        + histoCards(['normal-lobule', 'normal-acini', 'normal-interlobular-duct', 'normal-intralobular-duct', 'normal-islet'])
+        + `<p class="orgnote">Juice flows from the acini through ever larger ducts into the main duct and on to the duodenum. <span class="src">Gorelick and Williams 2021, ch. 1; Beger et al. 2023, ch. 2.</span></p>`
+        + secHd('Cells and their function', 'Each mechanism beside its H&E.')
+        + cellRow('acinar-cell', 'normal-acini', 'Acinar cell — enzyme secretion', 'Makes digestive enzymes and stores them in granules until a signal releases them. Markers: PRSS1, CELA3A, CPA1.')
+        + cellRow('duct-duodenum-simple', 'normal-intralobular-duct', 'Duct — bicarbonate secretion', 'Adds bicarbonate-rich fluid that carries the enzymes to the duodenum, mostly in the small ducts. Markers: CFTR, KRT19, SOX9.')
+        + cellRow('islet-glucose-loop', 'normal-islet', 'Islet — glucose regulation', 'Beta cells (insulin, about half), alpha cells (glucagon) and delta cells (somatostatin), mixed together.');
+    } else if (MODE === 'pancreatitis') {
+      body = `<div class="abar"><h2>${esc(head[0])}</h2></div><p class="intro">${esc(head[1])}</p>`
+        + embedFig('pancreatitis-mechanism', 720)
+        + secHd('Histology — normal, acute, chronic', 'Compare at the same magnification.')
+        + oneRow(histoCards(['normal-acini']), lesionCards(['acute', 'chronic']))
+        + callout('Repeated injury drives acinar-to-ductal metaplasia (ADM); with mutant <b>KRAS</b> and inflammation this can move toward PanIN. <b>Chronic</b> pancreatitis raises the risk of pancreatic cancer about 12-fold (hereditary pancreatitis about 69-fold, a 25&ndash;40% lifetime risk); for most people the absolute risk stays low. After acute pancreatitis the excess risk is small and largely an undiagnosed tumour, and new-onset pancreatitis can itself be a sign of an obstructing tumour or IPMN.', 'precursors', 'See precursors');
+    } else if (MODE === 'precursors') {
+      body = `<div class="abar"><h2>${esc(head[0])}</h2></div><p class="intro">${esc(head[1])}</p>`
+        + callout('These lesions begin from acinar-to-ductal metaplasia and early <b>KRAS</b> mutation — the link from injury and inflammation.', 'pancreatitis', 'Back to pancreatitis')
+        + secHd('From PanIN to PDA — the main precursor', 'A typical order of genetic hits, not an obligate path; most PanINs never progress.')
+        + embedFig('panin-pda-progression', 720)
+        + secHd('What the first driver does', 'KRAS is the earliest, near-universal event.')
+        + embedFig('kras-signaling-pda', 680)
+        + secHd('Other precursors — parallel, cystic routes', 'IPMN and MCN are separate from the PanIN ladder, with different drivers.')
+        + precursorMap()
+        + lesionCards(['panin', 'ipmn', 'mcn'])
+        + caveats(['Most PanINs and pancreatic cysts never become cancer.', 'IPMN and MCN are not steps on the PanIN pathway — they are parallel precursors.', 'Many pancreatic cysts (serous cystadenoma, pseudocyst) are benign.']);
     } else {
-      const toggle = MODE === 'overview' ? '<div class="dimtoggle"><button type="button" class="abtn primary" data-dim="2d">2D</button><button type="button" class="abtn" data-dim="3d">3D model</button></div>' : '';
-      const note = MODE === 'overview' ? '<p class="orgnote">In the normal gland the islets lie alongside the ducts and are richly vascularised; islet blood drains into the neighbouring acinar capillaries (the insulo-acinar portal system). <span class="src">Gorelick and Williams 2021, ch. 1; Beger et al. 2023, ch. 2.</span></p>' : '';
-      box.innerHTML = `<div class="abar"><h2>${esc(head[0])}</h2>${toggle}</div><p class="intro">${esc(head[1])} Hover the drawing to name each part.</p>`
-        + `<div class="flatwrap">${hov}${boardSVG(FLAT_INSETS[MODE] || [])}</div>${ORG_LEGEND}${note}`;
+      body = `<div class="abar"><h2>${esc(head[0])}</h2></div><p class="intro">${esc(head[1])}</p>`
+        + driverChips()
+        + callout('Initiated by <b>KRAS</b> (see Precursors); here the invasive tumour builds its microenvironment.', 'precursors', 'See precursors')
+        + secHd('The hallmark: desmoplasia (tumour microenvironment)', 'Dense stroma around infiltrating glands — also present in chronic pancreatitis; the stroma is not simply tumour-promoting.')
+        + embedFig('pda-tumor-microenvironment', 740)
+        + secHd('Grade and histological variants', 'Grade = how gland-like the tumour is (judged on the glands, not the stroma); it is not stage. Variants are rare.')
+        + oneRow(lesionCards(['pda']), histoCards(groupEntryIds('pda')))
+        + `<details class="caveats"><summary>Histological variants (rare) and separate tumour types</summary><p class="src">Variants such as adenosquamous and colloid are uncommon. Acinar cell carcinoma and neuroendocrine tumours are <b>separate tumour types, not PDA</b>.</p>${histoCards(groupEntryIds('variants'))}</details>`
+        + secHd('Where it spreads', 'Liver most common, then peritoneum and lung; about half are metastatic at diagnosis.')
+        + embedFig('pda-metastasis-spread', 760)
+        + caveats(['A PanIN-to-PDA arrow shows a typical order, not inevitability.', 'Grade (differentiation) is not stage.', 'Stroma is heterogeneous and not purely tumour-promoting.']);
     }
+    box.innerHTML = `<div class="flatpage">${body}</div>`;
     box.scrollTop = 0;
-    const hovEl = box.querySelector('.orghover');
-    box.querySelectorAll('.flatsvg, .bodysvg').forEach((svg) => {
-      svg.addEventListener('pointermove', (e) => { const el = e.target.closest('[data-label]'); if (!el) { hovEl.hidden = true; return; } const r = box.getBoundingClientRect(); hovEl.textContent = el.dataset.label; hovEl.hidden = false; hovEl.style.left = (e.clientX - r.left + 14) + 'px'; hovEl.style.top = (e.clientY - r.top + 14) + 'px'; });
-      svg.addEventListener('pointerleave', () => { hovEl.hidden = true; }); });
+
   }
-  $('overviewpanel').addEventListener('click', (ev) => { const le = ev.target.closest('[data-flat-lesion]'), en = ev.target.closest('[data-flat-entry]');
-    if (le) { enterLesion(le.dataset.flatLesion); return; } if (en) { setMode('atlas'); atlasOpen(en.dataset.flatEntry); return; } const dim = ev.target.closest('[data-dim]'); if (dim) { setMode(dim.dataset.dim === '3d' ? 'pancreas' : 'overview'); return; } const ps = ev.target.closest('[data-pdasub]'); if (ps) { PDA_SUB = ps.dataset.pdasub; renderFlat(); } });
+  $('overviewpanel').addEventListener('click', (ev) => { const le = ev.target.closest('[data-flat-lesion]'); if (le) { enterLesion(le.dataset.flatLesion); return; } const en = ev.target.closest('[data-flat-entry]'); if (en) { setMode('atlas'); atlasOpen(en.dataset.flatEntry); return; } const dim = ev.target.closest('[data-dim]'); if (dim) { setMode('pancreas'); return; } const gt = ev.target.closest('[data-gotab]'); if (gt) { setMode(gt.dataset.gotab); return; } });
   function flatFrame(now) {
     const key = 'flat:' + MODE + ':' + (LES.view || '');
     if (lastLevel !== key) { lastLevel = key; UI.levelname.textContent = LES.view ? LESION_VIEWS[LES.view].title + ': histology' : (FLAT_HEAD[MODE] ? FLAT_HEAD[MODE][0] : ''); showMarkers(null); }
