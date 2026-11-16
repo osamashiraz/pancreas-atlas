@@ -179,7 +179,6 @@ Full references with DOIs: [`docs/SOURCES.md`](docs/SOURCES.md). Values still aw
 | `repo/`                            | Model data and the code that builds and tests it: inventory, generators, loader, tests, Python builders                                                                                                                  |
 | `docs/`                            | Specification, backlog, change history, sources, README images                                                                                                                                                           |
 | `scripts/install_into_mousebio.sh` | Copies `repo/` into a MouseBio_3D checkout and runs its checks                                                                                                                                                           |
-| `CLAUDE.md`                        | Working rules for continuing the project with Claude Code                                                                                                                                                                |
 
 ### Run it locally
 

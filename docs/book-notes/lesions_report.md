@@ -8,7 +8,7 @@ Sources (page refs are PDF index / printed page):
 
 All 103 facts are in `lesions.json` (one entry per fact, paraphrased, with value, chapter, pdfPage, printedPage, confidence). Nothing here comes from outside these four texts. Evidence class for the model: these are literature descriptions, not measurements of our own geometry, so any drawn size is `simulated` or `traced` from the cited range, not `source`.
 
-Note for CLAUDE.md rule 2: P4 contains the Japan Pancreas Society resectability table (Ch 135, Table 135.2, PDF 1057, printed 1050). It could be used to check that unverified reference; I did not verify it.
+Note on sourcing: P4 contains the Japan Pancreas Society resectability table (Ch 135, Table 135.2, PDF 1057, printed 1050). It could be used to check that unverified reference; I did not verify it.
 
 ---
 

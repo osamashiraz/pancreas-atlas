@@ -9,3 +9,11 @@ _site/
 
 # Papers kept locally for reference (copyrighted; not published)
 literature/
+
+# AI assistant instructions, prompts and session notes (kept locally, not published)
+CLAUDE.md
+.claude/
+.agents/
+skills-lock.json
+figures/
+docs/REVIEW-*.md
