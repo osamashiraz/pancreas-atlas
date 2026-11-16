@@ -1,10 +1,25 @@
-# Human pancreas 3D — from organ to cell
+# Pancreas: Organ to Disease
+
+*An open learning atlas of H&E, mechanisms and 3D anatomy, from the normal gland to PDA*
 
 **[Open the learning tool →](https://osamashiraz.github.io/pancreas-atlas/)** (runs in the browser; Chrome or Edge recommended)
 
 A free, open learning tool that walks from the normal human pancreas, its exocrine and endocrine parts, to its diseases: pancreatitis, the precursor lesions of pancreatic cancer, and pancreatic ductal adenocarcinoma (PDA). Every step is shown three ways: an interactive illustrated figure of the mechanism, real H&E micrographs of what it looks like under the microscope, and an interactive 3D model that zooms from the whole organ down to single cells.
 
 ![The Atlas: a gallery of the pancreas under the microscope](docs/images/tour-atlas.jpg)
+
+## A note on terms
+
+Pancreatic ductal adenocarcinoma is written several ways in the literature: **PDAC** (the most common abbreviation), **PDA**, "pancreatic adenocarcinoma", "ductal adenocarcinoma of the pancreas" and, loosely, "pancreatic cancer". All mean the same tumour, the ductal-type adenocarcinoma that makes up most pancreatic cancers. This repository uses **PDA** throughout.
+
+## How it relates to other resources
+
+This is not a reference work. For depth, use the comprehensive resources, for example:
+
+- [PathologyOutlines.com](https://www.pathologyoutlines.com/pancreas.html), for the full surgical pathology of the pancreas: every entity, its criteria, its differential diagnosis, its stains and the WHO terms;
+- [Pancreatlas](https://pancreatlas.org) (Vanderbilt), for large collections of high-resolution human pancreas and islet images.
+
+This tool is for quick, simple learning. It links the normal histology, biology and cell biology of the pancreas to its main diseases on one page each, so you can get oriented before going deeper.
 
 ## Why I built this
 
