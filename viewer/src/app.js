@@ -1734,6 +1734,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
   function setMode(m) {
     if (m === MODE || !['pancreas', 'precursors', 'pancreatitis', 'pda', 'atlas', 'overview'].includes(m)) return;
     if (LES.view) exitLesion(true);
+    if (m !== 'pancreas') stopTour();   // the journey belongs to the 3D view
     MODE = m; document.body.dataset.mode = m; if (splitOn) setSplit(false);
     document.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === m || (m === 'pancreas' && b.dataset.mode === 'overview'))));
     if (COMPARE.on) $('compare').click();
@@ -1947,6 +1948,13 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     ['Grading', 'Low vs high-grade dysplasia', 'Low vs high-grade dysplasia', 'Low vs high-grade dysplasia'] ] };
   const precursorMap = () => `<div class="tablewrap"><table class="cmptable"><thead><tr><th></th>${PRECURSOR_MAP.cols.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${PRECURSOR_MAP.rows.map((r) => `<tr><th>${esc(r[0])}</th>${r.slice(1).map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   const caveats = (items) => `<details class="caveats"><summary>What this does <em>not</em> mean</summary><ul>${items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></details>`;
+  // Plain-language key to the KRAS figure (Simanshu 2017, PMID 28666118; Cox 2014, PMID 25323927).
+  const KRAS_KEY = `<div class="keyterms"><p class="kt-head">How to read the figure</p><dl>
+    <div><dt>KRAS</dt><dd>A switch protein on the inner face of the cell membrane. It passes growth signals from the cell surface into the cell.</dd></div>
+    <div><dt>GTP = ON, GDP = OFF</dt><dd>KRAS is on when it holds GTP and off when it holds GDP. A growth signal swaps GDP for GTP to turn it on.</dd></div>
+    <div><dt>GAP</dt><dd>The "off" helper. A GAP (GTPase-activating protein) makes KRAS cut its GTP down to GDP, so the signal stops.</dd></div>
+    <div><dt>G12D</dt><dd>The common KRAS mutation in pancreatic cancer. It changes amino acid 12, so GAP can no longer switch KRAS off. KRAS stays mostly on, and keeps telling the cell to divide (RAF, MEK, ERK) and to grow and survive (PI3K, AKT) even without a growth signal.</dd></div>
+  </dl></div>`;
   const callout = (html, gotab, label) => `<div class="xbridge"><p>${html}${gotab ? ` <button type="button" class="linkish" data-gotab="${gotab}">${esc(label)} &#9656;</button>` : ''}</p></div>`;
 
   function renderFlat() {
@@ -1978,6 +1986,7 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
         + secHd('From PanIN to PDA — the main precursor', 'A typical order of genetic hits, not an obligate path; most PanINs never progress.')
         + embedFig('panin-pda-progression', 720)
         + secHd('What the first driver does', 'KRAS is the earliest, near-universal event.')
+        + KRAS_KEY
         + embedFig('kras-signaling-pda', 680)
         + secHd('Other precursors — parallel, cystic routes', 'IPMN and MCN are separate from the PanIN ladder, with different drivers.')
         + precursorMap()
@@ -2028,7 +2037,14 @@ let fa, F, faCells, fc, Pc, I, fb, Pb, fk, Pk, fdu, Dseg, Da, Db, D, Dax, dCells
     if (MODE_PARTS[q.get('mode')]) { setMode(q.get('mode')); if (LESION_VIEWS[q.get('lesion')]) enterLesion(q.get('lesion')); return; } else if (MODE !== 'pancreas') setMode('pancreas');
     if (q.get('disease')) setDisease(q.get('disease'));
     if (v && v[0] !== 'organ') { const [lvl, br, kind] = v; setIsletKind(kind); if (br) document.querySelectorAll('[data-branch]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.branch === br))); flyTo(stopFor(lvl, br), br, MODE_OF[lvl]); } }
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => location.reload());
+  // Light theme by default; the switch at the top flips to dark and remembers the choice. The 3D tissue colours are the
+  // same in both themes, so only the page tokens change and nothing has to be rebuilt.
+  function showTheme() { const dark = document.documentElement.dataset.theme === 'dark', b = $('themebtn');
+    b.textContent = dark ? '☀ Light' : '☾ Dark'; b.title = dark ? 'Switch to the light theme' : 'Switch to the dark theme'; b.setAttribute('aria-pressed', String(dark)); }
+  $('themebtn').addEventListener('click', () => { const dark = document.documentElement.dataset.theme !== 'dark';
+    if (dark) document.documentElement.dataset.theme = 'dark'; else delete document.documentElement.dataset.theme;
+    try { localStorage.setItem('pz-theme', dark ? 'dark' : 'light'); } catch (e) { /* storage may be unavailable */ } showTheme(); });
+  showTheme();
   buildOrgan().then(() => { camera.position.set(0, 0.25, 1).normalize().multiplyScalar(STOPS.organ); controls.target.set(0, 0, 0); controls.update(); $('status').style.display = 'none'; renderer.setAnimationLoop(frame); readHash(START_HASH); hashReady = true; if (!START_HASH) setMode('atlas'); window.addEventListener('hashchange', () => readHash()); })
     .catch((e) => { $('status').textContent = 'The organ could not be read: ' + e; });
   // ---------- the name of what is under the pointer, in a box below the level's name (top right of the view)

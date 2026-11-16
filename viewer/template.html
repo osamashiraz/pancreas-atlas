@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pancreas: Organ to Disease</title>
+<script>try{if(localStorage.getItem("pz-theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,560&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -11,7 +12,6 @@
 --insulincore:#20402a;--insulinhalo:#dff2df;--cilium:#ffffff;--microvilli:#5d7f99;--tightjunction:#1d2b4f;--cftr:#2f6fe0;--slc26:#ef8a1a;--basement:#e7d9c2;
 --organ:#e6c49c;--parenchyma:#8d58a0;--isletgross:#dcb7d9;--organduct:#f1d36b;--artery:#c8333a;--vein:#3f5a9a;--neighbour:#b9a49c;
 --isletnucleus:#5a4799;--insulin:#3a9e48;--glucagon:#c4307a;--glucagoncore:#3b1630;--glucagonhalo:#f4dfe9;--somatostatin:#1d93bd;--somatostatincore:#5f7894;--glucose:#e2b21c;--panin:#f0a830;--acute:#f0b94e;--chronic:#9c8f84;--mcn:#4f86c6;--ipmn:#20a39a;--pda:#6b4a3a;--enzyme:#e46a7e;--bicarbonate:#1aa7b5;--grossduct:#f3d9e6;--grossartery:#c9485b;--grossvein:#ad5f7c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#13141a;--panel:#1b1c24;--ink:#e8e7ee;--muted:#a1a2b2;--rule:#2d2e3a;--accent:#b49ae6;--warn:#e2b45f;--canvas:#101117}}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#13141a;--panel:#1b1c24;--ink:#e8e7ee;--muted:#a1a2b2;--rule:#2d2e3a;--accent:#b49ae6;--warn:#e2b45f;--canvas:#101117}
 *,*::before,*::after{box-sizing:inherit}html{height:100%}
 body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 "Public Sans","Segoe UI",system-ui,sans-serif}
@@ -32,6 +32,7 @@ body[data-stain="if"] .stage{background:radial-gradient(ellipse at 50% 38%,#2a25
 .ladder button span{display:block;font-size:11px;color:var(--muted)}
 .ladder .branch{display:flex;gap:5px;margin-left:12px}
 .ladder .branch button{min-width:0}
+.themebtn{position:fixed;top:12px;right:14px;z-index:30;font:500 12.5px "Public Sans",system-ui,sans-serif;color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:7px;padding:5px 10px;cursor:pointer;white-space:nowrap}.themebtn:hover{border-color:var(--accent)}aside h1{padding-right:84px}
 .modes{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--rule);border-radius:7px;overflow:hidden;margin-bottom:4px;background:var(--panel);max-width:360px}
 .modes button{min-width:0!important;border:0!important;border-radius:0!important;border-right:1px solid var(--rule)!important;padding:5px 8px!important;font-size:12.5px!important;background:transparent!important}
 .modes button[aria-pressed="true"]{background:var(--accent)!important;color:#fff}.modes button:disabled{color:var(--muted);cursor:not-allowed;opacity:.6}
@@ -175,10 +176,12 @@ details.src{font-size:11.5px;color:var(--muted);margin:4px 0 0}details.src>summa
 .cellhe .hecard img{width:100%;height:360px;object-fit:cover;display:block}.cellhe .hecard span{padding:7px 9px;font-size:12.5px;font-weight:600}
 .chiprow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}.chiplbl{font-size:12.5px;color:var(--muted)}
 .gchip{font:inherit;font-size:12.5px;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:999px;padding:4px 11px}.gchip small{color:var(--muted);font-weight:400}button.gchip{cursor:pointer}button.gchip:hover{border-color:var(--accent);color:var(--accent)}
+.keyterms{margin:4px 0 12px;padding:10px 14px;border:1px solid var(--rule);background:var(--panel);border-radius:8px;font-size:13.5px;max-width:1100px}.keyterms .kt-head{margin:0 0 6px;font-weight:600}.keyterms dl{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 18px}.keyterms dt{font-weight:600;color:var(--accent)}.keyterms dd{margin:2px 0 0;color:var(--ink);line-height:1.4}
 .xbridge{margin:12px 0;padding:10px 13px;border-left:3px solid var(--accent);background:var(--panel);border-radius:0 8px 8px 0;font-size:13.5px}.xbridge p{margin:0}
 .caveats{margin:18px 0;font-size:13px}.caveats>summary{cursor:pointer;color:var(--muted);font-weight:600}.caveats ul{margin:8px 0 0;padding-left:18px}.caveats li{margin:4px 0}
 @media (max-width:760px){.cellrow{grid-template-columns:1fr}}
 </style></head><body>
+<button type="button" class="themebtn" id="themebtn" aria-pressed="false" title="Switch to the dark theme">☾ Dark</button>
 <div class="app">
  <div class="stage" id="stage">
   <div class="status" id="status">Loading the organ…</div>
