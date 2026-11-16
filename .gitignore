@@ -15,5 +15,5 @@ CLAUDE.md
 .claude/
 .agents/
 skills-lock.json
-figures/
+/figures/
 docs/REVIEW-*.md
