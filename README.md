@@ -6,8 +6,6 @@
 
 [![Watch a one-minute tour of the tool](docs/images/video-poster.jpg)](https://osamashiraz.github.io/pancreas-atlas/video/pancreas-atlas-showcase.mp4)
 
-*Watch a one-minute tour (video, 1080p, with narration).*
-
 A free, open learning tool that walks from the normal human pancreas, its exocrine and endocrine parts, to its diseases: pancreatitis, the precursor lesions of pancreatic cancer, and pancreatic ductal adenocarcinoma (PDA). Every step is shown three ways: an interactive illustrated figure of the mechanism, real H&E micrographs of what it looks like under the microscope, and an interactive 3D model that zooms from the whole organ down to single cells.
 
 ## A note on terms
