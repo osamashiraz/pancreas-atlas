@@ -57,6 +57,7 @@ jobs:
           cp dist/pancreas-organ-to-cell.html _site/pancreas-organ-to-cell.html
           cp -r dist/atlas _site/atlas
           cp -r dist/figures _site/figures
+          cp -r dist/video _site/video
           # every figure the app embeds must be in the site
           for id in $(grep -o "{ id: '[a-z0-9-]*', title:" viewer/src/app.js | sed "s/{ id: '//;s/', title://"); do
             test -f "_site/figures/$id.html" || { echo "missing figure: $id"; exit 1; }
